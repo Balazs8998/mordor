@@ -1,0 +1,67 @@
+<div class="page-layout">
+  <main class="page-main">
+
+    <h1>FORM RANK, MAGGOTS! Those who break formation WILL FEED THEM CROWS!</h1>
+
+    <div class="orc-list-container">
+
+      <table>
+        <thead class="table-head">
+        <tr class="table-tr">
+          <th>NAME</th>
+          <th>RACE</th>
+          <th>WEAPONS</th>
+          <th>KILLS</th>
+          <th>COMMAND</th>
+        </tr>
+        </thead>
+        <tbody>
+          @for (orc of orcs(); track orc.id) {
+
+        <tr class="table-tr">
+        <td>{{orc.name}}</td>
+        <td>{{orc.race}}</td>
+        <td>{{orc.weapons}}</td>
+        <td>{{orc.kills}} </td>
+          <td>
+            <button type="button" class="command-btn" (click)="execute(orc.id)">EXECUTE</button>
+            <button type="button" class="command-btn" (click)="reforge(orc.id)">REFORGE</button>
+          </td>
+        </tr>
+
+          }
+        </tbody>
+      </table>
+
+    </div>
+
+  </main>
+
+  <aside class="aside">
+    <div class="aside-report">
+      <h1>BEFORE THE EYE</h1>
+      <div class="aside-report__text">
+        <p>My Lord, the host is assembled.
+          The orc armies stand in formation beneath the banners of Mordor. The hordes of Uruks, Snaga and mountain orcs have taken their places, armed and awaiting command.
+
+          Their captains have reported their numbers, their weapons are prepared, and the ranks stretch across the black fields as far as the eye can see.
+
+          The war chiefs have sworn obedience. None will leave the line without command. Those too weak to march have been cast aside.
+
+          The army is ready, my Lord.
+          Give the order, and Mordor will march to war.</p>
+      </div>
+    </div>
+
+    <div class="delete-container">
+      @if (isExecuted()) {
+        <app-orc-delete></app-orc-delete>
+      } @else if (isReforged()) {
+        <app-orc-reforge></app-orc-reforge>
+      } @else if (isCreated()){
+        <app-orc-created></app-orc-created>
+      }
+    </div>
+  </aside>
+
+</div>

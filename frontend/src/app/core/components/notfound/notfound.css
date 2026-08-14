@@ -1,0 +1,137 @@
+.not-found-page {
+  position: relative;
+  min-height: calc(100vh - 80px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 40px 20px;
+
+  background-image: url('/img/core/notfound_bg.png');
+
+  background-size: cover;
+  background-position: center 80%;
+  background-repeat: no-repeat;
+
+  overflow: hidden;
+}
+
+.not-found-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(90, 10, 5, 0.15),
+      rgba(0, 0, 0, 0.28) 70%
+    );
+}
+
+.not-found-content {
+  position: relative;
+  z-index: 1;
+
+  max-width: 750px;
+  width: 100%;
+
+  text-align: center;
+
+  padding: 55px 45px;
+
+  border: 1px solid rgba(150, 35, 25, 0.65);
+
+  background: rgba(10, 7, 6, 0.72);
+
+  box-shadow:
+    0 0 35px rgba(0, 0, 0, 0.8),
+    inset 0 0 30px rgba(80, 10, 5, 0.08);
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+
+  font-size: 14px;
+  letter-spacing: 4px;
+
+  color: #8e6b55;
+}
+
+.not-found-content h1 {
+  margin: 0;
+
+  font-size: clamp(110px, 18vw, 220px);
+  line-height: 0.9;
+
+  color: #8f1717;
+
+  text-shadow:
+    0 0 12px rgba(180, 30, 20, 0.35),
+    0 0 35px rgba(80, 0, 0, 0.6);
+}
+
+.not-found-content h2 {
+  margin: 25px 0 15px;
+
+  font-size: clamp(22px, 3vw, 36px);
+
+  letter-spacing: 3px;
+
+  color: #c8473f;
+}
+
+.description {
+  max-width: 600px;
+
+  margin: 0 auto 35px;
+
+  font-size: 17px;
+  line-height: 1.7;
+
+  color: #a89a90;
+}
+
+.return-button {
+  display: inline-block;
+
+  padding: 13px 26px;
+
+  border: 1px solid #7d241b;
+
+  background: rgba(45, 10, 8, 0.65);
+
+  color: #c65b4f;
+
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+
+  text-decoration: none;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.return-button:hover {
+  background: rgba(95, 20, 14, 0.85);
+
+  color: #f07a68;
+
+  border-color: #b43b2e;
+
+  box-shadow: 0 0 18px rgba(130, 30, 20, 0.35);
+}
+
+@media (max-width: 600px) {
+  .not-found-content {
+    padding: 40px 20px;
+  }
+
+  .description {
+    font-size: 15px;
+  }
+}

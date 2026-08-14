@@ -1,0 +1,58 @@
+<section class="create-orc-page">
+
+  <form [formGroup]="orcForm" (ngSubmit)="onSubmit()">
+  <div class="create-orc-form">
+    <h1>From Darkness, a New Orc Rises</h1>
+
+    <div class="form-group">
+      <label for="name">Every servant of Mordor must bear a name.</label>
+
+      <input
+        id="name"
+        type="text"
+        placeholder="Enter your Orc's name"
+        formControlName="name"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="race">From which dark breed does this servant come?</label>
+
+      <select id="race" size="4" class="race-select" formControlName="race">
+        @for (race of raceTypes(); track race.raceType){
+        <option [value]="race.raceType">{{race.raceType}}</option>
+        }
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="weapons">Choose the weapon it will carry in Sauron's name.</label>
+
+      <select
+        id="weapons"
+        class="weapon-select"
+        size="5"
+        formControlName="weapons"
+        multiple
+      >
+        @for (weapon of weaponTypes(); track weapon.weaponType){
+        <option [value]="weapon.weaponType">{{weapon.weaponType}}</option>
+        }
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="kills">How many have fallen beneath this warrior's blade?</label>
+
+      <input
+        id="kills"
+        type="number"
+        placeholder="Enter the number of souls claimed"
+        formControlName="kills"
+      >
+    </div>
+
+    <button type="submit" [disabled]="orcForm.invalid" class="submit">Rise from the Darkness</button>
+  </div>
+  </form>
+</section>

@@ -1,0 +1,54 @@
+<nav class="mordor-navbar">
+
+  <a class="navbar-brand" [routerLink]="['/orcs']">
+    <img
+      src="/img/core/logoo.png"
+      alt="Mordor"
+      class="brand-logo"
+    >
+
+    <div class="brand-text">
+      <span class="brand-main">MORDOR</span>
+      <span class="brand-sub">Nothing can escape the watchful Eye of Sauron.</span>
+    </div>
+  </a>
+
+  <div class="navbar-links">
+
+    <a
+      class="nav-link"
+      [routerLink]="['/orcs']"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Orcs
+    </a>
+
+    <a
+      class="nav-link"
+      [routerLink]="['/orcs/create']"
+      routerLinkActive="active"
+    >
+      Create Orc
+    </a>
+
+    <a
+      class="nav-link"
+      [routerLink]="['/hordes']"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Hordes
+    </a>
+
+    <a
+      class="nav-link"
+      [routerLink]="['/hordes/create']"
+      routerLinkActive="active"
+    >
+      Create Horde
+    </a>
+
+  </div>
+
+</nav>
