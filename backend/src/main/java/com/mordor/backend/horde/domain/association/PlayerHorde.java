@@ -1,6 +1,7 @@
-package com.mordor.backend.creature.entity_map;
+package com.mordor.backend.horde.domain.association;
 
-import com.mordor.backend.creature.Creature;
+
+import com.mordor.backend.horde.domain.Horde;
 import com.mordor.backend.player.domain.Player;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,8 +17,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 
 @Entity
-@Table(name = "player_creature", uniqueConstraints = @UniqueConstraint(columnNames = {"player_id", "creature_id"}))
-public class PlayerCreature {
+@Table(name = "player_horde", uniqueConstraints = @UniqueConstraint(columnNames = {"player_id", "horde_id"}))
+public class PlayerHorde {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,8 +29,8 @@ public class PlayerCreature {
     private Player player;
 
     @ManyToOne
-    @JoinColumn(name = "creature_id")
-    private Creature creature;
+    @JoinColumn(name = "horde_id")
+    private Horde horde;
 
     @Column(nullable = false)
     private LocalDateTime createdAt;

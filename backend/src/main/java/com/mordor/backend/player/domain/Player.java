@@ -1,8 +1,7 @@
 package com.mordor.backend.player.domain;
 
-import com.mordor.backend.creature.Creature;
-import com.mordor.backend.creature.entity_map.PlayerCreature;
-import com.mordor.backend.horde.domain.entity_map.PlayerHorde;
+import com.mordor.backend.creature.domain.association.PlayerCreature;
+import com.mordor.backend.horde.domain.association.PlayerHorde;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

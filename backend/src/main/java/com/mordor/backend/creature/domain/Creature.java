@@ -1,15 +1,15 @@
-package com.mordor.backend.creature;
+package com.mordor.backend.creature.domain;
 
-import com.mordor.backend.creature.entity_map.PlayerCreature;
+import com.mordor.backend.creature.domain.association.PlayerCreature;
 import com.mordor.backend.equipment.weapon.Weapon;
 import com.mordor.backend.horde.domain.Horde;
-import com.mordor.backend.player.domain.Player;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -37,11 +37,18 @@ public abstract class Creature {
 
 
     @Column(nullable = false)
-    private Integer health;
+    private Double health;
     @Column(nullable = false)
-    private Integer damage;
+    private Double damage;
     @Column(nullable = false)
-    private Integer defense;
+    private Double defense;
+
+    @Column(nullable = false)
+    private Double currentHealth;
+    @Column
+    private LocalDateTime lastAttackedAt;
+    @Column
+    private LocalDateTime lastRecoveryAt;
 
     @ManyToMany
     @JoinTable(
