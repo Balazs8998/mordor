@@ -9,9 +9,6 @@
     "frontend": {
       "projectType": "application",
       "schematics": {
-        "@schematics/angular:component": {
-          "flat": true
-        }
       },
       "root": "",
       "sourceRoot": "src",
