@@ -1,6 +1,6 @@
 package com.mordor.backend.equipment.weapon;
 
-import com.mordor.backend.creature.Creature;
+import com.mordor.backend.creature.domain.Creature;
 import com.mordor.backend.equipment.enums.WeaponType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,8 +25,6 @@ public class Weapon {
 
     @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
-    private Integer requiredStrength;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
