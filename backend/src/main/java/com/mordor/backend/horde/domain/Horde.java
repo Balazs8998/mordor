@@ -1,8 +1,8 @@
 package com.mordor.backend.horde.domain;
 
 
+import com.mordor.backend.creature.Creature;
 import com.mordor.backend.horde.domain.entity_map.PlayerHorde;
-import com.mordor.backend.orc.domain.Orc;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,7 +27,7 @@ public class Horde {
     private String name;
 
     @OneToMany(mappedBy = "horde")
-    private List<Orc> orcs;
+    private List<Creature> creatures;
 
     @OneToMany(mappedBy = "horde")
     private List<PlayerHorde> playerHordes;

@@ -1,5 +1,7 @@
 package com.mordor.backend.player.domain;
 
+import com.mordor.backend.creature.Creature;
+import com.mordor.backend.creature.entity_map.PlayerCreature;
 import com.mordor.backend.horde.domain.entity_map.PlayerHorde;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -36,6 +38,9 @@ public class Player {
 
     @Column(nullable = false)
     private String password;
+
+    @OneToMany(mappedBy = "player")
+    private List<PlayerCreature> playerCreatures;
 
     @OneToMany(mappedBy = "player")
     private List<PlayerHorde> playerHordes;

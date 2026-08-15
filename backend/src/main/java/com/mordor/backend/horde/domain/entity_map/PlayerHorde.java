@@ -35,10 +35,6 @@ public class PlayerHorde {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
-    @Column
-    private LocalDateTime lastLogin;
-
-
     @PrePersist
     public void createdAt() {
         createdAt = LocalDateTime.now();
