@@ -1,0 +1,561 @@
+:host {
+  display: block;
+
+  width: 100%;
+
+  --forge-bg: rgba(11, 8, 6, 0.94);
+  --forge-bg-soft: rgba(25, 17, 12, 0.88);
+
+  --forge-border: rgba(112, 61, 34, 0.9);
+  --forge-border-light: rgba(180, 91, 43, 0.72);
+
+  --forge-title: #d0743d;
+  --forge-text: #d2c0a7;
+  --forge-muted: #988572;
+
+  --forge-error: #bd6045;
+}
+
+
+/* =========================================================
+   MAIN PANEL
+   ========================================================= */
+
+.forge-servant {
+  position: relative;
+
+  width: min(100%, 900px);
+
+  padding: clamp(22px, 2.5vw, 34px);
+
+  box-sizing: border-box;
+
+  color: var(--forge-text);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(29, 18, 12, 0.96),
+      var(--forge-bg)
+    );
+
+  border: 1px solid var(--forge-border);
+
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.68),
+    inset 0 0 35px rgba(0, 0, 0, 0.45);
+
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+
+.forge-servant::before {
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+  left: 40px;
+  right: 40px;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(210, 100, 48, 0.8),
+      transparent
+    );
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.forge-header {
+  display: grid;
+
+  grid-template-columns:
+    minmax(180px, 0.8fr)
+    minmax(240px, 1.2fr);
+
+  gap: 32px;
+
+  align-items: end;
+
+  padding-bottom: 22px;
+  margin-bottom: 28px;
+
+  border-bottom: 1px solid rgba(120, 71, 42, 0.4);
+}
+
+
+.forge-eyebrow {
+  margin: 0 0 6px;
+
+  color: var(--forge-muted);
+
+  font-size: 0.72rem;
+  font-weight: 600;
+
+  letter-spacing: 0.14rem;
+
+  text-transform: uppercase;
+}
+
+
+.forge-header h2 {
+  margin: 0;
+
+  color: var(--forge-title);
+
+  font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+  font-weight: 700;
+
+  letter-spacing: 0.08rem;
+
+  text-transform: uppercase;
+
+  text-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.85);
+}
+
+
+.forge-description {
+  margin: 0;
+
+  color: var(--forge-muted);
+
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+.forge-body {
+  display: grid;
+
+  grid-template-columns:
+    minmax(220px, 0.8fr)
+    minmax(280px, 1.2fr);
+
+  gap: clamp(28px, 4vw, 52px);
+
+  align-items: start;
+}
+
+
+/* =========================================================
+   CREATURE PREVIEW
+   ========================================================= */
+
+.creature-preview {
+  min-width: 0;
+}
+
+
+.preview-frame {
+  position: relative;
+
+  width: 100%;
+  aspect-ratio: 3 / 4;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(66, 39, 23, 0.45),
+      rgba(10, 8, 7, 0.88) 70%
+    );
+
+  border: 1px solid rgba(117, 67, 38, 0.75);
+
+  box-shadow:
+    inset 0 0 30px rgba(0, 0, 0, 0.65),
+    0 8px 22px rgba(0, 0, 0, 0.38);
+}
+
+
+.preview-frame::before {
+  content: '';
+
+  position: absolute;
+
+  inset: 8px;
+
+  border: 1px solid rgba(156, 89, 47, 0.2);
+
+  pointer-events: none;
+}
+
+
+.preview-frame img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+
+.preview-placeholder {
+  color: rgba(172, 143, 113, 0.42);
+
+  font-size: 0.8rem;
+
+  letter-spacing: 0.08rem;
+
+  text-transform: uppercase;
+}
+
+
+.preview-caption {
+  margin: 14px 0 0;
+
+  color: var(--forge-muted);
+
+  font-size: 0.76rem;
+  line-height: 1.55;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.forge-form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 24px;
+}
+
+
+.form-field {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+
+.form-field label {
+  color: #c7ad91;
+
+  font-size: 0.76rem;
+  font-weight: 700;
+
+  letter-spacing: 0.09rem;
+
+  text-transform: uppercase;
+}
+
+
+.form-field input,
+.form-field select {
+  width: 100%;
+
+  padding: 13px 14px;
+
+  box-sizing: border-box;
+
+  border: 1px solid rgba(111, 63, 37, 0.9);
+
+  border-radius: 0;
+
+  outline: none;
+
+  color: var(--forge-text);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(24, 17, 13, 0.98),
+      rgba(17, 13, 10, 0.98)
+    );
+
+  font: inherit;
+
+  font-size: 0.9rem;
+
+  box-shadow:
+    inset 0 2px 8px rgba(0, 0, 0, 0.35);
+
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    background 150ms ease;
+}
+
+
+.form-field input::placeholder {
+  color: rgba(154, 132, 108, 0.5);
+}
+
+
+.form-field input:focus,
+.form-field select:focus {
+  border-color: var(--forge-border-light);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(34, 22, 15, 0.98),
+      rgba(20, 14, 11, 0.98)
+    );
+
+  box-shadow:
+    0 0 0 1px rgba(177, 86, 41, 0.15),
+    0 0 16px rgba(109, 46, 22, 0.15),
+    inset 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+
+.form-field select {
+  cursor: pointer;
+}
+
+
+.form-field option {
+  color: var(--forge-text);
+
+  background: #17100c;
+}
+
+
+/* =========================================================
+   ERRORS
+   ========================================================= */
+
+.field-error {
+  color: var(--forge-error);
+
+  font-size: 0.74rem;
+}
+
+
+.form-errors {
+  padding: 12px 14px;
+
+  border-left: 2px solid var(--forge-error);
+
+  background: rgba(93, 34, 25, 0.16);
+}
+
+
+.form-errors p {
+  margin: 0 0 5px;
+
+  color: #c57a65;
+
+  font-size: 0.76rem;
+}
+
+
+.form-errors p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   INITIAL STATE
+   ========================================================= */
+
+.servant-state {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 14px;
+
+  border-top: 1px solid rgba(113, 67, 40, 0.45);
+  border-bottom: 1px solid rgba(113, 67, 40, 0.45);
+
+  background: rgba(22, 15, 11, 0.45);
+}
+
+
+.state-label {
+  color: var(--forge-muted);
+
+  font-size: 0.72rem;
+  font-weight: 600;
+
+  letter-spacing: 0.08rem;
+
+  text-transform: uppercase;
+}
+
+
+.state-value {
+  color: #bfa58a;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+
+  letter-spacing: 0.06rem;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.forge-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  padding-top: 4px;
+}
+
+
+.forge-button {
+  position: relative;
+
+  min-width: 175px;
+
+  padding: 13px 24px;
+
+  border: 1px solid rgba(171, 77, 36, 0.9);
+
+  color: #dec1a2;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(83, 38, 20, 0.96),
+      rgba(49, 27, 18, 0.96)
+    );
+
+  font: inherit;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+
+  letter-spacing: 0.09rem;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 5px 16px rgba(0, 0, 0, 0.35),
+    inset 0 0 16px rgba(0, 0, 0, 0.25);
+
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+
+.forge-button:hover:not(:disabled) {
+  color: #f0ceb0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(112, 49, 23, 0.98),
+      rgba(64, 32, 19, 0.98)
+    );
+
+  border-color: rgba(211, 101, 48, 0.95);
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 7px 20px rgba(0, 0, 0, 0.45),
+    0 0 18px rgba(151, 59, 25, 0.18);
+}
+
+
+.forge-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+
+.forge-button:disabled {
+  opacity: 0.38;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+  .forge-header {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+  }
+
+
+  .forge-body {
+    grid-template-columns:
+      minmax(180px, 0.65fr)
+      minmax(240px, 1fr);
+
+    gap: 24px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 620px) {
+
+  .forge-servant {
+    padding: 20px 16px;
+  }
+
+
+  .forge-body {
+    grid-template-columns: 1fr;
+  }
+
+
+  .creature-preview {
+    width: min(70%, 260px);
+
+    margin: 0 auto;
+  }
+
+
+  .forge-actions {
+    justify-content: stretch;
+  }
+
+
+  .forge-button {
+    width: 100%;
+  }
+
+}

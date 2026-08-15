@@ -1,0 +1,151 @@
+<section class="forge-servant">
+
+  <header class="forge-header">
+    <div>
+      <p class="forge-eyebrow">Mustering Grounds</p>
+      <h2>Forge Servant</h2>
+    </div>
+
+    <p class="forge-description">
+      Call forth a new servant of Mordor. Give it a name and choose
+      the blood from which it was born.
+    </p>
+  </header>
+
+
+  <div class="forge-body">
+
+    <div class="creature-preview">
+
+      <div class="preview-frame">
+        @if (selectedRace(); as race) {
+          <img
+            [src]="race.imgUrl"
+            [alt]="race.displayName"
+          >
+        } @else {
+          <span class="preview-placeholder">
+      Creature Preview
+    </span>
+        }
+      </div>
+
+      <p class="preview-caption">
+        A servant enters Mordor unarmed.
+        Equipment may be assigned later in the Armory.
+      </p>
+
+    </div>
+
+
+    <form
+      class="forge-form"
+      [formGroup]="creatureForm"
+      (ngSubmit)="onSubmit()">
+
+      <div class="form-field">
+
+        <label for="name">
+          Servant Name
+        </label>
+
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          placeholder="Name your servant"
+          autocomplete="off"
+        >
+
+        @if (
+          creatureForm.controls.name.invalid &&
+          creatureForm.controls.name.touched
+          ) {
+          <span class="field-error">
+            A servant must bear a name.
+          </span>
+        }
+
+      </div>
+
+
+      <div class="form-field">
+
+        <label for="race">
+          Race
+        </label>
+
+        <select
+          id="race"
+          formControlName="race"
+          (change)="selectedRaceValue.set($any($event.target).value)"
+        >
+
+          <option value="" disabled>
+            Choose a race
+          </option>
+
+          @for (race of races(); track race.value) {
+            <option [value]="race.value">
+              {{ race.displayName }}
+            </option>
+          }
+
+        </select>
+
+        @if (
+          creatureForm.controls.race.invalid &&
+          creatureForm.controls.race.touched
+          ) {
+          <span class="field-error">
+            Choose the bloodline of your servant.
+          </span>
+        }
+
+      </div>
+
+
+      <div class="servant-state">
+
+        <span class="state-label">
+          Initial Status
+        </span>
+
+        <span class="state-value">
+          Unarmed
+        </span>
+
+      </div>
+
+
+      @if (hasValidationErrors()) {
+        <div class="form-errors">
+
+          @for (error of validationErrorEntries(); track error[0]) {
+            <p>
+              {{ error[1] }}
+            </p>
+          }
+
+        </div>
+      }
+
+
+      <div class="forge-actions">
+
+        <button
+          type="submit"
+          class="forge-button"
+          [disabled]="creatureForm.invalid">
+
+          Forge Servant
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</section>

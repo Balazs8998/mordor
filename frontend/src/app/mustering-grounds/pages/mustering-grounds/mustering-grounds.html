@@ -1,1 +1,72 @@
-<p>mustering-grounds works!</p>
+<div class="mustering-grounds-page">
+
+  <aside class="mustering-info">
+    <h2>Mustering Grounds</h2>
+
+    <p>
+      Here the servants of Mordor are gathered, inspected and prepared
+      for the wars to come.
+    </p>
+
+    <p>
+      Forge new creatures, inspect your forces and arm those worthy
+      enough to march beneath your banner.
+    </p>
+  </aside>
+
+
+  <main class="mustering-content">
+
+    @switch (activeSection()) {
+
+      @case ('forge') {
+        <app-forge-servant />
+      }
+
+      @case ('roster') {
+        <app-creature-roster />
+      }
+
+      @case ('armory') {
+        <app-armory />
+      }
+
+      @default {
+        <!--
+          Intentionally empty.
+          The player can see the Mustering Grounds background
+          before opening a management panel.
+        -->
+      }
+
+    }
+
+  </main>
+
+
+  <nav class="mustering-menu">
+
+    <button
+      type="button"
+      [class.active]="activeSection() === 'forge'"
+      (click)="selectSection('forge')">
+      Forge Servant
+    </button>
+
+    <button
+      type="button"
+      [class.active]="activeSection() === 'roster'"
+      (click)="selectSection('roster')">
+      Creature Roster
+    </button>
+
+    <button
+      type="button"
+      [class.active]="activeSection() === 'armory'"
+      (click)="selectSection('armory')">
+      Armory
+    </button>
+
+  </nav>
+
+</div>

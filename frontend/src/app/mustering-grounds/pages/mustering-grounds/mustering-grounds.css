@@ -1,0 +1,593 @@
+:host {
+  display: block;
+
+  --panel-bg: rgba(12, 9, 7, 0.88);
+  --panel-bg-hover: rgba(42, 27, 18, 0.94);
+
+  --border-dark: rgba(85, 46, 27, 0.9);
+  --border-light: rgba(177, 90, 45, 0.65);
+
+  --text-primary: #d8c7ad;
+  --text-secondary: #9f8d78;
+  --text-title: #c46c3a;
+
+  --panel-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.65),
+    inset 0 0 24px rgba(0, 0, 0, 0.55);
+}
+
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.mustering-grounds-page {
+  position: relative;
+
+  width: 100%;
+  min-height: calc(100vh - 80px);
+
+  display: grid;
+  grid-template-columns:
+    minmax(210px, 240px)
+    minmax(0, 1fr)
+    minmax(190px, 220px);
+
+  grid-template-areas:
+    "info content menu";
+
+  gap: clamp(18px, 2vw, 32px);
+
+  padding:
+    clamp(24px, 3vw, 42px)
+    clamp(24px, 2.5vw, 40px);
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.08) 0%,
+      rgba(0, 0, 0, 0.02) 45%,
+      rgba(0, 0, 0, 0.20) 100%
+    ),
+    url('/img/mustering-grounds/mustering-grounds-bg.png');
+
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+
+/*
+  Finom sötétítés a széleken.
+  A kép közepe tisztább marad.
+*/
+
+.mustering-grounds-page::before {
+  content: '';
+
+  position: absolute;
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.28) 0%,
+      rgba(0, 0, 0, 0.05) 22%,
+      rgba(0, 0, 0, 0.00) 50%,
+      rgba(0, 0, 0, 0.05) 78%,
+      rgba(0, 0, 0, 0.28) 100%
+    );
+}
+
+
+/*
+  A tényleges tartalom kerüljön az overlay fölé.
+*/
+
+.mustering-info,
+.mustering-content,
+.mustering-menu {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* =========================================================
+   LEFT INFO PANEL
+   ========================================================= */
+
+.mustering-info {
+  grid-area: info;
+
+  align-self: start;
+
+  width: 100%;
+
+  padding: 20px 18px;
+
+  box-sizing: border-box;
+
+  color: var(--text-primary);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(25, 16, 11, 0.92),
+      var(--panel-bg)
+    );
+
+  border: 1px solid var(--border-dark);
+
+  box-shadow: var(--panel-shadow);
+
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+
+/* felső kis díszvonal */
+
+.mustering-info::before {
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+  left: 14px;
+  right: 14px;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(196, 108, 58, 0.75),
+      transparent
+    );
+}
+
+
+.mustering-info h2 {
+  margin: 0 0 18px;
+
+  color: var(--text-title);
+
+  font-size: 1.15rem;
+  font-weight: 700;
+
+  line-height: 1.25;
+
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
+
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+
+.mustering-info p {
+  margin: 0 0 14px;
+
+  color: var(--text-secondary);
+
+  font-size: 0.88rem;
+  line-height: 1.65;
+
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+
+.mustering-info p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   CENTER CONTENT
+   ========================================================= */
+
+.mustering-content {
+  grid-area: content;
+
+  min-width: 0;
+  min-height: calc(100vh - 160px);
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+
+/*
+  Forge / Roster / Armory maximális szélessége.
+
+  Maga a .mustering-content továbbra is teljesen átlátszó,
+  tehát üres állapotban csak a háttérkép látszik.
+*/
+
+.mustering-content > * {
+  width: min(100%, 980px);
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   RIGHT MENU
+   ========================================================= */
+
+.mustering-menu {
+  grid-area: menu;
+
+  align-self: start;
+
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 9px;
+
+  padding: 14px;
+
+  box-sizing: border-box;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(25, 16, 11, 0.94),
+      var(--panel-bg)
+    );
+
+  border: 1px solid var(--border-dark);
+
+  box-shadow: var(--panel-shadow);
+
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+
+/* felső díszvonal */
+
+.mustering-menu::before {
+  content: '';
+
+  position: absolute;
+
+  top: 0;
+  left: 14px;
+  right: 14px;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(196, 108, 58, 0.75),
+      transparent
+    );
+}
+
+
+/* =========================================================
+   MENU BUTTONS
+   ========================================================= */
+
+.mustering-menu button {
+  position: relative;
+
+  width: 100%;
+
+  padding: 13px 14px;
+
+  box-sizing: border-box;
+
+  border: 1px solid rgba(104, 60, 35, 0.9);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(31, 20, 14, 0.96),
+      rgba(20, 14, 11, 0.96)
+    );
+
+  color: #bda88d;
+
+  font: inherit;
+
+  font-size: 0.82rem;
+  font-weight: 600;
+
+  text-align: left;
+  text-transform: uppercase;
+
+  letter-spacing: 0.055rem;
+
+  cursor: pointer;
+
+  box-shadow:
+    inset 0 0 14px rgba(0, 0, 0, 0.35);
+
+  transition:
+    color 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+
+/*
+  Bal oldali kis highlight a gombon
+*/
+
+.mustering-menu button::before {
+  content: '';
+
+  position: absolute;
+
+  top: 20%;
+  bottom: 20%;
+  left: 0;
+
+  width: 2px;
+
+  background: transparent;
+
+  transition:
+    background 160ms ease,
+    box-shadow 160ms ease;
+}
+
+
+.mustering-menu button:hover {
+  color: #e0c5a4;
+
+  background: var(--panel-bg-hover);
+
+  border-color: var(--border-light);
+
+  transform: translateX(-3px);
+
+  box-shadow:
+    0 0 14px rgba(132, 57, 24, 0.16),
+    inset 0 0 16px rgba(0, 0, 0, 0.35);
+}
+
+
+.mustering-menu button:hover::before {
+  background: #b85a2c;
+
+  box-shadow:
+    0 0 8px rgba(184, 90, 44, 0.7);
+}
+
+
+.mustering-menu button.active {
+  color: #edc7a3;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(82, 39, 20, 0.96),
+      rgba(39, 23, 15, 0.96)
+    );
+
+  border-color: rgba(182, 84, 40, 0.9);
+
+  box-shadow:
+    0 0 18px rgba(132, 57, 24, 0.20),
+    inset 0 0 16px rgba(0, 0, 0, 0.4);
+}
+
+
+.mustering-menu button.active::before {
+  background: #d16a32;
+
+  box-shadow:
+    0 0 9px rgba(209, 106, 50, 0.7);
+}
+
+
+.mustering-menu button:focus-visible {
+  outline: 1px solid rgba(209, 106, 50, 0.9);
+  outline-offset: 2px;
+}
+
+
+/* =========================================================
+   LARGE / MEDIUM DESKTOP
+   ========================================================= */
+
+@media (max-width: 1250px) {
+
+  .mustering-grounds-page {
+    grid-template-columns:
+      minmax(190px, 220px)
+      minmax(0, 1fr)
+      minmax(180px, 200px);
+
+    gap: 18px;
+
+    padding: 26px;
+  }
+
+
+  .mustering-info {
+    padding: 17px;
+  }
+
+
+  .mustering-info h2 {
+    font-size: 1.05rem;
+  }
+
+
+  .mustering-info p {
+    font-size: 0.82rem;
+  }
+
+
+  .mustering-menu button {
+    padding: 12px;
+
+    font-size: 0.78rem;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .mustering-grounds-page {
+    min-height: calc(100vh - 80px);
+
+    grid-template-columns:
+      minmax(170px, 210px)
+      minmax(0, 1fr);
+
+    grid-template-areas:
+      "info menu"
+      "content content";
+
+    align-content: start;
+
+    gap: 16px;
+
+    padding: 20px;
+
+    overflow: visible;
+
+    background-position: center top;
+  }
+
+
+  .mustering-content {
+    min-height: 55vh;
+
+    align-items: flex-start;
+  }
+
+
+  .mustering-menu {
+    align-self: start;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+  .mustering-grounds-page {
+    display: flex;
+    flex-direction: column;
+
+    gap: 14px;
+
+    min-height: calc(100vh - 80px);
+
+    padding: 14px;
+
+    background-position: 55% top;
+  }
+
+
+  .mustering-grounds-page::before {
+    background:
+      linear-gradient(
+        rgba(0, 0, 0, 0.08),
+        rgba(0, 0, 0, 0.38)
+      );
+  }
+
+
+  .mustering-info {
+    order: 1;
+
+    width: 100%;
+  }
+
+
+  .mustering-menu {
+    order: 2;
+
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 7px;
+  }
+
+
+  .mustering-menu button {
+    padding: 11px 8px;
+
+    font-size: 0.7rem;
+
+    text-align: center;
+
+    letter-spacing: 0.03rem;
+  }
+
+
+  .mustering-menu button:hover {
+    transform: none;
+  }
+
+
+  .mustering-content {
+    order: 3;
+
+    width: 100%;
+
+    min-height: 45vh;
+
+    align-items: flex-start;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+  .mustering-menu {
+    grid-template-columns: 1fr;
+  }
+
+
+  .mustering-menu button {
+    text-align: left;
+  }
+
+
+  .mustering-info h2 {
+    font-size: 1rem;
+  }
+
+
+  .mustering-info p {
+    font-size: 0.8rem;
+  }
+}
