@@ -16,13 +16,22 @@ public enum WeaponType {
     private final Integer defenseBonus;
     private final Integer range;
     private final Integer requiredStrength;
+    private final String displayName;
+
 
      WeaponType (CombatRange combatRange, Integer damageBonus, Integer defenseBonus, Integer range, Integer requiredStrength) {
         this.combatRange = combatRange;
         this.damageBonus = damageBonus;
         this.defenseBonus = defenseBonus;
         this.range = range;
+        String formatted = name().replace("_", " ").toLowerCase();
+        this.displayName = formatted.substring(0, 1).toUpperCase() + formatted.substring(1);
+
         this.requiredStrength = requiredStrength;
+    }
+
+    public String getDisplayName() {
+        return displayName;
     }
 
     public CombatRange getCombatRange() {
