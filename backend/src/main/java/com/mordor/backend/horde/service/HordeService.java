@@ -2,7 +2,7 @@ package com.mordor.backend.horde.service;
 
 
 import com.mordor.backend.horde.dto.request.HordeCreateRequest;
-import com.mordor.backend.horde.mapper.HordeMapper;
+import com.mordor.backend.horde.dto.mapper.HordeMapper;
 import com.mordor.backend.horde.repository.HordeRepositry;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;

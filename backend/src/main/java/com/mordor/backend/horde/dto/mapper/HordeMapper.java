@@ -1,4 +1,4 @@
-package com.mordor.backend.horde.mapper;
+package com.mordor.backend.horde.dto.mapper;
 
 
 import com.mordor.backend.horde.domain.Horde;
