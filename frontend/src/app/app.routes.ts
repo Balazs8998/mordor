@@ -1,30 +1,41 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 
 export const routes: Routes = [
 
   {
     path: '',
     loadComponent: () =>
-      import('./orc/page/orc-list/component/orc-list/orc-list').then(m => m.OrcList)
+      import('./mustering-grounds/pages/mustering-grounds/mustering-grounds').then(m => m.MusteringGrounds)
+
   },
+
   {
-    path: 'orcs/create',
+    path: 'mustering-grounds',
     loadComponent: () =>
-      import('./orc/page/orc-create/components/orc-create/orc-create').then(m => m.OrcCreate)
+      import('./mustering-grounds/pages/mustering-grounds/mustering-grounds').then(m => m.MusteringGrounds)
   },
+
   {
-    path: 'orcs',
+    path: 'great-hall',
     loadComponent: () =>
-      import('./orc/page/orc-list/component/orc-list/orc-list').then(m => m.OrcList)
+      import('./great-hall/pages/great-hall/great-hall').then(m => m.GreatHall)
   },
+
   {
-    path: 'hordes/create',
+    path: 'war-hall',
     loadComponent: () =>
-      import('./great-hall/horde/page/horde-create/component/horde-create').then(m => m.HordeCreate)
+      import('./war-hall/pages/war-hall/war-hall').then(m => m.WarHall)
   },
+
   {
-    path:'**',
-    loadComponent:() => import(
+    path: 'war-table',
+    loadComponent: () =>
+      import('./war-table/pages/war-table/war-table').then(m => m.WarTable)
+  },
+
+  {
+    path: '**',
+    loadComponent: () => import(
       './core/components/notfound/notfound').then(c => c.Notfound)
   }
 
