@@ -20,7 +20,7 @@ export const routes: Routes = [
   {
     path: 'hordes/create',
     loadComponent: () =>
-      import('./horde/page/horde-create/component/horde-create').then(m => m.HordeCreate)
+      import('./great-hall/horde/page/horde-create/component/horde-create').then(m => m.HordeCreate)
   },
   {
     path:'**',

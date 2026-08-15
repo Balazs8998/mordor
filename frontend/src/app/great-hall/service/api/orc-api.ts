@@ -1,5 +1,5 @@
 import {inject, Service} from '@angular/core';
-import {HordeCreateRequest} from '../../page/horde-create/models/horde-create-request';
+import {HordeCreateRequest} from '../../horde/page/horde-create/models/horde-create-request';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 

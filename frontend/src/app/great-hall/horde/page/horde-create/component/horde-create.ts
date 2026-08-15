@@ -1,9 +1,9 @@
 import {Component, DestroyRef, inject, signal} from '@angular/core';
-import {OrcApi} from '../../../service/api/orc-api';
+import {OrcApi} from '../../../../service/api/orc-api';
 import {NonNullableFormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {Router} from '@angular/router';
-import {parseHttpError} from '../../../../core/shared/models/http-error-util';
+import {parseHttpError} from '../../../../../core/shared/models/http-error-util';
 
 @Component({
   selector: 'app-horde-create',
