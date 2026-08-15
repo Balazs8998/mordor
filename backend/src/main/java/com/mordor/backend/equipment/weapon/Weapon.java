@@ -26,8 +26,6 @@ public class Weapon {
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
-    private Double damage;
-    @Column(nullable = false)
     private Integer requiredStrength;
 
     @Enumerated(EnumType.STRING)

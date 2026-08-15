@@ -41,7 +41,7 @@ public abstract class Creature {
     @Column(nullable = false)
     private Integer damage;
     @Column(nullable = false)
-    private Integer armor;
+    private Integer defense;
 
     @ManyToMany
     @JoinTable(
