@@ -377,42 +377,29 @@
    INITIAL STATE
    ========================================================= */
 
-.servant-state {
-  display: flex;
+.servant-stats {
+  margin-top: 1rem;
+  border-top: 1px solid rgba(180, 120, 70, 0.35);
+}
 
+.stat-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
   align-items: center;
-  justify-content: space-between;
 
-  padding: 12px 14px;
-
-  border-top: 1px solid rgba(113, 67, 40, 0.45);
-  border-bottom: 1px solid rgba(113, 67, 40, 0.45);
-
-  background: rgba(22, 15, 11, 0.45);
+  padding: 0.55rem 0.7rem;
+  border-bottom: 1px solid rgba(180, 120, 70, 0.25);
 }
 
-
-.state-label {
-  color: var(--forge-muted);
-
-  font-size: 0.72rem;
-  font-weight: 600;
-
-  letter-spacing: 0.08rem;
-
+.stat-label {
+  font-size: 0.75rem;
   text-transform: uppercase;
+  letter-spacing: 0.12rem;
 }
 
-
-.state-value {
-  color: #bfa58a;
-
+.stat-value {
   font-size: 0.8rem;
-  font-weight: 700;
-
-  letter-spacing: 0.06rem;
-
-  text-transform: uppercase;
+  font-weight: 600;
 }
 
 

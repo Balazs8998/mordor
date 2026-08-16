@@ -21,7 +21,7 @@
         @if (selectedRace(); as race) {
           <img
             [src]="race.imgUrl"
-            [alt]="race.displayName"
+            [alt]="race.raceTypeDisplayName"
           >
         } @else {
           <span class="preview-placeholder">
@@ -35,7 +35,34 @@
         Equipment may be assigned later in the Armory.
       </p>
 
-    </div>
+      @if (selectedRace(); as race) {
+
+        <div class="servant-stats">
+
+          <div class="stat-row">
+            <span class="stat-label">Required Gold</span>
+            <span class="stat-value">{{ race.recruitmentGoldCost }}</span>
+          </div>
+
+          <div class="stat-row">
+            <span class="stat-label">Required Mordor Steel</span>
+            <span class="stat-value">{{ race.recruitmentMordorSteelCost }}</span>
+          </div>
+
+          <div class="stat-row">
+            <span class="stat-label">Food Upkeep</span>
+            <span class="stat-value">{{ race.foodUpkeep }}</span>
+          </div>
+
+          <div class="stat-row">
+            <span class="stat-label">Capacity Cost</span>
+            <span class="stat-value">{{ race.capacityCost }}</span>
+          </div>
+
+        </div>
+      }
+
+        </div>
 
 
     <form
@@ -77,7 +104,7 @@
 
         <select
           id="race"
-          formControlName="race"
+          formControlName="raceTypeValue"
           (change)="selectedRaceValue.set($any($event.target).value)"
         >
 
@@ -85,17 +112,17 @@
             Choose a race
           </option>
 
-          @for (race of races(); track race.value) {
-            <option [value]="race.value">
-              {{ race.displayName }}
+          @for (race of races(); track race.raceTypeValue) {
+            <option [value]="race.raceTypeValue">
+              {{ race.raceTypeDisplayName }}
             </option>
           }
 
         </select>
 
         @if (
-          creatureForm.controls.race.invalid &&
-          creatureForm.controls.race.touched
+          creatureForm.controls.raceTypeValue.invalid &&
+          creatureForm.controls.raceTypeValue.touched
           ) {
           <span class="field-error">
             Choose the bloodline of your servant.
@@ -105,17 +132,62 @@
       </div>
 
 
-      <div class="servant-state">
+      @if (selectedRace(); as race) {
 
-        <span class="state-label">
-          Initial Status
-        </span>
+        <div class="servant-stats">
 
-        <span class="state-value">
-          Unarmed
-        </span>
+          <div class="stat-row">
+            <span class="stat-label">Race</span>
+            <span class="stat-value">{{ race.raceTypeDisplayName }}</span>
+          </div>
 
-      </div>
+          <div class="stat-row">
+            <span class="stat-label">Role</span>
+            <span class="stat-value">{{ race.roleDisplayName }}</span>
+          </div>
+
+          <div class="stat-row">
+            <span class="stat-label">Unit Type</span>
+            <span class="stat-value">{{ race.creatureTypeDisplayName }}</span>
+          </div>
+
+          <div class="stat-row">
+            <span class="stat-label">Movement</span>
+            <span class="stat-value">{{ race.movementTypeDisplayName }}</span>
+          </div>
+
+          <div class="stat-row">
+            <span class="stat-label">Strength</span>
+            <span class="stat-value">{{ race.strength }}</span>
+          </div>
+
+          <div class="stat-row">
+            <span class="stat-label">Movement Speed</span>
+            <span class="stat-value">{{ race.movementSpeed }}</span>
+          </div>
+
+          <div class="stat-row">
+            <span class="stat-label">Health</span>
+            <span class="stat-value">{{ race.baseHealth }}</span>
+          </div>
+
+          <div class="stat-row">
+            <span class="stat-label">Damage</span>
+            <span class="stat-value">{{ race.baseDamage }}</span>
+          </div>
+
+          <div class="stat-row">
+            <span class="stat-label">Defense</span>
+            <span class="stat-value">{{ race.baseDefense }}</span>
+          </div>
+
+          <div class="stat-row">
+            <span class="stat-label">Initial Status</span>
+            <span class="stat-value">Unarmed</span>
+          </div>
+
+        </div>
+      }
 
 
       @if (hasValidationErrors()) {

@@ -1,4 +1,4 @@
-import {Component, computed, DestroyRef, inject, signal} from '@angular/core';
+import {Component, computed, DestroyRef, effect, inject, signal} from '@angular/core';
 import {NonNullableFormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MusteringGroundsStore} from '../../data-access/store/mustering-grounds-store';
 import {MusteringGroundsApi} from '../../data-access/api/mustering-grounds-api';
@@ -58,19 +58,37 @@ export class ForgeServant {
   readonly selectedRace = computed(() => {
     const value = this.selectedRaceValue();
 
-    return this.races().find(race => race.value === value) ?? null;
+    return this.races().find(race => race.raceTypeValue === value) ?? null;
   });
+
+  readonly selectedCreatureType = computed(() => {
+    const race = this.selectedRace();
+
+    return race ? race.creatureTypeValue : null;
+  });
+
+
 
   creatureForm = this.formBuilder.group({
     name : ['', Validators.required],
-    race: ['', Validators.required]
+    raceTypeValue: ['', Validators.required],
+    creatureTypeValue: [this.selectedCreatureType(), Validators.required],
   });
+
+  readonly creatureTypeToForm = effect(() => {
+    const creatureType = this.selectedCreatureType();
+
+    this.creatureForm.controls.creatureTypeValue.setValue(creatureType);
+
+  })
 
   onSubmit() {
     if (this.creatureForm.invalid) {
       return
     }
     const request = this.creatureForm.getRawValue()
+
+    console.log(request)
 
     this.musteringGroundsApi.createCreature(request).pipe(
       takeUntilDestroyed(this.destroyRef)
