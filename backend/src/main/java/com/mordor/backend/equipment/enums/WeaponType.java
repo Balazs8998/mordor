@@ -1,33 +1,133 @@
 package com.mordor.backend.equipment.enums;
 
 public enum WeaponType {
-    ONE_HAND_SWORD( CombatRange.MELEE, 2,2, 0, 3),
-    LONG_SWORD( CombatRange.MELEE, 5,1, 0, 7),
-    MACE( CombatRange.MELEE, 4,2, 0, 6),
-    HEAVY_MACE( CombatRange.MELEE, 7,2, 0, 8),
-    SPEAR( CombatRange.MELEE, 2,1, 0, 4),
-    LONG_SPEAR( CombatRange.MELEE, 4,1, 0, 6),
-    BOW( CombatRange.RANGED, 2,0, 2, 2),
-    SHIELD( CombatRange.MELEE, 0, 2, 0, 5),
-    KNIFE( CombatRange.MELEE, 1, 0,0, 1);
+
+    DAGGER(
+            CombatRange.MELEE,
+            1,
+            0,
+            0,
+            1,
+            8,
+            0
+    ),
+
+    ONE_HAND_SWORD(
+            CombatRange.MELEE,
+            2,
+            1,
+            0,
+            2,
+            18,
+            1
+    ),
+
+    MACE(
+            CombatRange.MELEE,
+            3,
+            0,
+            0,
+            3,
+            20,
+            1
+    ),
+
+    SHIELD(
+            CombatRange.MELEE,
+            0,
+            3,
+            0,
+            3,
+            24,
+            2
+    ),
+
+    SPEAR(
+            CombatRange.MELEE,
+            2,
+            0,
+            1,
+            3,
+            18,
+            1
+    ),
+
+    BOW(
+            CombatRange.RANGED,
+            2,
+            0,
+            3,
+            3,
+            26,
+            1
+    ),
+
+    LONG_SWORD(
+            CombatRange.MELEE,
+            3,
+            1,
+            0,
+            5,
+            34,
+            2
+    ),
+
+    LONG_SPEAR(
+            CombatRange.MELEE,
+            3,
+            0,
+            2,
+            5,
+            30,
+            2
+    ),
+
+    HEAVY_MACE(
+            CombatRange.MELEE,
+            5,
+            0,
+            0,
+            6,
+            36,
+            3
+    );
 
     private final CombatRange combatRange;
     private final Integer damageBonus;
     private final Integer defenseBonus;
     private final Integer range;
-    private final Integer requiredStrength;
+    private final Integer strengthCost;
+
+    private final Integer goldCost;
+    private final Integer mordorSteelCost;
+
     private final String displayName;
 
-
-     WeaponType (CombatRange combatRange, Integer damageBonus, Integer defenseBonus, Integer range, Integer requiredStrength) {
+    WeaponType(
+            CombatRange combatRange,
+            Integer damageBonus,
+            Integer defenseBonus,
+            Integer range,
+            Integer strengthCost,
+            Integer goldCost,
+            Integer mordorSteelCost
+    ) {
         this.combatRange = combatRange;
         this.damageBonus = damageBonus;
         this.defenseBonus = defenseBonus;
         this.range = range;
-        String formatted = name().replace("_", " ").toLowerCase();
-        this.displayName = formatted.substring(0, 1).toUpperCase() + formatted.substring(1);
+        this.strengthCost = strengthCost;
 
-        this.requiredStrength = requiredStrength;
+        this.goldCost = goldCost;
+        this.mordorSteelCost = mordorSteelCost;
+
+        String formatted = name()
+                .replace("_", " ")
+                .toLowerCase();
+
+        this.displayName =
+                formatted.substring(0, 1).toUpperCase()
+                        + formatted.substring(1);
     }
 
     public String getDisplayName() {
@@ -50,7 +150,15 @@ public enum WeaponType {
         return range;
     }
 
-    public Integer getRequiredStrength() {
-        return requiredStrength;
+    public Integer getStrengthCost() {
+        return strengthCost;
+    }
+
+    public Integer getGoldCost() {
+        return goldCost;
+    }
+
+    public Integer getMordorSteelCost() {
+        return mordorSteelCost;
     }
 }

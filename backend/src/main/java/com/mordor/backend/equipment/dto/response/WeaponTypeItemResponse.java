@@ -8,7 +8,9 @@ public record WeaponTypeItemResponse(
         Integer damageBonus,
         Integer defenseBonus,
         Integer range,
-        Integer requiredStrength
+        Integer requiredStrength,
+        Integer goldCost,
+        Integer mordorSteelCost
 
 ) {
 }

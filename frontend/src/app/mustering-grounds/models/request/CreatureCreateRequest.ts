@@ -1,4 +1,5 @@
 export interface CreatureCreateRequest {
   name: string;
-  race: string;
+  creatureTypeValue: string | null;
+  raceTypeValue: string;
 }

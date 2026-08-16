@@ -7,4 +7,7 @@ export interface WeaponTypeItem {
   defenseBonus: number;
   range: number;
   requiredStrength: number;
+   goldCost: number;
+  mordorSteelCost: number;
+
 }
