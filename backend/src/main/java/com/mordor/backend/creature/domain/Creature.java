@@ -35,6 +35,9 @@ public abstract class Creature {
     @Column(nullable = false)
     private Integer strength;
 
+    @Column(nullable = false)
+    private Double movementSpeed;
+
 
     @Column(nullable = false)
     private Double health;
@@ -44,11 +47,20 @@ public abstract class Creature {
     private Double defense;
 
     @Column(nullable = false)
+    private Integer currentStrength;
+
+    @Column(nullable = false)
     private Double currentHealth;
     @Column
     private LocalDateTime lastAttackedAt;
     @Column
     private LocalDateTime lastRecoveryAt;
+
+    @Column(nullable = false)
+    private Integer foodUpkeep;
+
+    @Column(nullable = false)
+    private Integer capacityCost;
 
     @ManyToMany
     @JoinTable(
@@ -66,6 +78,15 @@ public abstract class Creature {
    private List<PlayerCreature> playerCreatures;
 
 
+   @PrePersist
+    public void initializeCurrentValues() {
+       if(currentHealth == null) {
+           currentHealth = health;
+       }
+       if(currentStrength == null) {
+           currentStrength = strength;
+       }
+    }
 
 
 }

@@ -1,21 +1,110 @@
 package com.mordor.backend.creature.domain.troll.enums;
 
-public enum TrollRaceType {
+import com.mordor.backend.creature.domain.shared.CreatureRaceDefinition;
+import com.mordor.backend.creature.enums.CreatureMovementType;
+import com.mordor.backend.creature.enums.CreatureType;
 
-    CAVE_TROLL(TrollRole.BRUTE,"none"),
-    MOUNTAIN_TROLL(TrollRole.HEAVY_BRUTE,"none"),
-    OLOG_HAI(TrollRole.ELITE_BRUTE,"none");
+public enum TrollRaceType implements CreatureRaceDefinition {
+
+    CAVE_TROLL(
+            TrollRole.BRUTE,
+            "cave-troll/cave-troll",
+            8,
+            1.0,
+            65.0,
+            6.0,
+            2.0,
+            95,
+            0,
+            5,
+            2
+    ),
+
+    MOUNTAIN_TROLL(
+            TrollRole.HEAVY_BRUTE,
+            "mountain-troll/mountain-troll",
+            10,
+            1.0,
+            80.0,
+            7.0,
+            3.0,
+            150,
+            1,
+            7,
+            2
+    ),
+
+    OLOG_HAI(
+            TrollRole.ELITE_BRUTE,
+            "olog-hai/olog-hai",
+            12,
+            1.0,
+            100.0,
+            9.0,
+            4.0,
+            230,
+            3,
+            10,
+            2
+    );
 
     private final TrollRole role;
     private final String displayName;
     private final String imgUrl;
 
-    TrollRaceType(TrollRole role, String imgUrl) {
+    private final Integer strength;
+    private final Double movementSpeed;
+
+    private final Double baseHealth;
+    private final Double baseDamage;
+    private final Double baseDefense;
+
+    private final Integer recruitmentGoldCost;
+    private final Integer recruitmentMordorSteelCost;
+
+    private final Integer foodUpkeep;
+    private final Integer capacityCost;
+
+    private final CreatureType creatureType = CreatureType.TROLL;
+    private final CreatureMovementType movementType = CreatureMovementType.GROUND;
+
+    TrollRaceType(
+            TrollRole role,
+            String imgUrl,
+            Integer strength,
+            Double movementSpeed,
+            Double baseHealth,
+            Double baseDamage,
+            Double baseDefense,
+            Integer recruitmentGoldCost,
+            Integer recruitmentMordorSteelCost,
+            Integer foodUpkeep,
+            Integer capacityCost
+    ) {
         this.role = role;
+        this.strength = strength;
+        this.movementSpeed = movementSpeed;
+
+        this.baseHealth = baseHealth;
+        this.baseDamage = baseDamage;
+        this.baseDefense = baseDefense;
+
+        this.recruitmentGoldCost = recruitmentGoldCost;
+        this.recruitmentMordorSteelCost = recruitmentMordorSteelCost;
+
+        this.foodUpkeep = foodUpkeep;
+        this.capacityCost = capacityCost;
+
         String baseImgUrl = "img/army/troll/";
-        String formatted = name().replace("_", " ").toLowerCase();
-        this.displayName = formatted.substring(0, 1).toUpperCase() + formatted.substring(1);
         this.imgUrl = baseImgUrl + imgUrl + ".png";
+
+        String formatted = name()
+                .replace("_", " ")
+                .toLowerCase();
+
+        this.displayName =
+                formatted.substring(0, 1).toUpperCase()
+                        + formatted.substring(1);
     }
 
     public TrollRole getRole() {
@@ -30,4 +119,47 @@ public enum TrollRaceType {
         return imgUrl;
     }
 
+    public Integer getStrength() {
+        return strength;
+    }
+
+    public Double getMovementSpeed() {
+        return movementSpeed;
+    }
+
+    public Double getBaseHealth() {
+        return baseHealth;
+    }
+
+    public Double getBaseDamage() {
+        return baseDamage;
+    }
+
+    public Double getBaseDefense() {
+        return baseDefense;
+    }
+
+    public Integer getRecruitmentGoldCost() {
+        return recruitmentGoldCost;
+    }
+
+    public Integer getRecruitmentMordorSteelCost() {
+        return recruitmentMordorSteelCost;
+    }
+
+    public Integer getFoodUpkeep() {
+        return foodUpkeep;
+    }
+
+    public Integer getCapacityCost() {
+        return capacityCost;
+    }
+
+    public CreatureType getCreatureType() {
+        return creatureType;
+    }
+
+    public CreatureMovementType getMovementType() {
+        return movementType;
+    }
 }
