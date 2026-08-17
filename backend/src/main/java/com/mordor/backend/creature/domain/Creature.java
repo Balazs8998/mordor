@@ -89,4 +89,19 @@ public abstract class Creature {
     }
 
 
+    public abstract String getraceTypeValue();
+
+   public abstract String getraceTypeDisplayName();
+
+   public abstract String getRoleDisplayName();
+
+   public abstract String getCreatureTypeDisplayName();
+
+   public  Integer getWeaponCount(){
+       return weapons.size();
+   }
+
+   public abstract String getImgUrl();
+
+
 }

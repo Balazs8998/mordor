@@ -16,12 +16,36 @@ import lombok.Setter;
 @Entity
 public class Troll extends Creature {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TrollRaceType raceType;
+
+    @Override
+    public String getraceTypeValue() {
+        return raceType.name();
+    }
+
+    @Override
+    public String getraceTypeDisplayName() {
+        return raceType.getDisplayName();
+    }
+
+    @Override
+    public String getRoleDisplayName() {
+        return raceType.getRoleDisplayName();
+    }
+
+    @Override
+    public String getCreatureTypeDisplayName() {
+        return raceType.getCreatureTypeDisplayName();
+    }
+
+    @Override
+    public String getImgUrl() {
+        return raceType.getImgUrl();
+    }
+
+
 
 }

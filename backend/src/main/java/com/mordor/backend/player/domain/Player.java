@@ -24,24 +24,32 @@ public class Player {
 
     @Column(nullable = false)
     private String firstName;
-
     @Column(nullable = false)
     private String lastName;
-
-
     @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false, unique = true)
     private String username;
-
     @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
+    private Integer level;
+
+    @Column(nullable = false)
+    private Integer experience;
 
     @OneToMany(mappedBy = "player")
     private List<PlayerCreature> playerCreatures;
 
     @OneToMany(mappedBy = "player")
     private List<PlayerHorde> playerHordes;
+
+    @PrePersist
+    public void initializeCurrentValues() {
+        level = 1;
+        experience = 0;
+    }
 
 }
