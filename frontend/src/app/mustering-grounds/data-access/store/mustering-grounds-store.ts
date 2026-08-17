@@ -4,6 +4,8 @@ import {CreatureForgeRequiredDataResponse} from '../../models/response/creature/
 import {parseHttpError} from '../../../core/shared/models/http-error-util';
 import {HttpErrorResponse} from '@angular/common/http';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import {PlayerRequiredDataResponse} from '../../models/response/player/player-required-data-response';
+import {CreatureItemResponse} from '../../models/response/creature/creature-item-response';
 
 @Service()
 export class MusteringGroundsStore {
@@ -16,8 +18,20 @@ export class MusteringGroundsStore {
   private readonly _creatureForgeRequiredData =
     signal<CreatureForgeRequiredDataResponse | null>(null);
 
-  readonly creatureForgeRequiredData = this._creatureForgeRequiredData.asReadonly();
+  private readonly _playerRequiredData =
+    signal<PlayerRequiredDataResponse | null>(null);
 
+  private readonly _Creatures =
+    signal<CreatureItemResponse[]>([]);
+
+  readonly creatureForgeRequiredData =
+    this._creatureForgeRequiredData.asReadonly();
+
+  readonly playerRequiredData =
+    this._playerRequiredData.asReadonly();
+
+  readonly creatures =
+    this._Creatures.asReadonly()
 
   public getCreatureForgeRequiredData() : void {
     this.musteringGroundsApi.getCreatureForgeRequiredData().pipe(
@@ -33,6 +47,38 @@ export class MusteringGroundsStore {
         this.apiError.set(parsedError.apiError)
       },
     });
+  }
+
+  public getAllCreatures() : void {
+    this.musteringGroundsApi.getAllCreatures().pipe(
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe({
+      next: (response) => {
+        this.apiError.set(null);
+        this._Creatures.set(response)
+        console.log(response)
+      },
+      error: (error: HttpErrorResponse) => {
+        const parsedError = parseHttpError(error)
+        this.apiError.set(parsedError.apiError)
+      }
+    })
+  }
+
+  public getPlayerRequiredData() : void{
+    this.musteringGroundsApi.getPlayerRequiredData()
+      .pipe(takeUntilDestroyed(this.destroyRef)
+      ).subscribe({
+      next: (response) => {
+        this.apiError.set(null);
+        this._playerRequiredData.set(response)
+        console.log(response)
+      },
+      error: (error: HttpErrorResponse) => {
+        const parsedError = parseHttpError(error)
+        this.apiError.set(parsedError.apiError)
+      },
+    })
   }
 
 

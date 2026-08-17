@@ -1,0 +1,483 @@
+.creature-roster {
+  width: 100%;
+  min-height: 100%;
+
+  padding: 28px;
+
+  color: #c9b89f;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(24, 15, 10, 0.96),
+      rgba(12, 8, 6, 0.98)
+    );
+
+  border: 1px solid rgba(155, 82, 39, 0.55);
+
+  box-shadow:
+    inset 0 0 45px rgba(0, 0, 0, 0.45),
+    0 8px 35px rgba(0, 0, 0, 0.4);
+
+  box-sizing: border-box;
+}
+
+
+/* HEADER */
+
+.roster-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 520px);
+  gap: 40px;
+
+  align-items: end;
+
+  padding-bottom: 22px;
+  margin-bottom: 20px;
+
+  border-bottom: 1px solid rgba(137, 72, 36, 0.38);
+}
+
+.section-kicker {
+  display: block;
+
+  margin-bottom: 6px;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+
+  color: #8f7964;
+}
+
+.roster-header h1 {
+  margin: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+
+  color: #d87537;
+}
+
+.roster-description {
+  margin: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 13px;
+  line-height: 1.7;
+
+  color: #8f7b68;
+}
+
+
+/* SUMMARY */
+
+.roster-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  margin-bottom: 22px;
+
+  border: 1px solid rgba(133, 70, 34, 0.35);
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.summary-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 48px;
+  padding: 0 16px;
+
+  border-right: 1px solid rgba(133, 70, 34, 0.28);
+}
+
+.summary-item:last-child {
+  border-right: none;
+}
+
+.summary-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  color: #8d7764;
+}
+
+.summary-value {
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  color: #d4bea3;
+}
+
+
+/* TABLE */
+
+.roster-table {
+  width: 100%;
+}
+
+.roster-table-header,
+.creature-row {
+  display: grid;
+
+  grid-template-columns:
+    minmax(210px, 1.8fr)
+    minmax(120px, 1fr)
+    minmax(90px, 0.7fr)
+    60px
+    minmax(130px, 1fr)
+    85px
+    minmax(100px, 0.8fr);
+
+  column-gap: 18px;
+
+  align-items: center;
+}
+
+.roster-table-header {
+  min-height: 38px;
+  padding: 0 14px;
+
+  border-top: 1px solid rgba(144, 76, 38, 0.45);
+  border-bottom: 1px solid rgba(144, 76, 38, 0.45);
+
+  background: rgba(67, 31, 16, 0.18);
+
+  box-sizing: border-box;
+}
+
+.roster-table-header span {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  color: #9d836b;
+}
+
+
+/* CREATURE ROW */
+
+.creature-row {
+  width: 100%;
+  min-height: 72px;
+
+  padding: 8px 14px;
+
+  border: none;
+  border-bottom: 1px solid rgba(124, 67, 37, 0.28);
+
+  color: inherit;
+
+  background: rgba(0, 0, 0, 0.06);
+
+  text-align: left;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+
+  transition:
+    background 140ms ease,
+    border-color 140ms ease,
+    transform 140ms ease;
+}
+
+.creature-row:hover {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(106, 42, 16, 0.23),
+      rgba(45, 22, 13, 0.15)
+    );
+
+  border-bottom-color: rgba(190, 89, 41, 0.52);
+}
+
+.creature-row:focus-visible {
+  outline: 1px solid rgba(206, 102, 50, 0.8);
+  outline-offset: -2px;
+}
+
+
+/* CREATURE */
+
+.creature-main {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  min-width: 0;
+}
+
+.creature-image {
+  flex: 0 0 48px;
+
+  width: 48px;
+  height: 52px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(140, 75, 41, 0.55);
+
+  background: #090706;
+}
+
+.creature-image img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+.creature-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  min-width: 0;
+}
+
+.creature-name {
+  overflow: hidden;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  color: #d8c3aa;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.creature-role {
+  overflow: hidden;
+
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  color: #826e5c;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* VALUES */
+
+.row-value {
+  overflow: hidden;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 12px;
+
+  color: #b8a58f;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.numeric {
+  font-weight: 700;
+  color: #d1baa0;
+}
+
+.creature-type {
+  color: #ae9174;
+}
+
+
+/* HEALTH */
+
+.health-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.health-values {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  color: #cda889;
+}
+
+.health-max {
+  color: #77685c;
+}
+
+.health-bar {
+  position: relative;
+
+  width: 100%;
+  height: 4px;
+
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.07);
+
+  border: 1px solid rgba(115, 57, 32, 0.3);
+}
+
+.health-bar-value {
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #5e2219,
+      #a34728
+    );
+
+  transition: width 180ms ease;
+}
+
+
+/* EQUIPMENT */
+
+.equipment-cell {
+  display: flex;
+  align-items: center;
+}
+
+.unarmed {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  color: #8c6652;
+}
+
+.equipment-count {
+  font-size: 10px;
+  font-weight: 700;
+
+  color: #bb9b7b;
+}
+
+
+/* EMPTY */
+
+.empty-roster {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 70px 20px;
+
+  text-align: center;
+
+  border-bottom: 1px solid rgba(124, 67, 37, 0.28);
+}
+
+.empty-title {
+  margin-bottom: 8px;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 17px;
+
+  color: #baa28b;
+}
+
+.empty-description {
+  max-width: 420px;
+
+  font-size: 12px;
+  line-height: 1.7;
+
+  color: #76685d;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+
+  .roster-table-header,
+  .creature-row {
+    grid-template-columns:
+      minmax(190px, 1.6fr)
+      minmax(110px, 1fr)
+      60px
+      minmax(120px, 1fr)
+      80px;
+  }
+
+  .roster-table-header span:nth-child(3),
+  .creature-row > :nth-child(3),
+
+  .roster-table-header span:nth-child(7),
+  .creature-row > :nth-child(7) {
+    display: none;
+  }
+}
+
+
+@media (max-width: 760px) {
+
+  .creature-roster {
+    padding: 18px;
+  }
+
+  .roster-header {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .roster-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-item {
+    border-right: none;
+    border-bottom: 1px solid rgba(133, 70, 34, 0.28);
+  }
+
+  .summary-item:last-child {
+    border-bottom: none;
+  }
+
+  .roster-table-header {
+    display: none;
+  }
+
+  .creature-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
+
+    padding: 12px;
+  }
+
+  .creature-row > :not(.creature-main):not(.health-cell) {
+    display: none;
+  }
+
+  .health-cell {
+    width: 100px;
+  }
+}

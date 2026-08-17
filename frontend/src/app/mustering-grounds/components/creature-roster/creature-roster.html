@@ -1,1 +1,175 @@
-<p>creature-roster works!</p>
+<section class="creature-roster">
+
+  <header class="roster-header">
+    <div>
+      <span class="section-kicker">Mustering Grounds</span>
+      <h1>Creature Roster</h1>
+    </div>
+
+    <p class="roster-description">
+      Inspect the servants gathered beneath your banner.
+      Select a creature to view its equipment and combat details.
+    </p>
+  </header>
+
+
+  <div class="roster-summary">
+
+    <div class="summary-item">
+      <span class="summary-label">Creatures</span>
+      <span class="summary-value">
+        {{ creatures().length }}
+      </span>
+    </div>
+
+    <div class="summary-item">
+      <span class="summary-label">Capacity</span>
+      <span class="summary-value">
+        {{capacityCost()}}
+      </span>
+    </div>
+
+    <div class="summary-item">
+      <span class="summary-label">Food Upkeep</span>
+      <span class="summary-value">
+        {{ totalFoodUpkeep() }}
+      </span>
+    </div>
+
+  </div>
+
+
+  <div class="roster-table">
+
+    <div class="roster-table-header">
+      <span>Servant</span>
+      <span>Race</span>
+      <span>Type</span>
+      <span>Level</span>
+      <span>Health</span>
+      <span>Strength</span>
+      <span>Equipment</span>
+    </div>
+
+
+    @if (creatures().length === 0) {
+
+      <div class="empty-roster">
+        <span class="empty-title">
+          No servants answer your call.
+        </span>
+
+        <span class="empty-description">
+          Forge creatures before assembling your forces.
+        </span>
+      </div>
+
+    } @else {
+
+      <div class="roster-list">
+
+        @for (creature of creatures(); track creature.id) {
+
+          <button
+            type="button"
+            class="creature-row">
+<!--            (click)="openCreatureDetails(creature.id)"-->
+          >
+
+            <div class="creature-main">
+
+              <div class="creature-image">
+                <img
+                  [src]="creature.imgUrl"
+                  [alt]="creature.name"
+                >
+              </div>
+
+              <div class="creature-identity">
+                <span class="creature-name">
+                  {{ creature.name }}
+                </span>
+
+                <span class="creature-role">
+                  {{ creature.roleDisplayName }}
+                </span>
+              </div>
+
+            </div>
+
+
+            <span class="row-value">
+              {{ creature.raceTypeDisplayName }}
+            </span>
+
+
+            <span class="row-value creature-type">
+              {{ creature.creatureTypeDisplayName }}
+            </span>
+
+
+            <span class="row-value numeric">
+              {{ creature.level }}
+            </span>
+
+
+            <div class="health-cell">
+
+              <div class="health-values">
+                <span>
+                  {{ creature.currentHealth }}
+                </span>
+
+                <span class="health-max">
+                  / {{ creature.health }}
+                </span>
+              </div>
+
+              <div class="health-bar">
+                <div
+                  class="health-bar-value"
+                  [style.width.%]="
+                    (creature.currentHealth / creature.health) * 100
+                  "
+                ></div>
+              </div>
+
+            </div>
+
+
+            <span class="row-value numeric">
+              {{ creature.currentStrength }}
+              /
+              {{ creature.strength }}
+            </span>
+
+
+            <div class="equipment-cell">
+
+              @if (creature.weaponCount === 0) {
+
+                <span class="unarmed">
+                  Unarmed
+                </span>
+
+              } @else {
+
+                <span class="equipment-count">
+                  {{ creature.weaponCount > 0 }} equipped
+                </span>
+
+              }
+
+            </div>
+
+          </button>
+
+        }
+
+      </div>
+
+    }
+
+  </div>
+
+</section>
