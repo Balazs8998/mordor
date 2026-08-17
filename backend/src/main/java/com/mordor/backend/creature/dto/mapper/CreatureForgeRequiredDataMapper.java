@@ -3,6 +3,7 @@ package com.mordor.backend.creature.dto.mapper;
 import com.mordor.backend.creature.domain.flying.enums.FlyingRaceType;
 import com.mordor.backend.creature.domain.mount.enums.MountRaceType;
 import com.mordor.backend.creature.domain.orc.enums.OrcRaceType;
+import com.mordor.backend.creature.domain.shared.CreatureTypeMapperInterface;
 import com.mordor.backend.creature.domain.troll.enums.TrollRaceType;
 import com.mordor.backend.creature.dto.response.CreatureForgeRequiredDataResponse;
 import com.mordor.backend.creature.dto.response.CreatureTypeItemResponse;
@@ -19,10 +20,10 @@ public class CreatureForgeRequiredDataMapper {
 
     public CreatureForgeRequiredDataResponse toResponse() {
         return new CreatureForgeRequiredDataResponse(
-                orcRaceTypesToResponse(),
-                trollRaceTypesToResponse(),
-                flyingRaceTypesToResponse(),
-                mountRaceTypesToResponse(),
+                creatureRaceTypesToResponse(List.of(OrcRaceType.values())),
+                creatureRaceTypesToResponse(List.of(TrollRaceType.values())),
+                creatureRaceTypesToResponse(List.of(MountRaceType.values())),
+                creatureRaceTypesToResponse(List.of(FlyingRaceType.values())),
                 weaponTypesToResponse()
         );
     }
@@ -49,138 +50,37 @@ public class CreatureForgeRequiredDataMapper {
     }
 
 
-    private List<CreatureTypeItemResponse> orcRaceTypesToResponse() {
 
-        return Stream.of(OrcRaceType.values())
-                .map(orcRaceType -> new CreatureTypeItemResponse(
-                        orcRaceType.name(),
-                        orcRaceType.getDisplayName(),
+    private List<CreatureTypeItemResponse> creatureRaceTypesToResponse(List<CreatureTypeMapperInterface> creatureTypeMapperInterfaces) {
 
-                        orcRaceType.getRole().name(),
-                        orcRaceType.getRole().getDisplayName(),
+        return creatureTypeMapperInterfaces.stream()
+                .map(creatureRaceType -> new CreatureTypeItemResponse(
+                        creatureRaceType.getTypeValue(),
+                        creatureRaceType.getTypeDisplayName(),
 
-                        orcRaceType.getCreatureType().name(),
-                        orcRaceType.getCreatureType().getDisplayName(),
+                        creatureRaceType.getRoleValue(),
+                        creatureRaceType.getRoleDisplayName(),
 
-                        orcRaceType.getMovementType().name(),
-                        orcRaceType.getMovementType().getDisplayName(),
+                        creatureRaceType.getCreatureTypeValue(),
+                        creatureRaceType.getCreatureTypeDisplayName(),
 
-                        orcRaceType.getStrength(),
-                        orcRaceType.getMovementSpeed(),
+                        creatureRaceType.getMovementTypeValue(),
+                        creatureRaceType.getMovementTypeDisplayName(),
 
-                        orcRaceType.getBaseHealth(),
-                        orcRaceType.getBaseDamage(),
-                        orcRaceType.getBaseDefense(),
+                        creatureRaceType.getStrength(),
+                        creatureRaceType.getMovementSpeed(),
 
-                        orcRaceType.getRecruitmentGoldCost(),
-                        orcRaceType.getRecruitmentMordorSteelCost(),
-                        orcRaceType.getFoodUpkeep(),
-                        orcRaceType.getCapacityCost(),
+                        creatureRaceType.getBaseHealth(),
+                        creatureRaceType.getBaseDamage(),
+                        creatureRaceType.getBaseDefense(),
 
-                        orcRaceType.getImgUrl()
-                ))
-                .toList();
+                        creatureRaceType.getRecruitmentGoldCost(),
+                        creatureRaceType.getRecruitmentMordorSteelCost(),
+                        creatureRaceType.getFoodUpkeep(),
+                        creatureRaceType.getCapacityCost(),
+
+                        creatureRaceType.getImgUrl()
+                )).toList();
     }
 
-
-    private List<CreatureTypeItemResponse> trollRaceTypesToResponse() {
-
-        return Stream.of(TrollRaceType.values())
-                .map(trollRaceType -> new CreatureTypeItemResponse(
-                        trollRaceType.name(),
-                        trollRaceType.getDisplayName(),
-
-                        trollRaceType.getRole().name(),
-                        trollRaceType.getRole().getDisplayName(),
-
-                        trollRaceType.getCreatureType().name(),
-                        trollRaceType.getCreatureType().getDisplayName(),
-
-                        trollRaceType.getMovementType().name(),
-                        trollRaceType.getMovementType().getDisplayName(),
-
-                        trollRaceType.getStrength(),
-                        trollRaceType.getMovementSpeed(),
-
-                        trollRaceType.getBaseHealth(),
-                        trollRaceType.getBaseDamage(),
-                        trollRaceType.getBaseDefense(),
-
-                        trollRaceType.getRecruitmentGoldCost(),
-                        trollRaceType.getRecruitmentMordorSteelCost(),
-                        trollRaceType.getFoodUpkeep(),
-                        trollRaceType.getCapacityCost(),
-
-                        trollRaceType.getImgUrl()
-                ))
-                .toList();
-    }
-
-
-    private List<CreatureTypeItemResponse> mountRaceTypesToResponse() {
-
-        return Stream.of(MountRaceType.values())
-                .map(mountRaceType -> new CreatureTypeItemResponse(
-                        mountRaceType.name(),
-                        mountRaceType.getDisplayName(),
-
-                        mountRaceType.getRole().name(),
-                        mountRaceType.getRole().getDisplayName(),
-
-                        mountRaceType.getCreatureType().name(),
-                        mountRaceType.getCreatureType().getDisplayName(),
-
-                        mountRaceType.getMovementType().name(),
-                        mountRaceType.getMovementType().getDisplayName(),
-
-                        mountRaceType.getStrength(),
-                        mountRaceType.getMovementSpeed(),
-
-                        mountRaceType.getBaseHealth(),
-                        mountRaceType.getBaseDamage(),
-                        mountRaceType.getBaseDefense(),
-
-                        mountRaceType.getRecruitmentGoldCost(),
-                        mountRaceType.getRecruitmentMordorSteelCost(),
-                        mountRaceType.getFoodUpkeep(),
-                        mountRaceType.getCapacityCost(),
-
-                        mountRaceType.getImgUrl()
-                ))
-                .toList();
-    }
-
-
-    private List<CreatureTypeItemResponse> flyingRaceTypesToResponse() {
-
-        return Stream.of(FlyingRaceType.values())
-                .map(flyingRaceType -> new CreatureTypeItemResponse(
-                        flyingRaceType.name(),
-                        flyingRaceType.getDisplayName(),
-
-                        flyingRaceType.getRole().name(),
-                        flyingRaceType.getRole().getDisplayName(),
-
-                        flyingRaceType.getCreatureType().name(),
-                        flyingRaceType.getCreatureType().getDisplayName(),
-
-                        flyingRaceType.getMovementType().name(),
-                        flyingRaceType.getMovementType().getDisplayName(),
-
-                        flyingRaceType.getStrength(),
-                        flyingRaceType.getMovementSpeed(),
-
-                        flyingRaceType.getBaseHealth(),
-                        flyingRaceType.getBaseDamage(),
-                        flyingRaceType.getBaseDefense(),
-
-                        flyingRaceType.getRecruitmentGoldCost(),
-                        flyingRaceType.getRecruitmentMordorSteelCost(),
-                        flyingRaceType.getFoodUpkeep(),
-                        flyingRaceType.getCapacityCost(),
-
-                        flyingRaceType.getImgUrl()
-                ))
-                .toList();
-    }
 }

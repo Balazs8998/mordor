@@ -1,10 +1,11 @@
 package com.mordor.backend.creature.domain.mount.enums;
 
-import com.mordor.backend.creature.domain.shared.CreatureRaceDefinition;
+
+import com.mordor.backend.creature.domain.shared.CreatureTypeMapperInterface;
 import com.mordor.backend.creature.enums.CreatureMovementType;
 import com.mordor.backend.creature.enums.CreatureType;
 
-public enum MountRaceType implements CreatureRaceDefinition {
+public enum MountRaceType implements CreatureTypeMapperInterface {
 
     WARG(
             MountRole.BEAST_MOUNT,
@@ -17,7 +18,7 @@ public enum MountRaceType implements CreatureRaceDefinition {
             45,
             0,
             3,
-            1
+            2
     ),
 
     WAR_WARG(
@@ -31,7 +32,7 @@ public enum MountRaceType implements CreatureRaceDefinition {
             80,
             1,
             4,
-            1
+            3
     );
 
     private final MountRole role;
@@ -93,8 +94,25 @@ public enum MountRaceType implements CreatureRaceDefinition {
                         + formatted.substring(1);
     }
 
+
     public MountRole getRole() {
         return role;
+    }
+
+    public String getTypeValue() {
+        return this.name();
+    }
+
+    public String getTypeDisplayName() {
+        return this.displayName;
+    }
+
+    public String getRoleValue() {
+        return role.name();
+    }
+
+    public String getRoleDisplayName() {
+        return role.getDisplayName();
     }
 
     public String getDisplayName() {
@@ -145,7 +163,23 @@ public enum MountRaceType implements CreatureRaceDefinition {
         return creatureType;
     }
 
+    public String getCreatureTypeValue() {
+        return creatureType.name();
+    }
+
+    public String getCreatureTypeDisplayName() {
+        return creatureType.getDisplayName();
+    }
+
     public CreatureMovementType getMovementType() {
         return movementType;
+    }
+
+    public String getMovementTypeValue() {
+        return movementType.name();
+    }
+
+    public String getMovementTypeDisplayName() {
+        return movementType.getDisplayName();
     }
 }

@@ -1,10 +1,11 @@
 package com.mordor.backend.creature.domain.flying.enums;
 
-import com.mordor.backend.creature.domain.shared.CreatureRaceDefinition;
+
+import com.mordor.backend.creature.domain.shared.CreatureTypeMapperInterface;
 import com.mordor.backend.creature.enums.CreatureMovementType;
 import com.mordor.backend.creature.enums.CreatureType;
 
-public enum FlyingRaceType implements CreatureRaceDefinition {
+public enum FlyingRaceType implements CreatureTypeMapperInterface {
 
     GIANT_BAT(
             FlyingRole.FLYING_SCOUT,
@@ -17,7 +18,7 @@ public enum FlyingRaceType implements CreatureRaceDefinition {
             55,
             0,
             2,
-            1
+            2
     ),
 
     GIANT_WAR_BAT(
@@ -31,7 +32,7 @@ public enum FlyingRaceType implements CreatureRaceDefinition {
             100,
             2,
             4,
-            1
+            3
     ),
 
     FLYING_WAR_CERBERUS(
@@ -45,7 +46,7 @@ public enum FlyingRaceType implements CreatureRaceDefinition {
             190,
             4,
             8,
-            2
+            6
     );
 
     private final FlyingRole role;
@@ -107,8 +108,25 @@ public enum FlyingRaceType implements CreatureRaceDefinition {
                         + formatted.substring(1);
     }
 
+
     public FlyingRole getRole() {
         return role;
+    }
+
+    public String getTypeValue() {
+        return this.name();
+    }
+
+    public String getTypeDisplayName() {
+        return this.displayName;
+    }
+
+    public String getRoleValue() {
+        return role.name();
+    }
+
+    public String getRoleDisplayName() {
+        return role.getDisplayName();
     }
 
     public String getDisplayName() {
@@ -159,7 +177,23 @@ public enum FlyingRaceType implements CreatureRaceDefinition {
         return creatureType;
     }
 
+    public String getCreatureTypeValue() {
+        return creatureType.name();
+    }
+
+    public String getCreatureTypeDisplayName() {
+        return creatureType.getDisplayName();
+    }
+
     public CreatureMovementType getMovementType() {
         return movementType;
+    }
+
+    public String getMovementTypeValue() {
+        return movementType.name();
+    }
+
+    public String getMovementTypeDisplayName() {
+        return movementType.getDisplayName();
     }
 }

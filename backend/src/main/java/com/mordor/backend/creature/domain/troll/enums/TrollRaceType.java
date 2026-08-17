@@ -1,10 +1,10 @@
 package com.mordor.backend.creature.domain.troll.enums;
 
-import com.mordor.backend.creature.domain.shared.CreatureRaceDefinition;
+import com.mordor.backend.creature.domain.shared.CreatureTypeMapperInterface;
 import com.mordor.backend.creature.enums.CreatureMovementType;
 import com.mordor.backend.creature.enums.CreatureType;
 
-public enum TrollRaceType implements CreatureRaceDefinition {
+public enum TrollRaceType implements CreatureTypeMapperInterface {
 
     CAVE_TROLL(
             TrollRole.BRUTE,
@@ -17,7 +17,7 @@ public enum TrollRaceType implements CreatureRaceDefinition {
             95,
             0,
             5,
-            2
+            4
     ),
 
     MOUNTAIN_TROLL(
@@ -31,7 +31,7 @@ public enum TrollRaceType implements CreatureRaceDefinition {
             150,
             1,
             7,
-            2
+            6
     ),
 
     OLOG_HAI(
@@ -45,7 +45,7 @@ public enum TrollRaceType implements CreatureRaceDefinition {
             230,
             3,
             10,
-            2
+            9
     );
 
     private final TrollRole role;
@@ -111,6 +111,22 @@ public enum TrollRaceType implements CreatureRaceDefinition {
         return role;
     }
 
+    public String getTypeValue() {
+        return this.name();
+    }
+
+    public String getTypeDisplayName() {
+        return this.displayName;
+    }
+
+    public String getRoleValue() {
+        return role.name();
+    }
+
+    public String getRoleDisplayName() {
+        return role.getDisplayName();
+    }
+
     public String getDisplayName() {
         return displayName;
     }
@@ -159,7 +175,23 @@ public enum TrollRaceType implements CreatureRaceDefinition {
         return creatureType;
     }
 
+    public String getCreatureTypeValue() {
+        return creatureType.name();
+    }
+
+    public String getCreatureTypeDisplayName() {
+        return creatureType.getDisplayName();
+    }
+
     public CreatureMovementType getMovementType() {
         return movementType;
+    }
+
+    public String getMovementTypeValue() {
+        return movementType.name();
+    }
+
+    public String getMovementTypeDisplayName() {
+        return movementType.getDisplayName();
     }
 }
