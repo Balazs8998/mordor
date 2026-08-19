@@ -7,6 +7,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class CreatureMapper {
 
+    private final EquipmentMapper equipmentMapper;
+
+    public CreatureMapper(EquipmentMapper equipmentMapper) {
+        this.equipmentMapper = equipmentMapper;
+    }
+
     public CreatureItemResponse getCreatureItemResponse(Creature creature) {
         if (creature == null) {
             return null;
@@ -29,7 +35,8 @@ public class CreatureMapper {
                 creature.getFoodUpkeep(),
                 creature.getCapacityCost(),
                 creature.getWeaponCount(),
-                creature.getImgUrl()
+                creature.getImgUrl(),
+                equipmentMapper.equipmentToEquipmentItemResponse(creature.getEquipment())
 
         );
     }

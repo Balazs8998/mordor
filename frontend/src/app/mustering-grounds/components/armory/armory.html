@@ -1,1 +1,231 @@
-<p>armory works!</p>
+<section class="armory-page">
+
+  <header class="armory-header">
+    <div>
+      <p class="eyebrow">Mordor War Infrastructure</p>
+      <h1>Armory</h1>
+      <p class="subtitle">
+        Equip your servants and prepare them for war.
+      </p>
+    </div>
+  </header>
+
+
+  <div class="armory-layout">
+
+    <!-- LEFT: CURRENT EQUIPMENT -->
+    <aside class="equipment-panel panel">
+
+      <div class="panel-header">
+        <span class="panel-kicker">Selected creature</span>
+        <h2>Equipment</h2>
+      </div>
+
+      <div class="creature-card">
+
+        <div class="creature-image-wrapper">
+          <img
+            src="/img/placeholder/creature.png"
+            alt="Selected creature"
+            class="creature-image"
+          >
+        </div>
+
+        <div class="creature-info">
+          <h3>Creature Name</h3>
+          <span class="creature-type">ORC · WARRIOR</span>
+        </div>
+
+      </div>
+
+
+      <div class="equipment-slots">
+
+        <div class="equipment-slot">
+          <div class="slot-label">
+            <span>Left hand</span>
+            <small>Weapon slot</small>
+          </div>
+
+          <div class="slot-item equipped">
+            <span class="weapon-name">ONE HAND SWORD</span>
+          </div>
+        </div>
+
+
+        <div class="equipment-slot">
+          <div class="slot-label">
+            <span>Right hand</span>
+            <small>Weapon slot</small>
+          </div>
+
+          <div class="slot-item empty">
+            <span>Unarmed</span>
+          </div>
+        </div>
+
+      </div>
+
+    </aside>
+
+
+    <!-- CENTER: ARMORY INVENTORY -->
+    <main class="inventory-panel panel">
+
+      <div class="panel-header inventory-header">
+        <div>
+          <span class="panel-kicker">Available equipment</span>
+          <h2>Weapon Storage</h2>
+        </div>
+
+        <div class="inventory-count">
+          {{ weapons().length }} weapons
+        </div>
+      </div>
+
+
+      <!--      <div class="inventory-toolbar">-->
+
+      <!--        <input-->
+      <!--          type="text"-->
+      <!--          placeholder="Search weapon..."-->
+      <!--          class="search-input"-->
+      <!--        >-->
+
+      <!--        <select class="weapon-filter">-->
+      <!--          <option>All weapons</option>-->
+      <!--          <option>Swords</option>-->
+      <!--          <option>Maces</option>-->
+      <!--          <option>Daggers</option>-->
+      <!--          <option>Spears</option>-->
+      <!--          <option>Bows</option>-->
+      <!--        </select>-->
+
+      <!--      </div>-->
+
+
+      <div class="weapon-grid">
+
+        @for (weapon of weapons(); track weapon.value) {
+          <button class="weapon-card"
+                  [class.selected]="selectedWeapon()?.value === weapon.value"
+                  (click)="selectedWeaponValue.set(weapon.value)">
+            <div class="weapon-icon">
+              <img src="{{weapon.iconImgUrl}}">
+            </div>
+
+            <div class="weapon-data">
+              <strong>{{ weapon.displayName }}</strong>
+              <span>{{ weapon.combatRangeDisplayName }}</span>
+            </div>
+          </button>
+        }
+      </div>
+
+    </main>
+
+
+    <!-- RIGHT: ACTIONS -->
+    <aside class="action-panel panel">
+
+      @if (selectedWeapon()) {
+
+        <div class="panel-header">
+          <span class="panel-kicker">Selected weapon</span>
+          <h2>{{ selectedWeapon()?.displayName }}</h2>
+        </div>
+
+        <div class="selected-weapon">
+
+          <div class="selected-weapon-img">
+            <img
+              [src]="selectedWeapon()?.imgUrl"
+              [alt]="selectedWeapon()?.displayName"
+            >
+          </div>
+
+          <div class="weapon-details">
+
+            <div class="weapon-columns">
+
+              <div class="weapon-column">
+
+                <div class="detail-row">
+                  <span>Type</span>
+                  <strong>{{ selectedWeapon()?.displayName }}</strong>
+                </div>
+
+                <div class="detail-row">
+                  <span>Range</span>
+                  <strong>{{ selectedWeapon()?.combatRangeDisplayName }}</strong>
+                </div>
+
+                <div class="detail-row">
+                  <span>gold</span>
+                  <strong>{{ selectedWeapon()?.goldCost }}</strong>
+                </div>
+
+                <div class="detail-row">
+                  <span>steel</span>
+                  <strong>{{ selectedWeapon()?.mordorSteelCost }}</strong>
+                </div>
+
+
+              </div>
+
+
+              <div class="weapon-column">
+
+                <div class="detail-row">
+                  <span>Damage</span>
+                  <strong>{{ selectedWeapon()?.damageBonus }}</strong>
+                </div>
+
+                <div class="detail-row">
+                  <span>Strength</span>
+                  <strong>{{ selectedWeapon()?.strengthCost }}</strong>
+                </div>
+
+                <div class="detail-row">
+                  <span>Defense</span>
+                  <strong>{{ selectedWeapon()?.defenseBonus }}</strong>
+                </div>
+
+                <div class="detail-row">
+                  <span>Hands</span>
+                  <strong>1</strong>
+                </div>
+
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="equip-actions">
+
+          <button class="equip-button primary">
+            Equip Left Hand
+          </button>
+
+          <button class="equip-button primary">
+            Equip Right Hand
+          </button>
+
+          <button class="equip-button secondary">
+            Unequip
+          </button>
+
+        </div>
+
+      }
+
+    </aside>
+
+  </div>
+
+</section>

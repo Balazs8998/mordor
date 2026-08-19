@@ -42,12 +42,19 @@ public class CreatureController {
         return ResponseEntity.ok(creatureService.getAllCreatures());
     }
 
-    @GetMapping("/{id}/equipment")
-    public ResponseEntity<EquipmentItemResponse> getCreatureEquipment(@PathVariable Long id){
-        log.info("Received request to get equipment for creature with id: {}", id);
+    @GetMapping("{id}")
+    public ResponseEntity<CreatureItemResponse> getCreatureById(@PathVariable Long id){
+        log.info("Received request to get creature with id: {}", id);
 
-        return ResponseEntity.ok(creatureService.getCreatureEquipment(id));
+        return ResponseEntity.ok(creatureService.getCreatureById(id));
     }
+
+//    @GetMapping("/{id}/equipment")
+//    public ResponseEntity<EquipmentItemResponse> getCreatureEquipment(@PathVariable Long id){
+//        log.info("Received request to get equipment for creature with id: {}", id);
+//
+//        return ResponseEntity.ok(creatureService.getCreatureEquipment(id));
+//    }
 
     @PostMapping("/forge")
     public ResponseEntity<Void> forgeCreature(@RequestBody @Valid CreatureCreateRequest request){

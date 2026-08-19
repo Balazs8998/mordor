@@ -18,7 +18,8 @@ public record CreatureItemResponse(
         Integer foodUpkeep,
         Integer capacityCost,
         Integer weaponCount,
-        String imgUrl
+        String imgUrl,
+        EquipmentItemResponse equipments
 
 ) {
 }

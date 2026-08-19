@@ -89,4 +89,11 @@ public class CreatureService {
         equipmentMapper.updateEquipmentFromRequest(request, equipment);
         equipmentRepository.save(equipment);
     }
+
+    public CreatureItemResponse getCreatureById(Long id) {
+        Creature creature = creatureRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Creature not found with id: " + id));
+
+        return creatureMapper.getCreatureItemResponse(creature);
+    }
 }

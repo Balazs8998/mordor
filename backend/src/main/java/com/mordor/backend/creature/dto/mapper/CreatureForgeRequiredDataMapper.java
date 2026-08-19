@@ -32,6 +32,8 @@ public class CreatureForgeRequiredDataMapper {
 
         return Stream.of(WeaponType.values())
                 .map(weaponType -> new WeaponTypeItemResponse(
+                        weaponType.getIconImgUrl(),
+                        weaponType.getImgUrl(),
                         weaponType.name(),
                         weaponType.getDisplayName(),
 
@@ -40,6 +42,7 @@ public class CreatureForgeRequiredDataMapper {
 
                         weaponType.getDamageBonus(),
                         weaponType.getDefenseBonus(),
+                        weaponType.getStrengthCost(),
                         weaponType.getRange(),
                         weaponType.getStrengthCost(),
 
@@ -47,6 +50,7 @@ public class CreatureForgeRequiredDataMapper {
                         weaponType.getMordorSteelCost()
                 ))
                 .toList();
+
     }
 
 

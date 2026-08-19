@@ -9,7 +9,9 @@ public enum WeaponType {
             0,
             1,
             8,
-            0
+            0,
+            "icon/dagger.png",
+            "dagger.png"
     ),
 
     ONE_HAND_SWORD(
@@ -19,7 +21,9 @@ public enum WeaponType {
             0,
             2,
             18,
-            1
+            1,
+            "icon/sword.png",
+            "one_hand_sword.png"
     ),
 
     MACE(
@@ -29,7 +33,9 @@ public enum WeaponType {
             0,
             3,
             20,
-            1
+            1,
+            "icon/mace.png",
+            "mace.png"
     ),
 
     SHIELD(
@@ -39,7 +45,9 @@ public enum WeaponType {
             0,
             3,
             24,
-            2
+            2,
+            "icon/shield.png",
+            "shield.png"
     ),
 
     SPEAR(
@@ -49,7 +57,9 @@ public enum WeaponType {
             1,
             3,
             18,
-            1
+            1,
+            "icon/spear.png",
+            "spear.png"
     ),
 
     BOW(
@@ -59,7 +69,9 @@ public enum WeaponType {
             3,
             3,
             26,
-            1
+            1,
+            "icon/bow.png",
+            "bow.png"
     ),
 
     LONG_SWORD(
@@ -69,7 +81,9 @@ public enum WeaponType {
             0,
             5,
             34,
-            2
+            2,
+            "icon/sword.png",
+            "long_sword.png"
     ),
 
     LONG_SPEAR(
@@ -79,7 +93,9 @@ public enum WeaponType {
             2,
             5,
             30,
-            2
+            2,
+            "icon/spear.png",
+            "long_spear.png"
     ),
 
     HEAVY_MACE(
@@ -89,7 +105,9 @@ public enum WeaponType {
             0,
             6,
             36,
-            3
+            3,
+            "icon/mace.png",
+            "heavy_mace.png"
     );
 
     private final CombatRange combatRange;
@@ -103,6 +121,10 @@ public enum WeaponType {
 
     private final String displayName;
 
+    private final String iconImgUrl;
+
+    private final String imgUrl;
+
     WeaponType(
             CombatRange combatRange,
             Integer damageBonus,
@@ -110,8 +132,11 @@ public enum WeaponType {
             Integer range,
             Integer strengthCost,
             Integer goldCost,
-            Integer mordorSteelCost
+            Integer mordorSteelCost, String iconImgUrl, String imgUrl
     ) {
+
+
+        String baseImgUrl = "img/weapon/";
         this.combatRange = combatRange;
         this.damageBonus = damageBonus;
         this.defenseBonus = defenseBonus;
@@ -120,6 +145,8 @@ public enum WeaponType {
 
         this.goldCost = goldCost;
         this.mordorSteelCost = mordorSteelCost;
+        this.iconImgUrl = baseImgUrl + iconImgUrl;
+        this.imgUrl = baseImgUrl + imgUrl;
 
         String formatted = name()
                 .replace("_", " ")
@@ -160,5 +187,12 @@ public enum WeaponType {
 
     public Integer getMordorSteelCost() {
         return mordorSteelCost;
+    }
+
+    public String getIconImgUrl() {
+        return iconImgUrl;
+    }
+    public String getImgUrl() {
+        return imgUrl;
     }
 }

@@ -1,0 +1,651 @@
+:host {
+  display: block;
+}
+
+
+/* PAGE */
+
+.armory-page {
+  min-height: calc(100vh - 80px);
+  padding: 32px;
+
+  box-sizing: border-box;
+}
+
+
+/* HEADER */
+
+.armory-header {
+  max-width: 1500px;
+  margin: 0 auto 24px;
+}
+
+.armory-header h1 {
+  margin: 2px 0 4px;
+
+  font-size: 38px;
+  letter-spacing: 1px;
+
+  color: #d7a45d;
+}
+
+.eyebrow,
+.panel-kicker {
+  margin: 0;
+
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
+  color: #8d7355;
+}
+
+.subtitle {
+  margin: 0;
+
+  font-size: 14px;
+
+  color: #9f978e;
+}
+
+
+/* MAIN LAYOUT */
+
+.armory-layout {
+  max-width: 1500px;
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(260px, 300px)
+    minmax(420px, 1fr)
+    minmax(340px, 400px);
+
+  gap: 20px;
+}
+
+
+/* PANEL */
+
+.panel {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(20, 15, 11, 0.94),
+      rgba(10, 8, 6, 0.95)
+    );
+
+  border: 1px solid rgba(171, 122, 70, 0.35);
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.45),
+    inset 0 0 30px rgba(95, 52, 20, 0.05);
+
+  backdrop-filter: blur(4px);
+}
+
+.panel-header {
+  padding: 18px 20px;
+
+  border-bottom: 1px solid rgba(171, 122, 70, 0.18);
+}
+
+.panel-header h2 {
+  margin: 4px 0 0;
+
+  font-size: 20px;
+
+  color: #d8c7b0;
+}
+
+
+/* CREATURE */
+
+.creature-card {
+  padding: 20px;
+
+  display: flex;
+  gap: 14px;
+  align-items: center;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.creature-image-wrapper {
+  width: 72px;
+  height: 72px;
+
+  flex-shrink: 0;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(166, 111, 59, 0.45);
+
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.creature-image {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+.creature-info {
+  min-width: 0;
+}
+
+.creature-info h3 {
+  margin: 0 0 4px;
+
+  font-size: 17px;
+
+  color: #e5d8c4;
+}
+
+.creature-type {
+  font-size: 11px;
+  letter-spacing: 1px;
+
+  color: #947c63;
+}
+
+
+/* EQUIPMENT */
+
+.equipment-slots {
+  padding: 18px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.equipment-slot {
+  padding: 14px;
+
+  background: rgba(0, 0, 0, 0.22);
+
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.slot-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 10px;
+}
+
+.slot-label span {
+  font-size: 13px;
+  font-weight: 600;
+
+  color: #bfa98f;
+}
+
+.slot-label small {
+  font-size: 10px;
+
+  color: #71665b;
+}
+
+.slot-item {
+  min-height: 46px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 12px;
+
+  border: 1px solid;
+}
+
+.slot-item.equipped {
+  color: #d8b47a;
+
+  border-color: rgba(196, 137, 69, 0.5);
+  background: rgba(113, 64, 25, 0.15);
+}
+
+.slot-item.empty {
+  color: #6f6860;
+
+  border-color: rgba(255, 255, 255, 0.06);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+
+/* INVENTORY */
+
+.inventory-panel {
+  min-height: 550px;
+}
+
+.inventory-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+}
+
+.inventory-count {
+  padding: 6px 10px;
+
+  flex-shrink: 0;
+
+  font-size: 11px;
+
+  color: #b59772;
+
+  border: 1px solid rgba(171, 122, 70, 0.25);
+}
+
+.inventory-toolbar {
+  padding: 16px 20px;
+
+  display: grid;
+  grid-template-columns: 1fr 180px;
+  gap: 12px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.search-input,
+.weapon-filter {
+  min-width: 0;
+  height: 38px;
+
+  padding: 0 12px;
+
+  color: #d2c5b4;
+
+  background: rgba(0, 0, 0, 0.35);
+
+  border: 1px solid rgba(151, 105, 64, 0.3);
+
+  outline: none;
+}
+
+.search-input:focus,
+.weapon-filter:focus {
+  border-color: rgba(201, 141, 75, 0.65);
+}
+
+
+/* WEAPON GRID */
+
+.weapon-grid {
+  padding: 20px;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.weapon-card {
+  min-width: 0;
+  min-height: 88px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 14px;
+
+  text-align: left;
+  cursor: pointer;
+
+  color: #cfc4b5;
+
+  background: rgba(19, 15, 12, 0.75);
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+
+  transition:
+    transform 140ms ease,
+    border-color 140ms ease,
+    background 140ms ease;
+}
+
+.weapon-card:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(183, 126, 67, 0.5);
+
+  background: rgba(51, 33, 19, 0.65);
+}
+
+.weapon-card.selected {
+  border-color: rgba(215, 150, 77, 0.75);
+
+  background: rgba(100, 57, 24, 0.25);
+
+  box-shadow:
+    inset 0 0 20px rgba(150, 80, 30, 0.08);
+}
+
+.weapon-icon {
+  width: 64px;
+  height: 64px;
+
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  overflow: hidden;
+
+  background: rgba(0, 0, 0, 0.32);
+
+  border: 1px solid rgba(170, 116, 62, 0.3);
+}
+
+.weapon-icon img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: contain;
+}
+
+.weapon-data {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.weapon-data strong {
+  font-size: 13px;
+
+  color: #ddd0bd;
+}
+
+.weapon-data span {
+  margin-top: 5px;
+
+  font-size: 9px;
+  letter-spacing: 0.7px;
+
+  color: #75695e;
+}
+
+
+/* RIGHT ACTION PANEL */
+
+.action-panel {
+  min-width: 0;
+}
+
+.selected-weapon {
+  padding: 20px;
+}
+
+.selected-weapon-img {
+  height: 350px;
+
+  display: grid;
+  place-items: center;
+
+  margin-bottom: 20px;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(109, 61, 25, 0.32),
+      rgba(0, 0, 0, 0.2)
+    );
+
+  border: 1px solid rgba(171, 122, 70, 0.22);
+}
+
+.selected-weapon-img img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: contain;
+}
+
+
+/* WEAPON DETAILS */
+
+.weapon-details {
+  width: 100%;
+}
+
+.weapon-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 0 20px;
+}
+
+.weapon-column {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.weapon-column + .weapon-column {
+  padding-left: 20px;
+
+  border-left: 1px solid rgba(171, 122, 70, 0.14);
+}
+
+.detail-row {
+  min-height: 42px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 12px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.detail-row span {
+  min-width: 0;
+
+  font-size: 11px;
+
+  color: #7f746a;
+}
+
+.detail-row strong {
+  min-width: 0;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  color: #c8b49b;
+
+  text-align: right;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* ACTIONS */
+
+.equip-actions {
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.equip-button {
+  min-height: 42px;
+
+  cursor: pointer;
+
+  font-weight: 600;
+  letter-spacing: 0.4px;
+
+  transition:
+    background 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease;
+}
+
+.equip-button.primary {
+  color: #e4c99f;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(106, 61, 27, 0.75),
+      rgba(68, 37, 18, 0.8)
+    );
+
+  border: 1px solid rgba(192, 130, 67, 0.55);
+}
+
+.equip-button.primary:hover {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(135, 77, 31, 0.85),
+      rgba(83, 44, 19, 0.9)
+    );
+}
+
+.equip-button.secondary {
+  color: #96887a;
+
+  background: rgba(0, 0, 0, 0.25);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.equip-button.secondary:hover {
+  color: #c4b5a5;
+
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1200px) {
+
+  .armory-layout {
+    grid-template-columns:
+      minmax(250px, 280px)
+      minmax(400px, 1fr)
+      minmax(320px, 360px);
+  }
+
+}
+
+
+@media (max-width: 1100px) {
+
+  .armory-layout {
+    grid-template-columns:
+      minmax(260px, 300px)
+      minmax(420px, 1fr);
+  }
+
+  .action-panel {
+    grid-column: 1 / -1;
+  }
+
+  .selected-weapon {
+    max-width: none;
+  }
+
+}
+
+
+@media (max-width: 760px) {
+
+  .armory-page {
+    padding: 18px;
+  }
+
+  .armory-header h1 {
+    font-size: 30px;
+  }
+
+  .armory-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .action-panel {
+    grid-column: auto;
+  }
+
+  .inventory-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .weapon-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .weapon-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .weapon-column + .weapon-column {
+    padding-left: 0;
+
+    border-left: none;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .armory-page {
+    padding: 12px;
+  }
+
+  .panel-header,
+  .creature-card,
+  .selected-weapon,
+  .equip-actions {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .weapon-grid {
+    padding: 14px;
+  }
+
+  .equipment-slots {
+    padding: 14px;
+  }
+
+  .weapon-card {
+    padding: 10px;
+  }
+
+  .weapon-icon {
+    width: 56px;
+    height: 56px;
+  }
+
+  .detail-row {
+    min-height: 38px;
+  }
+
+}
+
