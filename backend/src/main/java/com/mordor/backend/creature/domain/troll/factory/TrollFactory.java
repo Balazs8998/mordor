@@ -7,6 +7,8 @@ import com.mordor.backend.creature.domain.orc.domain.Orc;
 import com.mordor.backend.creature.domain.orc.enums.OrcRaceType;
 import com.mordor.backend.creature.domain.troll.domain.Troll;
 import com.mordor.backend.creature.domain.troll.enums.TrollRaceType;
+import com.mordor.backend.creature.equipment.domain.Equipment;
+import com.mordor.backend.creature.equipment.domain.HumanoidEquipment;
 import com.mordor.backend.creature.factory.AbstractCreatureFactory;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.stereotype.Component;
@@ -22,8 +24,12 @@ public class TrollFactory extends AbstractCreatureFactory {
                 TrollRaceType.valueOf(raceTypeValue);
 
         Troll troll = new Troll();
+        Equipment equipment = new HumanoidEquipment();
+        equipment.setCreature(troll);
+
 
         troll.setRaceType(raceType);
+        troll.setEquipment(equipment);
 
         initializeCreature(
                 troll,

@@ -1,7 +1,7 @@
 package com.mordor.backend.creature.domain;
 
 import com.mordor.backend.creature.domain.association.PlayerCreature;
-import com.mordor.backend.equipment.weapon.Weapon;
+import com.mordor.backend.creature.equipment.domain.Equipment;
 import com.mordor.backend.horde.domain.Horde;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -10,9 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -62,13 +60,14 @@ public abstract class Creature {
     @Column(nullable = false)
     private Integer capacityCost;
 
-    @ManyToMany
-    @JoinTable(
-            name = "creature_weapon",
-            joinColumns = @JoinColumn(name = "creature_id"),
-            inverseJoinColumns = @JoinColumn(name = "weapon_id")
+
+
+    @OneToOne(
+            mappedBy = "creature",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
     )
-    private Set<Weapon> weapons = new HashSet<>();
+    private Equipment equipment;
 
     @ManyToOne
     @JoinColumn(name = "horde_id")
@@ -98,7 +97,7 @@ public abstract class Creature {
    public abstract String getCreatureTypeDisplayName();
 
    public  Integer getWeaponCount(){
-       return weapons.size();
+       return equipment.getWeapons().size();
    }
 
    public abstract String getImgUrl();

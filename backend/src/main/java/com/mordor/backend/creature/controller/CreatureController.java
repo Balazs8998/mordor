@@ -1,8 +1,10 @@
 package com.mordor.backend.creature.controller;
 
 import com.mordor.backend.creature.dto.request.CreatureCreateRequest;
+import com.mordor.backend.creature.dto.request.EquipmentItemRequest;
 import com.mordor.backend.creature.dto.response.CreatureForgeRequiredDataResponse;
 import com.mordor.backend.creature.dto.response.CreatureItemResponse;
+import com.mordor.backend.creature.dto.response.EquipmentItemResponse;
 import com.mordor.backend.creature.service.CreatureService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -40,6 +42,13 @@ public class CreatureController {
         return ResponseEntity.ok(creatureService.getAllCreatures());
     }
 
+    @GetMapping("/{id}/equipment")
+    public ResponseEntity<EquipmentItemResponse> getCreatureEquipment(@PathVariable Long id){
+        log.info("Received request to get equipment for creature with id: {}", id);
+
+        return ResponseEntity.ok(creatureService.getCreatureEquipment(id));
+    }
+
     @PostMapping("/forge")
     public ResponseEntity<Void> forgeCreature(@RequestBody @Valid CreatureCreateRequest request){
         log.info("Received request to forge creature: {}", request);
@@ -47,6 +56,15 @@ public class CreatureController {
         creatureService.saveCreature(request);
 
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/{id}/equipment")
+    public ResponseEntity<EquipmentItemRequest> addEquipmentToCreature(@PathVariable Long id, @RequestBody @Valid EquipmentItemRequest request){
+        log.info("Received request to add equipment to creature with id: {}", id);
+
+        creatureService.saveCreatureEquipment(id, request);
+
+        return ResponseEntity.ok(request);
     }
 
 

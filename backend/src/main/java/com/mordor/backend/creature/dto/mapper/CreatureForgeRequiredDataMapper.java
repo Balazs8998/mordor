@@ -7,8 +7,8 @@ import com.mordor.backend.creature.domain.shared.CreatureTypeMapperInterface;
 import com.mordor.backend.creature.domain.troll.enums.TrollRaceType;
 import com.mordor.backend.creature.dto.response.CreatureForgeRequiredDataResponse;
 import com.mordor.backend.creature.dto.response.CreatureTypeItemResponse;
-import com.mordor.backend.equipment.dto.response.WeaponTypeItemResponse;
-import com.mordor.backend.equipment.enums.WeaponType;
+import com.mordor.backend.creature.dto.response.WeaponTypeItemResponse;
+import com.mordor.backend.creature.equipment.enums.WeaponType;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

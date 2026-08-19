@@ -7,6 +7,8 @@ import com.mordor.backend.creature.domain.mount.domain.Mount;
 import com.mordor.backend.creature.domain.mount.enums.MountRaceType;
 import com.mordor.backend.creature.domain.orc.domain.Orc;
 import com.mordor.backend.creature.domain.orc.enums.OrcRaceType;
+import com.mordor.backend.creature.equipment.domain.BeastEquipment;
+import com.mordor.backend.creature.equipment.domain.Equipment;
 import com.mordor.backend.creature.factory.AbstractCreatureFactory;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.stereotype.Component;
@@ -23,8 +25,11 @@ public class MountFactory extends AbstractCreatureFactory {
                 MountRaceType.valueOf(raceTypeValue);
 
         Mount mount = new Mount();
+        Equipment equipment = new BeastEquipment();
+        equipment.setCreature(mount);
 
         mount.setRaceType(raceType);
+        mount.setEquipment(equipment);
 
         initializeCreature(
                 mount,

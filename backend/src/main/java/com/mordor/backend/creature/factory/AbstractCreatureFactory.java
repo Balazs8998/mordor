@@ -2,6 +2,7 @@ package com.mordor.backend.creature.factory;
 
 import com.mordor.backend.creature.domain.Creature;
 import com.mordor.backend.creature.domain.shared.CreatureRaceDefinition;
+import com.mordor.backend.creature.equipment.domain.Equipment;
 
 public abstract class AbstractCreatureFactory {
 
@@ -48,5 +49,6 @@ public abstract class AbstractCreatureFactory {
         creature.setCapacityCost(
                 raceDefinition.getCapacityCost()
         );
+
     }
 }

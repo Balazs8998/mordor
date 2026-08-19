@@ -19,5 +19,6 @@ public record CreatureItemResponse(
         Integer capacityCost,
         Integer weaponCount,
         String imgUrl
+
 ) {
 }

@@ -1,4 +1,4 @@
-package com.mordor.backend.equipment.dto.response;
+package com.mordor.backend.creature.dto.response;
 
 public record WeaponTypeItemResponse(
         String value,

@@ -1,4 +1,4 @@
-package com.mordor.backend.equipment.enums;
+package com.mordor.backend.creature.equipment.enums;
 
 public enum WeaponType {
 

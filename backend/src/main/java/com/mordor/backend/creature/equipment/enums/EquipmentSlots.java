@@ -1,20 +1,20 @@
-package com.mordor.backend.equipment.enums;
+package com.mordor.backend.creature.equipment.enums;
 
-public enum CombatRange {
-
-    MELEE,
-    RANGED,
-    CAVALRY,
-    FLYING;
+public enum EquipmentSlots {
+    HEAD,
+    BODY,
+    RIGHT_HAND,
+    LEFT_HAND,
+    FEET;
 
     private final String displayName;
 
-    CombatRange() {
+    EquipmentSlots() {
         String formatted = name().replace("_", " ").toLowerCase();
         this.displayName = formatted.substring(0, 1).toUpperCase() + formatted.substring(1);
     }
+
     public String getDisplayName() {
         return displayName;
     }
-
 }
