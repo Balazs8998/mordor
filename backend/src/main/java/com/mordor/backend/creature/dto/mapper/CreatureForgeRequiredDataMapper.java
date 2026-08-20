@@ -32,8 +32,13 @@ public class CreatureForgeRequiredDataMapper {
 
         return Stream.of(WeaponType.values())
                 .map(weaponType -> new WeaponTypeItemResponse(
+
                         weaponType.getIconImgUrl(),
                         weaponType.getImgUrl(),
+                        weaponType.getLeftHandLayerImgUrl(),
+                        weaponType.getRightHandLayerImgUrl(),
+                        weaponType.getTwoHandLayerImgUrl(),
+
                         weaponType.name(),
                         weaponType.getDisplayName(),
 

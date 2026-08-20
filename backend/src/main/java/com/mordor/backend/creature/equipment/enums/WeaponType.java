@@ -1,5 +1,9 @@
 package com.mordor.backend.creature.equipment.enums;
 
+import lombok.Getter;
+
+@Getter
+
 public enum WeaponType {
 
     DAGGER(
@@ -11,7 +15,11 @@ public enum WeaponType {
             8,
             0,
             "icon/dagger.png",
-            "dagger.png"
+            "dagger.png",
+            "dagger.png",
+            "dagger.png",
+            ""
+
     ),
 
     ONE_HAND_SWORD(
@@ -23,7 +31,11 @@ public enum WeaponType {
             18,
             1,
             "icon/sword.png",
-            "one_hand_sword.png"
+            "one_hand_sword.png",
+            "one_hand_sword.png",
+            "one_hand_sword.png",
+            ""
+
     ),
 
     MACE(
@@ -35,7 +47,11 @@ public enum WeaponType {
             20,
             1,
             "icon/mace.png",
-            "mace.png"
+            "mace.png",
+            "mace.png",
+            "mace.png",
+            ""
+
     ),
 
     SHIELD(
@@ -47,7 +63,11 @@ public enum WeaponType {
             24,
             2,
             "icon/shield.png",
-            "shield.png"
+            "shield.png",
+            "shield.png",
+            "shield.png",
+            ""
+
     ),
 
     SPEAR(
@@ -59,8 +79,12 @@ public enum WeaponType {
             18,
             1,
             "icon/spear.png",
-            "spear.png"
-    ),
+            "spear.png",
+            "spear.png",
+            "spear.png",
+            ""
+
+            ),
 
     BOW(
             CombatRange.RANGED,
@@ -71,7 +95,10 @@ public enum WeaponType {
             26,
             1,
             "icon/bow.png",
-            "bow.png"
+            "bow.png",
+            "bow.png",
+            "bow.png",
+            ""
     ),
 
     LONG_SWORD(
@@ -83,7 +110,12 @@ public enum WeaponType {
             34,
             2,
             "icon/sword.png",
+            "long_sword.png",
+            "",
+            "",
             "long_sword.png"
+
+
     ),
 
     LONG_SPEAR(
@@ -95,7 +127,12 @@ public enum WeaponType {
             30,
             2,
             "icon/spear.png",
+            "long_spear.png",
+            "",
+            "",
             "long_spear.png"
+
+
     ),
 
     HEAVY_MACE(
@@ -107,8 +144,12 @@ public enum WeaponType {
             36,
             3,
             "icon/mace.png",
+            "heavy_mace.png",
+            "",
+            "",
             "heavy_mace.png"
-    );
+
+            );
 
     private final CombatRange combatRange;
     private final Integer damageBonus;
@@ -125,6 +166,12 @@ public enum WeaponType {
 
     private final String imgUrl;
 
+    private final String leftHandLayerImgUrl;
+
+    private final String rightHandLayerImgUrl;
+
+    private final String twoHandLayerImgUrl;
+
     WeaponType(
             CombatRange combatRange,
             Integer damageBonus,
@@ -132,11 +179,18 @@ public enum WeaponType {
             Integer range,
             Integer strengthCost,
             Integer goldCost,
-            Integer mordorSteelCost, String iconImgUrl, String imgUrl
+            Integer mordorSteelCost, String iconImgUrl, String imgUrl, String leftHandLayerImgUrl, String rightHandLayerImgUrl, String twoHandLayerImgUrl
     ) {
 
-
         String baseImgUrl = "img/weapon/";
+        String layerImgUrl = "layer/";
+
+        this.iconImgUrl = baseImgUrl + iconImgUrl;
+        this.imgUrl = baseImgUrl + imgUrl;
+        this.leftHandLayerImgUrl = baseImgUrl + layerImgUrl + leftHandLayerImgUrl;
+        this.rightHandLayerImgUrl = baseImgUrl + layerImgUrl + rightHandLayerImgUrl;
+        this.twoHandLayerImgUrl = baseImgUrl + layerImgUrl + twoHandLayerImgUrl;
+
         this.combatRange = combatRange;
         this.damageBonus = damageBonus;
         this.defenseBonus = defenseBonus;
@@ -145,8 +199,7 @@ public enum WeaponType {
 
         this.goldCost = goldCost;
         this.mordorSteelCost = mordorSteelCost;
-        this.iconImgUrl = baseImgUrl + iconImgUrl;
-        this.imgUrl = baseImgUrl + imgUrl;
+
 
         String formatted = name()
                 .replace("_", " ")
@@ -157,42 +210,4 @@ public enum WeaponType {
                         + formatted.substring(1);
     }
 
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public CombatRange getCombatRange() {
-        return combatRange;
-    }
-
-    public Integer getDamageBonus() {
-        return damageBonus;
-    }
-
-    public Integer getDefenseBonus() {
-        return defenseBonus;
-    }
-
-    public Integer getRange() {
-        return range;
-    }
-
-    public Integer getStrengthCost() {
-        return strengthCost;
-    }
-
-    public Integer getGoldCost() {
-        return goldCost;
-    }
-
-    public Integer getMordorSteelCost() {
-        return mordorSteelCost;
-    }
-
-    public String getIconImgUrl() {
-        return iconImgUrl;
-    }
-    public String getImgUrl() {
-        return imgUrl;
-    }
 }
