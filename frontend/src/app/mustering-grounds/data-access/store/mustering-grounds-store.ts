@@ -43,6 +43,11 @@ export class MusteringGroundsStore {
     this._selectedCreatureId.set(id);
   }
 
+  private readonly _CreatureById
+    = signal<CreatureItemResponse | null>(null);
+
+  readonly CreatureById = this._CreatureById.asReadonly();
+
   public getCreatureForgeRequiredData() : void {
     this.musteringGroundsApi.getCreatureForgeRequiredData().pipe(
       takeUntilDestroyed(this.destroyRef)
@@ -57,6 +62,22 @@ export class MusteringGroundsStore {
         this.apiError.set(parsedError.apiError)
       },
     });
+  }
+
+  public getCreature(creatureId: number) : void {
+    this.musteringGroundsApi.getCreature(creatureId).pipe(
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe({
+      next: (response) => {
+        this.apiError.set(null);
+        this._CreatureById.set(response)
+        console.log(response)
+      },
+      error: (error: HttpErrorResponse) => {
+        const parsedError = parseHttpError(error)
+        this.apiError.set(parsedError.apiError)
+      }
+    })
   }
 
   public getAllCreatures() : void {

@@ -29,5 +29,9 @@ export class MusteringGroundsApi {
     return this.http.post<void>(`${BASE_URL}/creature/forge`, request);
   }
 
+  public getCreature(creatureId:number) : Observable<CreatureItemResponse> {
+    return this.http.get<CreatureItemResponse>(`${BASE_URL}/creature/${creatureId}`);
+  }
+
 
 }

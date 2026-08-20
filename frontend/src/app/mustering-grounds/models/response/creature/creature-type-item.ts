@@ -11,17 +11,17 @@ export interface CreatureTypeItem {
   movementTypeValue: string;
   movementTypeDisplayName: string;
 
-  strength: number;
-  agility: number;
-  intelligence: number;
+  baseStrength: number;
+  baseAgility: number;
+  baseIntelligence: number;
 
   baseHealth: number;
   baseDamage: number;
   baseDefense: number;
 
-  morale: number;
+  baseMorale: number;
 
-  movementSpeed: number;
+  baseMovementSpeed: number;
 
   foodUpkeep: number;
   capacityCost: number;

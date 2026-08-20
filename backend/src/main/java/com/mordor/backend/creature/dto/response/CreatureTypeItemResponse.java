@@ -10,17 +10,17 @@ public record CreatureTypeItemResponse(
         String movementTypeValue,
         String movementTypeDisplayName,
 
-        Double strength,
-        Double agility,
-        Double intelligence,
+        Double baseStrength,
+        Double baseAgility,
+        Double baseIntelligence,
 
         Double baseHealth,
         Double baseDamage,
         Double baseDefense,
 
-        Double morale,
+        Double baseMorale,
 
-        Double movementSpeed,
+        Double baseMovementSpeed,
 
         Integer foodUpkeep,
         Integer capacityCost,
