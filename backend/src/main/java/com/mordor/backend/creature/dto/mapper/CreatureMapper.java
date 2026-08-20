@@ -21,19 +21,29 @@ public class CreatureMapper {
                 creature.getId(),
                 creature.getName(),
                 creature.getLevel(),
+
                 creature.getraceTypeValue(),
                 creature.getraceTypeDisplayName(),
                 creature.getRoleDisplayName(),
                 creature.getCreatureTypeDisplayName(),
+
                 creature.getStrength(),
-                creature.getCurrentStrength(),
-                creature.getMovementSpeed(),
+                creature.getAgility(),
+                creature.getIntelligence(),
+
                 creature.getHealth(),
-                creature.getCurrentHealth(),
                 creature.getDamage(),
                 creature.getDefense(),
+
+                creature.getMorale(),
+
+                creature.getMovementSpeed(),
+                creature.getStrengthLoad(),
+                creature.getCurrentHealth(),
+
                 creature.getFoodUpkeep(),
                 creature.getCapacityCost(),
+
                 creature.getWeaponCount(),
                 creature.getImgUrl(),
                 equipmentMapper.equipmentToEquipmentItemResponse(creature.getEquipment())

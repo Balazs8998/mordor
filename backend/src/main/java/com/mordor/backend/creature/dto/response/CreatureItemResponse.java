@@ -4,19 +4,29 @@ public record CreatureItemResponse(
         Long id,
         String name,
         Integer level,
+
         String raceTypeValue,
         String raceTypeDisplayName,
         String roleDisplayName,
         String creatureTypeDisplayName,
-        Integer strength,
-        Integer currentStrength,
-        Double movementSpeed,
+
+        Double strength,
+        Double agility,
+        Double intelligence,
+
         Double health,
-        Double currentHealth,
         Double damage,
         Double defense,
+
+        Double morale,
+
+        Double movementSpeed,
+        Double strengthLoad,
+        Double currentHealth,
+
         Integer foodUpkeep,
         Integer capacityCost,
+
         Integer weaponCount,
         String imgUrl,
         EquipmentItemResponse equipments

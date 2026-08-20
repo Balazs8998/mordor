@@ -31,10 +31,13 @@ public abstract class Creature {
     private Integer level;
 
     @Column(nullable = false)
-    private Integer strength;
+    private Double strength;
 
     @Column(nullable = false)
-    private Double movementSpeed;
+    private Double agility;
+
+    @Column(nullable = false)
+    private Double intelligence;
 
 
     @Column(nullable = false)
@@ -45,7 +48,13 @@ public abstract class Creature {
     private Double defense;
 
     @Column(nullable = false)
-    private Integer currentStrength;
+    private Double morale;
+
+    @Column(nullable = false)
+    private Double movementSpeed;
+
+    @Column(nullable = false)
+    private Double strengthLoad;
 
     @Column(nullable = false)
     private Double currentHealth;
@@ -53,6 +62,8 @@ public abstract class Creature {
     private LocalDateTime lastAttackedAt;
     @Column
     private LocalDateTime lastRecoveryAt;
+
+
 
     @Column(nullable = false)
     private Integer foodUpkeep;
@@ -82,8 +93,8 @@ public abstract class Creature {
        if(currentHealth == null) {
            currentHealth = health;
        }
-       if(currentStrength == null) {
-           currentStrength = strength;
+       if(strengthLoad == null) {
+           strengthLoad = 0.0;
        }
     }
 

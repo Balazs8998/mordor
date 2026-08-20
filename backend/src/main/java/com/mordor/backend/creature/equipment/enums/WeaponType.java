@@ -3,7 +3,6 @@ package com.mordor.backend.creature.equipment.enums;
 import lombok.Getter;
 
 @Getter
-
 public enum WeaponType {
 
     DAGGER(
@@ -12,6 +11,7 @@ public enum WeaponType {
             0,
             0,
             1,
+            1,
             8,
             0,
             "icon/dagger.png",
@@ -19,7 +19,6 @@ public enum WeaponType {
             "dagger.png",
             "dagger.png",
             ""
-
     ),
 
     ONE_HAND_SWORD(
@@ -28,6 +27,7 @@ public enum WeaponType {
             1,
             0,
             2,
+            1,
             18,
             1,
             "icon/sword.png",
@@ -35,7 +35,6 @@ public enum WeaponType {
             "one_hand_sword.png",
             "one_hand_sword.png",
             ""
-
     ),
 
     MACE(
@@ -44,6 +43,7 @@ public enum WeaponType {
             0,
             0,
             3,
+            1,
             20,
             1,
             "icon/mace.png",
@@ -51,7 +51,6 @@ public enum WeaponType {
             "mace.png",
             "mace.png",
             ""
-
     ),
 
     SHIELD(
@@ -60,6 +59,7 @@ public enum WeaponType {
             3,
             0,
             3,
+            1,
             24,
             2,
             "icon/shield.png",
@@ -67,7 +67,6 @@ public enum WeaponType {
             "shield.png",
             "shield.png",
             ""
-
     ),
 
     SPEAR(
@@ -76,6 +75,7 @@ public enum WeaponType {
             0,
             1,
             3,
+            1,
             18,
             1,
             "icon/spear.png",
@@ -83,8 +83,7 @@ public enum WeaponType {
             "spear.png",
             "spear.png",
             ""
-
-            ),
+    ),
 
     BOW(
             CombatRange.RANGED,
@@ -92,13 +91,14 @@ public enum WeaponType {
             0,
             3,
             3,
+            2,
             26,
             1,
             "icon/bow.png",
             "bow.png",
-            "bow.png",
-            "bow.png",
-            ""
+            "",
+            "",
+            "bow.png"
     ),
 
     LONG_SWORD(
@@ -107,6 +107,7 @@ public enum WeaponType {
             1,
             0,
             5,
+            2,
             34,
             2,
             "icon/sword.png",
@@ -114,8 +115,6 @@ public enum WeaponType {
             "",
             "",
             "long_sword.png"
-
-
     ),
 
     LONG_SPEAR(
@@ -124,6 +123,7 @@ public enum WeaponType {
             0,
             2,
             5,
+            2,
             30,
             2,
             "icon/spear.png",
@@ -131,8 +131,6 @@ public enum WeaponType {
             "",
             "",
             "long_spear.png"
-
-
     ),
 
     HEAVY_MACE(
@@ -141,6 +139,7 @@ public enum WeaponType {
             0,
             0,
             6,
+            2,
             36,
             3,
             "icon/mace.png",
@@ -148,14 +147,17 @@ public enum WeaponType {
             "",
             "",
             "heavy_mace.png"
+    );
 
-            );
 
     private final CombatRange combatRange;
+
     private final Integer damageBonus;
     private final Integer defenseBonus;
     private final Integer range;
+
     private final Integer strengthCost;
+    private final Integer handsRequired;
 
     private final Integer goldCost;
     private final Integer mordorSteelCost;
@@ -163,42 +165,88 @@ public enum WeaponType {
     private final String displayName;
 
     private final String iconImgUrl;
-
     private final String imgUrl;
 
     private final String leftHandLayerImgUrl;
-
     private final String rightHandLayerImgUrl;
-
     private final String twoHandLayerImgUrl;
+
 
     WeaponType(
             CombatRange combatRange,
+
             Integer damageBonus,
             Integer defenseBonus,
             Integer range,
+
             Integer strengthCost,
+            Integer handsRequired,
+
             Integer goldCost,
-            Integer mordorSteelCost, String iconImgUrl, String imgUrl, String leftHandLayerImgUrl, String rightHandLayerImgUrl, String twoHandLayerImgUrl
+            Integer mordorSteelCost,
+
+            String iconImgUrl,
+            String imgUrl,
+
+            String leftHandLayerImgUrl,
+            String rightHandLayerImgUrl,
+            String twoHandLayerImgUrl
     ) {
 
-        String baseImgUrl = "img/weapon/";
-        String layerImgUrl = "layer/";
+        String baseImgUrl =
+                "img/weapon/";
 
-        this.iconImgUrl = baseImgUrl + iconImgUrl;
-        this.imgUrl = baseImgUrl + imgUrl;
-        this.leftHandLayerImgUrl = baseImgUrl + layerImgUrl + leftHandLayerImgUrl;
-        this.rightHandLayerImgUrl = baseImgUrl + layerImgUrl + rightHandLayerImgUrl;
-        this.twoHandLayerImgUrl = baseImgUrl + layerImgUrl + twoHandLayerImgUrl;
+        String layerImgUrl =
+                "layer/";
 
-        this.combatRange = combatRange;
-        this.damageBonus = damageBonus;
-        this.defenseBonus = defenseBonus;
-        this.range = range;
-        this.strengthCost = strengthCost;
 
-        this.goldCost = goldCost;
-        this.mordorSteelCost = mordorSteelCost;
+        this.iconImgUrl =
+                baseImgUrl
+                        + iconImgUrl;
+
+        this.imgUrl =
+                baseImgUrl
+                        + imgUrl;
+
+        this.leftHandLayerImgUrl =
+                baseImgUrl
+                        + layerImgUrl
+                        + leftHandLayerImgUrl;
+
+        this.rightHandLayerImgUrl =
+                baseImgUrl
+                        + layerImgUrl
+                        + rightHandLayerImgUrl;
+
+        this.twoHandLayerImgUrl =
+                baseImgUrl
+                        + layerImgUrl
+                        + twoHandLayerImgUrl;
+
+
+        this.combatRange =
+                combatRange;
+
+        this.damageBonus =
+                damageBonus;
+
+        this.defenseBonus =
+                defenseBonus;
+
+        this.range =
+                range;
+
+        this.strengthCost =
+                strengthCost;
+
+        this.handsRequired =
+                handsRequired;
+
+        this.goldCost =
+                goldCost;
+
+        this.mordorSteelCost =
+                mordorSteelCost;
 
 
         String formatted = name()
@@ -209,5 +257,5 @@ public enum WeaponType {
                 formatted.substring(0, 1).toUpperCase()
                         + formatted.substring(1);
     }
-
 }
+

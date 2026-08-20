@@ -12,6 +12,8 @@ public record WeaponTypeItemResponse(
         String combatRangeValue,
         String combatRangeDisplayName,
 
+        Integer handsRequired,
+
         Integer damageBonus,
         Integer defenseBonus,
         Integer strengthCost,

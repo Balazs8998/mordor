@@ -14,23 +14,17 @@ public abstract class AbstractCreatureFactory {
         creature.setName(name);
         creature.setLevel(1);
 
-        creature.setMovementSpeed(
-                raceDefinition.getMovementSpeed()
-        );
-
         creature.setStrength(
                 raceDefinition.getStrength()
         );
-
-        creature.setCurrentStrength(
-                raceDefinition.getStrength()
+        creature.setAgility(
+                raceDefinition.getAgility()
+        );
+        creature.setIntelligence(
+                raceDefinition.getIntelligence()
         );
 
         creature.setHealth(
-                raceDefinition.getBaseHealth()
-        );
-
-        creature.setCurrentHealth(
                 raceDefinition.getBaseHealth()
         );
 
@@ -40,6 +34,22 @@ public abstract class AbstractCreatureFactory {
 
         creature.setDefense(
                 raceDefinition.getBaseDefense()
+        );
+
+        creature.setMorale(
+                raceDefinition.getMorale()
+        );
+
+        creature.setMovementSpeed(
+                raceDefinition.getMovementSpeed()
+        );
+
+        creature.setStrengthLoad(
+                raceDefinition.getStrength()
+        );
+
+        creature.setCurrentHealth(
+                raceDefinition.getBaseHealth()
         );
 
         creature.setFoodUpkeep(

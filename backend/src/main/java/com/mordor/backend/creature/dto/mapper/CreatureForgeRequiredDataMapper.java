@@ -41,9 +41,10 @@ public class CreatureForgeRequiredDataMapper {
 
                         weaponType.name(),
                         weaponType.getDisplayName(),
-
                         weaponType.getCombatRange().name(),
                         weaponType.getCombatRange().getDisplayName(),
+
+                        weaponType.getHandsRequired(),
 
                         weaponType.getDamageBonus(),
                         weaponType.getDefenseBonus(),
@@ -64,29 +65,34 @@ public class CreatureForgeRequiredDataMapper {
 
         return creatureTypeMapperInterfaces.stream()
                 .map(creatureRaceType -> new CreatureTypeItemResponse(
+
                         creatureRaceType.getTypeValue(),
                         creatureRaceType.getTypeDisplayName(),
-
                         creatureRaceType.getRoleValue(),
                         creatureRaceType.getRoleDisplayName(),
-
                         creatureRaceType.getCreatureTypeValue(),
                         creatureRaceType.getCreatureTypeDisplayName(),
-
                         creatureRaceType.getMovementTypeValue(),
                         creatureRaceType.getMovementTypeDisplayName(),
 
                         creatureRaceType.getStrength(),
-                        creatureRaceType.getMovementSpeed(),
+                        creatureRaceType.getAgility(),
+                        creatureRaceType.getIntelligence(),
 
                         creatureRaceType.getBaseHealth(),
                         creatureRaceType.getBaseDamage(),
                         creatureRaceType.getBaseDefense(),
 
-                        creatureRaceType.getRecruitmentGoldCost(),
-                        creatureRaceType.getRecruitmentMordorSteelCost(),
+                        creatureRaceType.getMorale(),
+
+                        creatureRaceType.getMovementSpeed(),
+
                         creatureRaceType.getFoodUpkeep(),
                         creatureRaceType.getCapacityCost(),
+
+
+                        creatureRaceType.getRecruitmentGoldCost(),
+                        creatureRaceType.getRecruitmentMordorSteelCost(),
 
                         creatureRaceType.getImgUrl()
                 )).toList();
