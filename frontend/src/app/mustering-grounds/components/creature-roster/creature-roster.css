@@ -23,20 +23,27 @@
 }
 
 
-/* HEADER */
+/* =========================================================
+   HEADER
+   ========================================================= */
 
 .roster-header {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 520px);
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(280px, 520px);
+
   gap: 40px;
 
-  align-items: end;
+  align-items: start;
 
   padding-bottom: 22px;
   margin-bottom: 20px;
 
   border-bottom: 1px solid rgba(137, 72, 36, 0.38);
 }
+
 
 .section-kicker {
   display: block;
@@ -45,87 +52,348 @@
 
   font-size: 11px;
   font-weight: 700;
+
   letter-spacing: 0.22em;
+
   text-transform: uppercase;
 
   color: #8f7964;
 }
 
+
 .roster-header h1 {
   margin: 0;
 
-  font-family: Georgia, "Times New Roman", serif;
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
 
   font-size: 30px;
   font-weight: 600;
+
   letter-spacing: 0.05em;
 
   color: #d87537;
 }
 
+
+/* =========================================================
+   HEADER RIGHT SIDE
+   DESCRIPTION + MODE SWITCH
+   ========================================================= */
+
+.roster-header-side {
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  justify-self: end;
+
+  gap: 15px;
+
+  padding-top: 4px;
+}
+
+
 .roster-description {
+  width: 100%;
+
   margin: 0;
 
-  font-family: Georgia, "Times New Roman", serif;
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
 
   font-size: 13px;
+
   line-height: 1.7;
 
   color: #8f7b68;
 }
 
 
-/* SUMMARY */
+/* =========================================================
+   MODE SWITCH
+   ========================================================= */
+
+.roster-mode-switch {
+  display: flex;
+
+  align-items: center;
+
+  gap: 11px;
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  font-size: 0.76rem;
+
+  letter-spacing: 0.06em;
+
+  text-transform: uppercase;
+
+  color: #554a3e;
+}
+
+
+.roster-mode-switch > span {
+  min-width: 55px;
+
+  transition:
+    color 150ms ease,
+    text-shadow 150ms ease;
+}
+
+
+.roster-mode-switch > span:first-child {
+  text-align: right;
+}
+
+
+.roster-mode-switch > span:last-child {
+  text-align: left;
+}
+
+
+.roster-mode-switch > span.active {
+  color: #d6b78b;
+
+  text-shadow:
+    0 0 4px rgba(161, 66, 31, 0.45),
+    0 0 8px rgba(116, 31, 14, 0.2);
+}
+
+
+/* =========================================================
+   SWITCH BODY
+   ========================================================= */
+
+.switch {
+  width: 58px;
+  height: 26px;
+
+  position: relative;
+
+  display: inline-block;
+
+  flex-shrink: 0;
+}
+
+
+.switch input {
+  width: 0;
+  height: 0;
+
+  opacity: 0;
+}
+
+
+/* =========================================================
+   DARK IRON TRACK
+   ========================================================= */
+
+.slider {
+  position: absolute;
+
+  inset: 0;
+
+  cursor: pointer;
+
+  border: 1px solid #604128;
+
+  background:
+    linear-gradient(
+      180deg,
+      #1a1510 0%,
+      #0b0907 50%,
+      #060504 100%
+    );
+
+  box-shadow:
+    inset 0 0 0 1px #050403,
+    inset 0 2px 4px rgba(0, 0, 0, 0.9),
+    0 0 0 1px rgba(124, 65, 32, 0.18);
+
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    background 150ms ease;
+}
+
+
+/* =========================================================
+   SWITCH KNOB
+   ========================================================= */
+
+.slider::before {
+  content: "";
+
+  width: 20px;
+  height: 20px;
+
+  position: absolute;
+
+  left: 3px;
+  top: 2px;
+
+  border: 1px solid #7b6547;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #b49a71 0%,
+      #796446 25%,
+      #413424 55%,
+      #1b1610 100%
+    );
+
+  box-shadow:
+    inset 0 0 3px rgba(255, 218, 161, 0.14),
+    0 2px 4px rgba(0, 0, 0, 0.9);
+
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease,
+    box-shadow 160ms ease;
+}
+
+
+/* =========================================================
+   DETAILS ACTIVE
+   ========================================================= */
+
+.switch input:checked + .slider {
+  border-color: #81341e;
+
+  background:
+    linear-gradient(
+      180deg,
+      #361009 0%,
+      #1c0906 50%,
+      #0b0504 100%
+    );
+
+  box-shadow:
+    inset 0 0 8px rgba(115, 25, 8, 0.65),
+    inset 0 1px 3px rgba(0, 0, 0, 0.9),
+    0 0 7px rgba(139, 40, 16, 0.25);
+}
+
+
+.switch input:checked + .slider::before {
+  transform: translateX(31px);
+
+  border-color: #b05b32;
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #d68143 0%,
+      #9c3e20 30%,
+      #54170e 62%,
+      #210805 100%
+    );
+
+  box-shadow:
+    inset 0 0 4px rgba(255, 173, 96, 0.25),
+    0 0 5px rgba(181, 54, 22, 0.55),
+    0 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+
+.switch:hover .slider {
+  border-color: #8a5832;
+}
+
+
+.switch:hover .slider::before {
+  filter: brightness(1.12);
+}
+
+
+/* =========================================================
+   SUMMARY
+   ========================================================= */
 
 .roster-summary {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
 
   margin-bottom: 22px;
 
   border: 1px solid rgba(133, 70, 34, 0.35);
+
   background: rgba(0, 0, 0, 0.18);
 }
 
+
 .summary-item {
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
 
   min-height: 48px;
+
   padding: 0 16px;
 
-  border-right: 1px solid rgba(133, 70, 34, 0.28);
+  border-right:
+    1px solid rgba(133, 70, 34, 0.28);
 }
+
 
 .summary-item:last-child {
   border-right: none;
 }
 
+
 .summary-label {
   font-size: 10px;
+
   font-weight: 700;
+
   letter-spacing: 0.16em;
+
   text-transform: uppercase;
 
   color: #8d7764;
 }
 
+
 .summary-value {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
 
   font-size: 14px;
+
   font-weight: 700;
 
   color: #d4bea3;
 }
 
 
-/* TABLE */
+/* =========================================================
+   TABLE
+   ========================================================= */
 
 .roster-table {
   width: 100%;
 }
+
 
 .roster-table-header,
 .creature-row {
@@ -145,42 +413,58 @@
   align-items: center;
 }
 
+
 .roster-table-header {
   min-height: 38px;
+
   padding: 0 14px;
 
-  border-top: 1px solid rgba(144, 76, 38, 0.45);
-  border-bottom: 1px solid rgba(144, 76, 38, 0.45);
+  border-top:
+    1px solid rgba(144, 76, 38, 0.45);
 
-  background: rgba(67, 31, 16, 0.18);
+  border-bottom:
+    1px solid rgba(144, 76, 38, 0.45);
+
+  background:
+    rgba(67, 31, 16, 0.18);
 
   box-sizing: border-box;
 }
 
+
 .roster-table-header span {
   font-size: 9px;
+
   font-weight: 700;
+
   letter-spacing: 0.16em;
+
   text-transform: uppercase;
 
   color: #9d836b;
 }
 
 
-/* CREATURE ROW */
+/* =========================================================
+   CREATURE ROW
+   ========================================================= */
 
 .creature-row {
   width: 100%;
+
   min-height: 72px;
 
   padding: 8px 14px;
 
   border: none;
-  border-bottom: 1px solid rgba(124, 67, 37, 0.28);
+
+  border-bottom:
+    1px solid rgba(124, 67, 37, 0.28);
 
   color: inherit;
 
-  background: rgba(0, 0, 0, 0.06);
+  background:
+    rgba(0, 0, 0, 0.06);
 
   text-align: left;
 
@@ -194,6 +478,7 @@
     transform 140ms ease;
 }
 
+
 .creature-row:hover {
   background:
     linear-gradient(
@@ -202,24 +487,33 @@
       rgba(45, 22, 13, 0.15)
     );
 
-  border-bottom-color: rgba(190, 89, 41, 0.52);
+  border-bottom-color:
+    rgba(190, 89, 41, 0.52);
 }
 
+
 .creature-row:focus-visible {
-  outline: 1px solid rgba(206, 102, 50, 0.8);
+  outline:
+    1px solid rgba(206, 102, 50, 0.8);
+
   outline-offset: -2px;
 }
 
 
-/* CREATURE */
+/* =========================================================
+   CREATURE
+   ========================================================= */
 
 .creature-main {
   display: flex;
+
   align-items: center;
+
   gap: 13px;
 
   min-width: 0;
 }
+
 
 .creature-image {
   flex: 0 0 48px;
@@ -229,10 +523,12 @@
 
   overflow: hidden;
 
-  border: 1px solid rgba(140, 75, 41, 0.55);
+  border:
+    1px solid rgba(140, 75, 41, 0.55);
 
   background: #090706;
 }
+
 
 .creature-image img {
   width: 100%;
@@ -241,106 +537,144 @@
   display: block;
 
   object-fit: cover;
+
   object-position: center;
 }
 
+
 .creature-identity {
   display: flex;
+
   flex-direction: column;
+
   gap: 4px;
 
   min-width: 0;
 }
 
+
 .creature-name {
   overflow: hidden;
 
-  font-family: Georgia, "Times New Roman", serif;
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
 
   font-size: 14px;
+
   font-weight: 700;
 
   color: #d8c3aa;
 
   text-overflow: ellipsis;
+
   white-space: nowrap;
 }
+
 
 .creature-role {
   overflow: hidden;
 
   font-size: 9px;
+
   font-weight: 600;
+
   letter-spacing: 0.1em;
+
   text-transform: uppercase;
 
   color: #826e5c;
 
   text-overflow: ellipsis;
+
   white-space: nowrap;
 }
 
 
-/* VALUES */
+/* =========================================================
+   VALUES
+   ========================================================= */
 
 .row-value {
   overflow: hidden;
 
-  font-family: Georgia, "Times New Roman", serif;
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
 
   font-size: 12px;
 
   color: #b8a58f;
 
   text-overflow: ellipsis;
+
   white-space: nowrap;
 }
 
+
 .numeric {
   font-weight: 700;
+
   color: #d1baa0;
 }
+
 
 .creature-type {
   color: #ae9174;
 }
 
 
-/* HEALTH */
+/* =========================================================
+   HEALTH
+   ========================================================= */
 
 .health-cell {
   display: flex;
+
   flex-direction: column;
+
   gap: 7px;
 }
 
+
 .health-values {
   display: flex;
+
   align-items: baseline;
+
   gap: 3px;
 
   font-size: 11px;
+
   font-weight: 700;
 
   color: #cda889;
 }
 
+
 .health-max {
   color: #77685c;
 }
+
 
 .health-bar {
   position: relative;
 
   width: 100%;
+
   height: 4px;
 
   overflow: hidden;
 
-  background: rgba(255, 255, 255, 0.07);
+  background:
+    rgba(255, 255, 255, 0.07);
 
-  border: 1px solid rgba(115, 57, 32, 0.3);
+  border:
+    1px solid rgba(115, 57, 32, 0.3);
 }
+
 
 .health-bar-value {
   height: 100%;
@@ -352,69 +686,92 @@
       #a34728
     );
 
-  transition: width 180ms ease;
+  transition:
+    width 180ms ease;
 }
 
 
-/* EQUIPMENT */
+/* =========================================================
+   EQUIPMENT
+   ========================================================= */
 
 .equipment-cell {
   display: flex;
+
   align-items: center;
 }
 
+
 .unarmed {
   font-size: 9px;
+
   font-weight: 700;
+
   letter-spacing: 0.12em;
+
   text-transform: uppercase;
 
   color: #8c6652;
 }
 
+
 .equipment-count {
   font-size: 10px;
+
   font-weight: 700;
 
   color: #bb9b7b;
 }
 
 
-/* EMPTY */
+/* =========================================================
+   EMPTY
+   ========================================================= */
 
 .empty-roster {
   display: flex;
+
   flex-direction: column;
+
   align-items: center;
 
   padding: 70px 20px;
 
   text-align: center;
 
-  border-bottom: 1px solid rgba(124, 67, 37, 0.28);
+  border-bottom:
+    1px solid rgba(124, 67, 37, 0.28);
 }
+
 
 .empty-title {
   margin-bottom: 8px;
 
-  font-family: Georgia, "Times New Roman", serif;
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
 
   font-size: 17px;
 
   color: #baa28b;
 }
 
+
 .empty-description {
   max-width: 420px;
 
   font-size: 12px;
+
   line-height: 1.7;
 
   color: #76685d;
 }
 
 
-/* RESPONSIVE */
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
 
 @media (max-width: 1100px) {
 
@@ -428,9 +785,9 @@
       80px;
   }
 
+
   .roster-table-header span:nth-child(3),
   .creature-row > :nth-child(3),
-
   .roster-table-header span:nth-child(7),
   .creature-row > :nth-child(7) {
     display: none;
@@ -444,40 +801,69 @@
     padding: 18px;
   }
 
+
   .roster-header {
     grid-template-columns: 1fr;
-    gap: 12px;
+
+    gap: 15px;
   }
+
+
+  .roster-header-side {
+    width: 100%;
+
+    justify-self: stretch;
+  }
+
+
+  .roster-mode-switch {
+    margin-top: 2px;
+  }
+
 
   .roster-summary {
     grid-template-columns: 1fr;
   }
 
+
   .summary-item {
     border-right: none;
-    border-bottom: 1px solid rgba(133, 70, 34, 0.28);
+
+    border-bottom:
+      1px solid rgba(133, 70, 34, 0.28);
   }
+
 
   .summary-item:last-child {
     border-bottom: none;
   }
 
+
   .roster-table-header {
     display: none;
   }
 
+
   .creature-row {
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns:
+      minmax(0, 1fr)
+      auto;
+
     gap: 12px;
 
     padding: 12px;
   }
 
-  .creature-row > :not(.creature-main):not(.health-cell) {
+
+  .creature-row
+  > :not(.creature-main)
+  :not(.health-cell) {
     display: none;
   }
+
 
   .health-cell {
     width: 100px;
   }
 }
+

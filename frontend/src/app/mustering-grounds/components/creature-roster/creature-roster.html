@@ -6,10 +6,36 @@
       <h1>Creature Roster</h1>
     </div>
 
-    <p class="roster-description">
-      Inspect the servants gathered beneath your banner.
-      Select a creature to view its equipment and combat details.
-    </p>
+    <div class="roster-header-side">
+
+      <p class="roster-description">
+        Survey the servants gathered beneath the Eye.
+        Select a creature to inspect its wargear or study its battle attributes.
+      </p>
+
+      <div class="roster-mode-switch">
+
+    <span [class.active]="rosterMode() === 'ARMORY'">
+      Armory
+    </span>
+
+        <label class="switch">
+          <input
+            type="checkbox"
+            [checked]="rosterMode() === 'DETAILS'"
+            (change)="toggleRosterMode()"
+          >
+          <span class="slider"></span>
+        </label>
+
+        <span [class.active]="rosterMode() === 'DETAILS'">
+      Details
+    </span>
+
+      </div>
+
+    </div>
+
   </header>
 
 
@@ -72,9 +98,11 @@
 
           <button
             type="button"
-            class="creature-row">
-<!--            (click)="openCreatureDetails(creature.id)"-->
-          >
+            class="creature-row"
+            (click)="openCreature(creature.id)">
+
+
+
 
             <div class="creature-main">
 
@@ -138,7 +166,7 @@
 
 
             <span class="row-value numeric">
-              {{ creature.currentStrength }}
+              {{ creature.strengthLoad }}
               /
               {{ creature.strength }}
             </span>
