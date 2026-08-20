@@ -24,11 +24,17 @@
       }
 
       @case ('roster') {
-        <app-creature-roster />
+        <app-creature-roster
+          (rosterModeOutput)="selectSection($event)"
+        />
       }
 
       @case ('armory') {
         <app-armory />
+      }
+      @case ('details') {
+        <app-creature-details />
+
       }
 
       @default {
@@ -60,12 +66,6 @@
       Creature Roster
     </button>
 
-    <button
-      type="button"
-      [class.active]="activeSection() === 'armory'"
-      (click)="selectSection('armory')">
-      Armory
-    </button>
 
   </nav>
 

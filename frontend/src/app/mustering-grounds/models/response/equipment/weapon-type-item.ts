@@ -10,6 +10,8 @@ export interface WeaponTypeItem {
   combatRangeValue: string;
   combatRangeDisplayName: string;
 
+  handsRequired: number;
+
   damageBonus: number;
   defenseBonus: number;
   strengthCost: number;

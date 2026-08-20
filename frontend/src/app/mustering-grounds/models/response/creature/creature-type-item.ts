@@ -12,16 +12,22 @@ export interface CreatureTypeItem {
   movementTypeDisplayName: string;
 
   strength: number;
-  movementSpeed: number;
+  agility: number;
+  intelligence: number;
 
   baseHealth: number;
   baseDamage: number;
   baseDefense: number;
 
-  recruitmentGoldCost: number;
-  recruitmentMordorSteelCost: number;
+  morale: number;
+
+  movementSpeed: number;
+
   foodUpkeep: number;
   capacityCost: number;
+
+  recruitmentGoldCost: number;
+  recruitmentMordorSteelCost: number;
 
   imgUrl: string;
 }

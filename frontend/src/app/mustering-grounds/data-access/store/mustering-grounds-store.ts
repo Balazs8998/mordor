@@ -31,7 +31,17 @@ export class MusteringGroundsStore {
     this._playerRequiredData.asReadonly();
 
   readonly creatures =
-    this._Creatures.asReadonly()
+    this._Creatures.asReadonly();
+
+  private readonly _selectedCreatureId = signal<number | null>(null);
+
+  readonly selectedCreatureId =
+    this._selectedCreatureId.asReadonly();
+
+
+  selectCreature(id:number) {
+    this._selectedCreatureId.set(id);
+  }
 
   public getCreatureForgeRequiredData() : void {
     this.musteringGroundsApi.getCreatureForgeRequiredData().pipe(

@@ -1,5 +1,5 @@
 import {CreatureTypeItem} from './creature-type-item';
-import {WeaponTypeItem} from '../weapon/weapon-type-item';
+import {WeaponTypeItem} from '../equipment/weapon-type-item';
 
 export interface CreatureForgeRequiredDataResponse {
   orcRaceTypes: CreatureTypeItem[];
