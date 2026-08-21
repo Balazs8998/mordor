@@ -66,8 +66,28 @@ public class HumanoidEquipment extends Equipment {
     }
 
     @Override
+    public String getLeftHandIconImgUrl() {
+        return leftHand != null ? leftHand.getIconImgUrl() : "";
+    }
+
+    @Override
+    public String getLeftHandLayerImgUrl() {
+        return leftHand != null ? leftHand.getLeftHandLayerImgUrl() : "";
+    }
+
+    @Override
     public String getRightHand() {
         return rightHand != null ? rightHand.name() : null;
+    }
+
+    @Override
+    public String getRightHandIconImgUrl() {
+        return rightHand != null ? rightHand.getIconImgUrl() : "";
+    }
+
+    @Override
+    public String getRightHandLayerImgUrl() {
+        return rightHand != null ? rightHand.getRightHandLayerImgUrl() : "";
     }
 
     @Override

@@ -43,7 +43,11 @@ public abstract class Equipment {
     public abstract void unequip (EquipmentSlots slot);
 
     public abstract String getLeftHand();
+    public abstract String getLeftHandIconImgUrl();
+    public abstract String getLeftHandLayerImgUrl();
     public abstract String getRightHand();
+    public abstract String getRightHandIconImgUrl();
+    public abstract String getRightHandLayerImgUrl();
     public abstract void clearEquippedWeapons();
 
 

@@ -40,9 +40,17 @@ public class EquipmentMapper {
                 equipment.getCreature().getId(),
                 equipment.getRightHand()
                         != null ? equipment.getRightHand() : null,
+                equipment.getRightHandIconImgUrl()
+                        != null ? equipment.getRightHandIconImgUrl() : null,
+                equipment.getRightHandLayerImgUrl()
+                        != null ? equipment.getRightHandLayerImgUrl() : null,
 
                 equipment.getLeftHand()
                         != null ? equipment.getLeftHand() : null,
+                equipment.getLeftHandIconImgUrl()
+                        != null ? equipment.getLeftHandIconImgUrl() : null,
+                equipment.getLeftHandLayerImgUrl()
+                        != null ? equipment.getLeftHandLayerImgUrl() : null,
 
                 equipment.getWeapons().stream().map(WeaponType::getDisplayName).toList()
         );

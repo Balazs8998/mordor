@@ -30,7 +30,27 @@ public class BeastEquipment extends Equipment {
     }
 
     @Override
+    public String getLeftHandIconImgUrl() {
+        return "";
+    }
+
+    @Override
+    public String getLeftHandLayerImgUrl() {
+        return "";
+    }
+
+    @Override
     public String getRightHand() {
+        return "";
+    }
+
+    @Override
+    public String getRightHandIconImgUrl() {
+        return "";
+    }
+
+    @Override
+    public String getRightHandLayerImgUrl() {
         return "";
     }
 
