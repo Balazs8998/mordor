@@ -337,267 +337,210 @@
 
 
       <!-- =====================================================
-           SELECTED ITEM
+           EQUIPMENT
            ===================================================== -->
 
-      <section class="armory-panel selected-item-panel">
+      <section class="armory-panel equipment-panel">
 
         <header class="panel-title">
-          <h2>Selected Item</h2>
+
+          <h2>
+            Equipment
+          </h2>
+
         </header>
 
 
-        @if (selectedWeapon()) {
+        <div class="equipment-body">
 
-          <div class="selected-item-content">
 
-            <div class="selected-item-header">
+          <!-- =================================================
+               FUTURE: HEAD
 
-              <div class="selected-item-image">
+               Nincs equipment().head binding.
+               ================================================= -->
+
+          <button
+            type="button"
+            class="
+              equipment-button
+              equipment-head
+              future-equipment-slot
+            "
+            disabled
+          >
+
+            <span class="equipment-label">
+              Head
+            </span>
+
+            <span
+              class="
+                equipment-icon
+                empty
+                locked
+              "
+            >
+
+              <span class="slot-coming-soon">
+                Soon
+              </span>
+
+            </span>
+
+          </button>
+
+
+          <!-- =================================================
+               ACTIVE: LEFT HAND
+               ================================================= -->
+
+          <button
+            type="button"
+            class="
+              equipment-button
+              equipment-left-hand
+              active-equipment-slot
+            "
+          >
+
+            <span class="equipment-label">
+              Left Hand
+            </span>
+
+            <span
+              class="equipment-icon"
+              [class.empty]="!equipment()?.leftHand"
+              (click)="setSelectedSlot('left-hand'); $event.stopPropagation()"
+              [class.selected]="selectedSlot() === 'left-hand'"
+            >
+
+              @if (equipment()?.leftHand) {
 
                 <img
-                  [src]="selectedWeapon()?.imgUrl"
-                  [alt]="selectedWeapon()?.displayName"
+                  [src]="equipment()?.leftHandIconImgUrl"
+                  [alt]="equipment()?.leftHand"
                 >
 
-              </div>
+              }
 
-
-              <div class="selected-item-main">
-
-                <h3>
-                  {{ selectedWeapon()?.displayName }}
-                </h3>
-
-                <span class="item-type">
-
-                  {{
-                    selectedWeapon()
-                      ?.combatRangeDisplayName
-                  }}
-
-                </span>
-
-                <p class="item-description">
-                  Forged for the armies of Mordor.
-                </p>
-
-              </div>
-
-            </div>
-
-
-            <!-- ITEM DATA -->
-
-            <div class="item-detail-grid">
-
-              <!-- COMBAT -->
-
-              <div class="item-detail-column">
-
-                <h4>Combat</h4>
-
-                <div class="detail-row">
-
-                  <span>
-                    Damage
-                  </span>
-
-                  <strong>
-                    +{{ selectedWeapon()?.damageBonus }}
-                  </strong>
-
-                </div>
-
-
-                <div class="detail-row">
-
-                  <span>
-                    Defense
-                  </span>
-
-                  <strong>
-                    +{{ selectedWeapon()?.defenseBonus }}
-                  </strong>
-
-                </div>
-
-
-                <div class="detail-row">
-
-                  <span>
-                    Strength
-                  </span>
-
-                  <strong>
-                    {{ selectedWeapon()?.strengthCost }}
-                  </strong>
-
-                </div>
-
-
-                <div class="detail-row">
-
-                  <span>
-                    Hands
-                  </span>
-
-                  <strong>
-                    1
-                  </strong>
-
-                </div>
-
-
-                <div class="detail-row">
-
-                  <span>
-                    Range
-                  </span>
-
-                  <strong>
-
-                    {{
-                      selectedWeapon()
-                        ?.combatRangeDisplayName
-                    }}
-
-                  </strong>
-
-                </div>
-
-              </div>
-
-
-              <!-- COST -->
-
-              <div class="item-detail-column">
-
-                <h4>Cost</h4>
-
-                <div class="detail-row">
-
-                  <span>
-                    Gold
-                  </span>
-
-                  <strong>
-                    {{ selectedWeapon()?.goldCost }}
-                  </strong>
-
-                </div>
-
-
-                <div class="detail-row">
-
-                  <span>
-                    Mordor Steel
-                  </span>
-
-                  <strong>
-                    {{ selectedWeapon()?.mordorSteelCost }}
-                  </strong>
-
-                </div>
-
-
-                <!--
-                  FUTURE RESOURCES
-
-                  Wood
-                  Iron
-                  Coal
-                  Sulfur
-
-                  Ezek akkor kapnak bindingot,
-                  amikor ténylegesen bekerülnek
-                  a Weapon response-ba.
-                -->
-
-                <div class="detail-row future-detail">
-
-                  <span>
-                    Wood
-                  </span>
-
-                  <strong>
-                    —
-                  </strong>
-
-                </div>
-
-
-                <div class="detail-row future-detail">
-
-                  <span>
-                    Iron
-                  </span>
-
-                  <strong>
-                    —
-                  </strong>
-
-                </div>
-
-
-                <div class="detail-row future-detail">
-
-                  <span>
-                    Coal
-                  </span>
-
-                  <strong>
-                    —
-                  </strong>
-
-                </div>
-
-
-                <div class="detail-row future-detail">
-
-                  <span>
-                    Sulfur
-                  </span>
-
-                  <strong>
-                    —
-                  </strong>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-            <div class="selected-item-actions">
-
-              <button
-                type="button"
-                class="armory-action-button"
-              >
-                Equip
-              </button>
-
-            </div>
-
-          </div>
-
-        } @else {
-
-          <div class="no-selection">
-
-            <span class="no-selection-icon">
-              ⚔
             </span>
 
-            <span>
-              Select an item from the weapon store.
+          </button>
+
+
+          <!-- =================================================
+               ACTIVE: RIGHT HAND
+               ================================================= -->
+
+          <button
+            type="button"
+            class="
+              equipment-button
+              equipment-right-hand
+              active-equipment-slot
+            "
+          >
+
+            <span class="equipment-label">
+              Right Hand
             </span>
 
-          </div>
+            <span
+              class="equipment-icon"
+              [class.empty]="!equipment()?.rightHand"
+              (click)="setSelectedSlot('right-hand'); $event.stopPropagation()"
+              [class.selected]="selectedSlot() === 'right-hand'"
+            >
 
-        }
+              @if (equipment()?.rightHand) {
+
+                <img
+                  [src]="equipment()?.rightHandIconImgUrl"
+                  [alt]="equipment()?.rightHand"
+                >
+
+              }
+
+            </span>
+
+          </button>
+
+
+          <!-- =================================================
+               FUTURE: CHEST
+
+               Nincs equipment().chest binding.
+               ================================================= -->
+
+          <button
+            type="button"
+            class="
+              equipment-button
+              equipment-chest
+              future-equipment-slot
+            "
+            disabled
+          >
+
+            <span class="equipment-label">
+              Chest
+            </span>
+
+            <span
+              class="
+                equipment-icon
+                empty
+                locked
+              "
+            >
+
+              <span class="slot-coming-soon">
+                Soon
+              </span>
+
+            </span>
+
+          </button>
+
+
+          <!-- =================================================
+               FUTURE: LEGS
+
+               Nincs equipment().legs binding.
+               ================================================= -->
+
+          <button
+            type="button"
+            class="
+              equipment-button
+              equipment-legs
+              future-equipment-slot
+            "
+            disabled
+          >
+
+            <span class="equipment-label">
+              Legs
+            </span>
+
+            <span
+              class="
+                equipment-icon
+                empty
+                locked
+              "
+            >
+
+              <span class="slot-coming-soon">
+                Soon
+              </span>
+
+            </span>
+
+          </button>
+
+        </div>
 
       </section>
 
@@ -865,209 +808,271 @@
          ========================================================= -->
 
     <aside class="armory-column armory-right">
+      @if (selectedSlot() === 'left-hand' || selectedSlot() === 'right-hand') {
 
 
       <!-- =====================================================
-           EQUIPMENT
+           SELECTED ITEM
            ===================================================== -->
 
-      <section class="armory-panel equipment-panel">
+      <section class="armory-panel selected-item-panel">
 
         <header class="panel-title">
-
-          <h2>
-            Equipment
-          </h2>
-
+          <h2>Selected Item</h2>
         </header>
 
 
-        <div class="equipment-body">
+        @if (selectedWeapon()) {
 
+          <div class="selected-item-content">
 
-          <!-- =================================================
-               FUTURE: HEAD
+            <div class="selected-item-header">
 
-               Nincs equipment().head binding.
-               ================================================= -->
-
-          <button
-            type="button"
-            class="
-              equipment-button
-              equipment-head
-              future-equipment-slot
-            "
-            disabled
-          >
-
-            <span class="equipment-label">
-              Head
-            </span>
-
-            <span
-              class="
-                equipment-icon
-                empty
-                locked
-              "
-            >
-
-              <span class="slot-coming-soon">
-                Soon
-              </span>
-
-            </span>
-
-          </button>
-
-
-          <!-- =================================================
-               ACTIVE: LEFT HAND
-               ================================================= -->
-
-          <button
-            type="button"
-            class="
-              equipment-button
-              equipment-left-hand
-              active-equipment-slot
-            "
-          >
-
-            <span class="equipment-label">
-              Left Hand
-            </span>
-
-            <span
-              class="equipment-icon"
-              [class.empty]="!equipment()?.leftHand"
-            >
-
-              @if (equipment()?.leftHand) {
+              <div class="selected-item-image">
 
                 <img
-                  [src]="equipment()?.leftHandIconImgUrl"
-                  [alt]="equipment()?.leftHand"
+                  [src]="selectedWeapon()?.imgUrl"
+                  [alt]="selectedWeapon()?.displayName"
                 >
 
-              }
+              </div>
 
+
+              <div class="selected-item-main">
+
+                <h3>
+                  {{ selectedWeapon()?.displayName }}
+                </h3>
+
+                <span class="item-type">
+
+                  {{
+                    selectedWeapon()
+                      ?.combatRangeDisplayName
+                  }}
+
+                </span>
+
+                <p class="item-description">
+                  Forged for the armies of Mordor.
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <!-- ITEM DATA -->
+
+            <div class="item-detail-grid">
+
+              <!-- COMBAT -->
+
+              <div class="item-detail-column">
+
+                <h4>Combat</h4>
+
+                <div class="detail-row">
+
+                  <span>
+                    Damage
+                  </span>
+
+                  <strong>
+                    +{{ selectedWeapon()?.damageBonus }}
+                  </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                  <span>
+                    Defense
+                  </span>
+
+                  <strong>
+                    +{{ selectedWeapon()?.defenseBonus }}
+                  </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                  <span>
+                    Strength
+                  </span>
+
+                  <strong>
+                    {{ selectedWeapon()?.strengthCost }}
+                  </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                  <span>
+                    Hands
+                  </span>
+
+                  <strong>
+                    1
+                  </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                  <span>
+                    Range
+                  </span>
+
+                  <strong>
+
+                    {{
+                      selectedWeapon()
+                        ?.combatRangeDisplayName
+                    }}
+
+                  </strong>
+
+                </div>
+
+              </div>
+
+
+              <!-- COST -->
+
+              <div class="item-detail-column">
+
+                <h4>Cost</h4>
+
+                <div class="detail-row">
+
+                  <span>
+                    Gold
+                  </span>
+
+                  <strong>
+                    {{ selectedWeapon()?.goldCost }}
+                  </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                  <span>
+                    Mordor Steel
+                  </span>
+
+                  <strong>
+                    {{ selectedWeapon()?.mordorSteelCost }}
+                  </strong>
+
+                </div>
+
+
+                <!--
+                  FUTURE RESOURCES
+
+                  Wood
+                  Iron
+                  Coal
+                  Sulfur
+
+                  Ezek akkor kapnak bindingot,
+                  amikor ténylegesen bekerülnek
+                  a Weapon response-ba.
+                -->
+
+                <div class="detail-row future-detail">
+
+                  <span>
+                    Wood
+                  </span>
+
+                  <strong>
+                    —
+                  </strong>
+
+                </div>
+
+
+                <div class="detail-row future-detail">
+
+                  <span>
+                    Iron
+                  </span>
+
+                  <strong>
+                    —
+                  </strong>
+
+                </div>
+
+
+                <div class="detail-row future-detail">
+
+                  <span>
+                    Coal
+                  </span>
+
+                  <strong>
+                    —
+                  </strong>
+
+                </div>
+
+
+                <div class="detail-row future-detail">
+
+                  <span>
+                    Sulfur
+                  </span>
+
+                  <strong>
+                    —
+                  </strong>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="selected-item-actions">
+
+              <button
+                type="button"
+                class="armory-action-button"
+              >
+                Equip
+              </button>
+
+            </div>
+
+          </div>
+
+        } @else {
+
+          <div class="no-selection">
+
+            <span class="no-selection-icon">
+              ⚔
             </span>
 
-          </button>
-
-
-          <!-- =================================================
-               ACTIVE: RIGHT HAND
-               ================================================= -->
-
-          <button
-            type="button"
-            class="
-              equipment-button
-              equipment-right-hand
-              active-equipment-slot
-            "
-          >
-
-            <span class="equipment-label">
-              Right Hand
+            <span>
+              Select an item from the weapon store.
             </span>
 
-            <span
-              class="equipment-icon"
-              [class.empty]="!equipment()?.rightHand"
-            >
+          </div>
 
-              @if (equipment()?.rightHand) {
-
-                <img
-                  [src]="equipment()?.rightHandIconImgUrl"
-                  [alt]="equipment()?.rightHand"
-                >
-
-              }
-
-            </span>
-
-          </button>
-
-
-          <!-- =================================================
-               FUTURE: CHEST
-
-               Nincs equipment().chest binding.
-               ================================================= -->
-
-          <button
-            type="button"
-            class="
-              equipment-button
-              equipment-chest
-              future-equipment-slot
-            "
-            disabled
-          >
-
-            <span class="equipment-label">
-              Chest
-            </span>
-
-            <span
-              class="
-                equipment-icon
-                empty
-                locked
-              "
-            >
-
-              <span class="slot-coming-soon">
-                Soon
-              </span>
-
-            </span>
-
-          </button>
-
-
-          <!-- =================================================
-               FUTURE: LEGS
-
-               Nincs equipment().legs binding.
-               ================================================= -->
-
-          <button
-            type="button"
-            class="
-              equipment-button
-              equipment-legs
-              future-equipment-slot
-            "
-            disabled
-          >
-
-            <span class="equipment-label">
-              Legs
-            </span>
-
-            <span
-              class="
-                equipment-icon
-                empty
-                locked
-              "
-            >
-
-              <span class="slot-coming-soon">
-                Soon
-              </span>
-
-            </span>
-
-          </button>
-
-        </div>
+        }
 
       </section>
 
@@ -1075,6 +1080,8 @@
       <!-- =====================================================
            WEAPON STORE
            ===================================================== -->
+
+
 
       <section class="armory-panel weapon-store-panel">
 
@@ -1102,7 +1109,7 @@
               (click)="
                 selectedWeaponValue.set(
                   weapon.value
-                )
+                ); $event.stopPropagation()
               "
             >
 
@@ -1135,7 +1142,7 @@
         </div>
 
       </section>
-
+      }
     </aside>
 
   </div>
