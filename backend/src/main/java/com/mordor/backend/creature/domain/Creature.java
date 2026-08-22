@@ -107,11 +107,14 @@ public abstract class Creature {
 
    public abstract String getCreatureTypeDisplayName();
 
+   public abstract String getCreatureTypeValue();
+
    public  Integer getWeaponCount(){
        return equipment.getWeapons().size();
    }
 
    public abstract String getImgUrl();
+
 
 
 }

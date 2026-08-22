@@ -46,4 +46,9 @@ public class Mount extends Creature {
         return raceType.getImgUrl();
     }
 
+    @Override
+    public String getCreatureTypeValue() {
+        return raceType.getCreatureTypeValue();
+    }
+
 }

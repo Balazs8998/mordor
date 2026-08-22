@@ -42,6 +42,11 @@ public class Troll extends Creature {
     }
 
     @Override
+    public String getCreatureTypeValue() {
+        return raceType.getCreatureTypeValue();
+    }
+
+    @Override
     public String getImgUrl() {
         return raceType.getImgUrl();
     }

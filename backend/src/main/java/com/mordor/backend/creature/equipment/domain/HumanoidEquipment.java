@@ -8,8 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 
@@ -60,39 +60,61 @@ public class HumanoidEquipment extends Equipment {
         }
     }
 
-    @Override
     public String getLeftHand() {
         return leftHand != null ? leftHand.name() : null;
     }
 
-    @Override
     public String getLeftHandIconImgUrl() {
         return leftHand != null ? leftHand.getIconImgUrl() : "";
     }
 
-    @Override
     public String getLeftHandLayerImgUrl() {
         return leftHand != null ? leftHand.getLeftHandLayerImgUrl() : "";
     }
 
-    @Override
     public String getRightHand() {
         return rightHand != null ? rightHand.name() : null;
     }
 
-    @Override
     public String getRightHandIconImgUrl() {
         return rightHand != null ? rightHand.getIconImgUrl() : "";
     }
 
-    @Override
     public String getRightHandLayerImgUrl() {
         return rightHand != null ? rightHand.getRightHandLayerImgUrl() : "";
     }
 
-    @Override
+
     public void clearEquippedWeapons() {
         rightHand = null;
         leftHand = null;
     }
+
+
+    public Double getBonusDamage() {
+        double bonusDamage = 0.0;
+        if (rightHand != null) {
+            WeaponType rightHand = WeaponType.valueOf(getRightHand());
+            bonusDamage += rightHand.getDamageBonus();
+        }
+        if (leftHand != null) {
+            WeaponType leftHand = WeaponType.valueOf(getLeftHand());
+            bonusDamage += leftHand.getDamageBonus();
+        }
+        return bonusDamage;
+    }
+
+    public Double getBonusDefense() {
+        double bonusDefense = 0.0;
+        if (rightHand != null) {
+            WeaponType rightHand = WeaponType.valueOf(getRightHand());
+            bonusDefense += rightHand.getDefenseBonus();
+        }
+        if (leftHand != null) {
+            WeaponType leftHand = WeaponType.valueOf(getLeftHand());
+            bonusDefense += leftHand.getDefenseBonus();
+        }
+        return bonusDefense;
+    }
+
 }

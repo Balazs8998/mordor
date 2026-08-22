@@ -16,7 +16,6 @@ public class BeastEquipment extends Equipment {
 
     @Override
     public void equip(EquipmentSlots slot, WeaponType weaponType) {
-
     }
 
     @Override
@@ -24,38 +23,4 @@ public class BeastEquipment extends Equipment {
 
     }
 
-    @Override
-    public String getLeftHand() {
-        return "";
-    }
-
-    @Override
-    public String getLeftHandIconImgUrl() {
-        return "";
-    }
-
-    @Override
-    public String getLeftHandLayerImgUrl() {
-        return "";
-    }
-
-    @Override
-    public String getRightHand() {
-        return "";
-    }
-
-    @Override
-    public String getRightHandIconImgUrl() {
-        return "";
-    }
-
-    @Override
-    public String getRightHandLayerImgUrl() {
-        return "";
-    }
-
-    @Override
-    public void clearEquippedWeapons() {
-
-    }
 }

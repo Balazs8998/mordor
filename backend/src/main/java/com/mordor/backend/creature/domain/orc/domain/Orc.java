@@ -46,4 +46,9 @@ public class Orc extends Creature {
     public String getImgUrl() {
         return raceType.getImgUrl();
     }
+
+    @Override
+    public String getCreatureTypeValue() {
+        return raceType.getCreatureTypeValue();
+    }
 }

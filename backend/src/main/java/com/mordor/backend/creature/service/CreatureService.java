@@ -9,19 +9,17 @@ import com.mordor.backend.creature.dto.request.CreatureCreateRequest;
 import com.mordor.backend.creature.dto.request.EquipmentItemRequest;
 import com.mordor.backend.creature.dto.response.CreatureForgeRequiredDataResponse;
 import com.mordor.backend.creature.dto.response.CreatureItemResponse;
-import com.mordor.backend.creature.dto.response.EquipmentItemResponse;
-import com.mordor.backend.creature.enums.CreatureType;
 import com.mordor.backend.creature.equipment.domain.Equipment;
-import com.mordor.backend.creature.equipment.enums.EquipmentSlots;
+import com.mordor.backend.creature.equipment.domain.HumanoidEquipment;
+import com.mordor.backend.creature.equipment.enums.WeaponType;
 import com.mordor.backend.creature.factory.FactoryRouter;
 import com.mordor.backend.creature.repository.CreatureRepository;
 import com.mordor.backend.creature.repository.EquipmentRepository;
+import com.mordor.backend.game.equipment.EquipmentRules;
 import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -36,14 +34,16 @@ public class CreatureService {
     private final EquipmentMapper equipmentMapper;
     private final CreatureForgeRequiredDataMapper creatureForgeRequiredDataMapper;
     private final FactoryRouter factoryRouter;
+    private final EquipmentRules equipmentRules;
 
-    public CreatureService(CreatureRepository creatureRepository, EquipmentRepository equipmentRepository, CreatureMapper creatureMapper, EquipmentMapper equipmentMapper, CreatureForgeRequiredDataMapper creatureForgeRequiredDataMapper, FactoryRouter factoryRouter) {
+    public CreatureService(CreatureRepository creatureRepository, EquipmentRepository equipmentRepository, CreatureMapper creatureMapper, EquipmentMapper equipmentMapper, CreatureForgeRequiredDataMapper creatureForgeRequiredDataMapper, FactoryRouter factoryRouter, EquipmentRules equipmentRules) {
         this.creatureRepository = creatureRepository;
         this.equipmentRepository = equipmentRepository;
         this.creatureMapper = creatureMapper;
         this.equipmentMapper = equipmentMapper;
         this.creatureForgeRequiredDataMapper = creatureForgeRequiredDataMapper;
         this.factoryRouter = factoryRouter;
+        this.equipmentRules = equipmentRules;
     }
 
 
@@ -51,9 +51,9 @@ public class CreatureService {
         return creatureForgeRequiredDataMapper.toResponse();
     }
 
-    public void saveCreature( CreatureCreateRequest request) {
-       Creature creature = factoryRouter.route(request);
-       log.info("Saving creature: {}", creature);
+    public void saveCreature(CreatureCreateRequest request) {
+        Creature creature = factoryRouter.route(request);
+        log.info("Saving creature: {}", creature);
 
         creatureRepository.save(creature);
 
@@ -67,27 +67,30 @@ public class CreatureService {
                 .toList();
     }
 
-    public EquipmentItemResponse getCreatureEquipment(Long id) {
-        Equipment equipment = equipmentRepository.findByCreatureId(id);
-
-        if (equipment == null) {
-            throw new IllegalArgumentException("Equipment not found for creature with id: " + id);
-        }
-        return equipmentMapper.equipmentToEquipmentItemResponse(equipment);
-    }
-
     public void saveCreatureEquipment(Long id, EquipmentItemRequest request) {
         Equipment equipment = equipmentRepository.findByCreatureId(id);
+        Creature creature = creatureRepository.findById(id).orElseThrow(() ->
+                new IllegalArgumentException("Creature not found with id: " + id));
 
         if (equipment == null) {
             throw new IllegalArgumentException("Equipment not found for creature with id: " + id);
         }
+        equipmentRules.validateWeaponEnums(request);
+        equipmentRules.validateEquipmentSlots(request);
+        creature.setStrengthLoad(equipmentRules.creatureHaveEnoughStrenght(creature, request));
+        List<WeaponType> newWeapons = equipmentRules.findNewWeapons(creature, request);
 
-        equipment.clearEquippedWeapons();
-        equipment.getWeapons().clear();
+        // TODO: purchase newWeapons when treasury/player is implemented
 
-        equipmentMapper.updateEquipmentFromRequest(request, equipment);
+        if (equipment instanceof HumanoidEquipment humanoidEquipment) {
+
+            humanoidEquipment.clearEquippedWeapons();
+            humanoidEquipment.getWeapons().clear();
+        }
+
+        equipmentMapper.updatedCommonEquipment(request, equipment);
         equipmentRepository.save(equipment);
+
     }
 
     public CreatureItemResponse getCreatureById(Long id) {
