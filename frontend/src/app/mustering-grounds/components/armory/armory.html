@@ -80,7 +80,7 @@
                 {{ selectedRace()?.baseDamage }}
               </span>
 
-              @if (newCreatureStats()?.damage !==
+              @if (preViewCreatureStat().damage !==
               selectedRace()?.baseDamage) {
 
                 <span class="stat-arrow">
@@ -88,7 +88,7 @@
                 </span>
 
                 <span class="stat-result">
-                  {{ newCreatureStats()?.damage }}
+                  {{ preViewCreatureStat()?.damage }}
                 </span>
 
               }
@@ -119,7 +119,7 @@
                 {{ selectedRace()?.baseDefense }}
               </span>
 
-              @if (newCreatureStats()?.defense !==
+              @if (preViewCreatureStat()?.defense !==
               selectedRace()?.baseDefense) {
 
                 <span class="stat-arrow">
@@ -127,7 +127,7 @@
                 </span>
 
                 <span class="stat-result">
-                  {{ newCreatureStats()?.defense }}
+                  {{ preViewCreatureStat()?.defense }}
                 </span>
 
               }
@@ -798,6 +798,14 @@
 
         </button>
 
+        <button
+          type="button"
+          class="armory-save-btn"
+          (click)="save()"
+        >
+          SAVE
+        </button>
+
       </div>
 
     </main>
@@ -918,7 +926,7 @@
                   </span>
 
                   <strong>
-                    1
+                    {{ selectedWeapon()?.handsRequired}}
                   </strong>
 
                 </div>
@@ -1050,6 +1058,7 @@
               <button
                 type="button"
                 class="armory-action-button"
+                (click)="equipWeapon()"
               >
                 Equip
               </button>

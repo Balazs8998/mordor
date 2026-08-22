@@ -5,6 +5,7 @@ import {CreatureForgeRequiredDataResponse} from '../../models/response/creature/
 import {CreatureCreateRequest} from '../../models/request/CreatureCreateRequest';
 import {PlayerRequiredDataResponse} from '../../models/response/player/player-required-data-response';
 import {CreatureItemResponse} from '../../models/response/creature/creature-item-response';
+import {CreatureEquipmentSave} from '../../models/request/creature-equipment-save';
 
 const BASE_URL = 'http://localhost:8080';
 
@@ -34,4 +35,7 @@ export class MusteringGroundsApi {
   }
 
 
+  saveEquipment(creatureId : number,equipmentDraft: CreatureEquipmentSave) : Observable<void> {
+    return this.http.post<void>(`${BASE_URL}/creature/${creatureId}/equipment`, equipmentDraft);
+  }
 }
