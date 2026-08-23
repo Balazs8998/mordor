@@ -122,7 +122,7 @@ export class Armory {
 
 
     if (!selectedRaceData) {
-      return { damage: 0, defense: 0 };
+      return {damage: 0, defense: 0};
     }
 
     let stats: CreatureStats = {
@@ -135,43 +135,42 @@ export class Armory {
 
     const oppositeSlotWeaponData =
       selectedWeaponData?.handsRequired === 1
-    ?
-      this.getWeaponByValue(this.equipmentDraft()?.[oppositeSlotMap] ?? '')
-    :
-    undefined;
+        ?
+        this.getWeaponByValue(this.equipmentDraft()?.[oppositeSlotMap] ?? '')
+        :
+        undefined;
 
 
-    if (slot !== null && selectedWeaponValuePre() !== ''){
+    if (slot !== null && selectedWeaponValuePre() !== '') {
 
-      if (oppositeSlotWeaponData?.handsRequired === 2){
-        stats ={
-          damage: stats.damage + (selectedWeaponData?.damageBonus ?? 0) ,
+      if (oppositeSlotWeaponData?.handsRequired === 2) {
+        stats = {
+          damage: stats.damage + (selectedWeaponData?.damageBonus ?? 0),
           defense: stats.defense + (selectedWeaponData?.defenseBonus ?? 0)
         }
 
         return stats;
       }
 
-      stats ={
+      stats = {
         damage: stats.damage + (selectedWeaponData?.damageBonus ?? 0) + (oppositeSlotWeaponData?.damageBonus ?? 0),
         defense: stats.defense + (selectedWeaponData?.defenseBonus ?? 0) + (oppositeSlotWeaponData?.defenseBonus ?? 0)
       }
 
       return stats;
-      }
+    }
 
-    if (draftEquiped && selectedWeaponValuePre() === ''){
+    if (draftEquiped && selectedWeaponValuePre() === '') {
       const leftHandWeapon = this.getWeaponByValue(draftEquiped.leftHand);
       const rightHandWeapon = this.getWeaponByValue(draftEquiped.rightHand);
       stats = {
-        damage: stats.damage + ( leftHandWeapon?.damageBonus ?? 0) + (rightHandWeapon?.damageBonus ?? 0),
-        defense: stats.defense + ( leftHandWeapon?.defenseBonus ?? 0) + (rightHandWeapon?.defenseBonus ?? 0)
+        damage: stats.damage + (leftHandWeapon?.damageBonus ?? 0) + (rightHandWeapon?.damageBonus ?? 0),
+        defense: stats.defense + (leftHandWeapon?.defenseBonus ?? 0) + (rightHandWeapon?.defenseBonus ?? 0)
       }
     }
 
     return stats;
   })
-
 
 
   ngOnInit() {
@@ -208,6 +207,27 @@ export class Armory {
       }
 
       if (weapon.handsRequired === 2) {
+        if (value[slotMapper] != null) {
+          value.weapons.push(value[slotMapper])
+          const index = value.weapons.findIndex(
+            weapon => weapon === this.selectedWeaponValue()
+          );
+
+          if (index !== -1) {
+            value.weapons.splice(index, 1);
+          }
+        }
+        if (value[oppositeSlot] != null) {
+          value.weapons.push(value[oppositeSlot])
+          const index = value.weapons.findIndex(
+            weapon => weapon === this.selectedWeaponValue()
+          );
+
+          if (index !== -1) {
+            value.weapons.splice(index, 1);
+          }
+
+        }
         return {
           ...value,
           [slotMapper]: weapon.value,
@@ -219,12 +239,47 @@ export class Armory {
         this.getWeaponByValue(value[oppositeSlot]);
 
       if (oppositeWeapon?.handsRequired === 2) {
+        if (value[slotMapper] != null) {
+          value.weapons.push(value[slotMapper])
+          const index = value.weapons.findIndex(
+            weapon => weapon === this.selectedWeaponValue()
+          );
+
+          if (index !== -1) {
+            value.weapons.splice(index, 1);
+          }
+        }
+        if (value[oppositeSlot] != null) {
+          value.weapons.push(value[oppositeSlot])
+          const index = value.weapons.findIndex(
+            weapon => weapon === this.selectedWeaponValue()
+          );
+
+          if (index !== -1) {
+            value.weapons.splice(index, 1);
+          }
+
+        }
         return {
           ...value,
           [slotMapper]: weapon.value,
           [oppositeSlot]: null
         };
       }
+
+      const index = value.weapons.findIndex(
+        weapon => weapon === this.selectedWeaponValue()
+      );
+
+      if (index !== -1) {
+        value.weapons.splice(index, 1);
+      }
+
+      if (value[slotMapper] != null) {
+
+        value.weapons.push(value[slotMapper])
+      }
+
       return {
         ...value,
         [slotMapper]: weapon.value
@@ -258,7 +313,6 @@ export class Armory {
 
     return this.weapons().find(weapon => weapon.value === value);
   }
-
 
 
   @HostListener('document:click')

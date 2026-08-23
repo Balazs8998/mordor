@@ -11,6 +11,7 @@ import com.mordor.backend.creature.dto.response.CreatureForgeRequiredDataRespons
 import com.mordor.backend.creature.dto.response.CreatureItemResponse;
 import com.mordor.backend.creature.equipment.domain.Equipment;
 import com.mordor.backend.creature.equipment.domain.HumanoidEquipment;
+import com.mordor.backend.creature.equipment.enums.EquipmentSlots;
 import com.mordor.backend.creature.equipment.enums.WeaponType;
 import com.mordor.backend.creature.factory.FactoryRouter;
 import com.mordor.backend.creature.repository.CreatureRepository;
@@ -84,8 +85,12 @@ public class CreatureService {
 
         if (equipment instanceof HumanoidEquipment humanoidEquipment) {
 
-            humanoidEquipment.clearEquippedWeapons();
-            humanoidEquipment.getWeapons().clear();
+            if(humanoidEquipment.getLeftHand() != null) {
+                humanoidEquipment.unequip(EquipmentSlots.LEFT_HAND);
+            }
+            if(humanoidEquipment.getRightHand() != null) {
+                humanoidEquipment.unequip(EquipmentSlots.RIGHT_HAND);
+            }
         }
 
         equipmentMapper.updatedCommonEquipment(request, equipment);

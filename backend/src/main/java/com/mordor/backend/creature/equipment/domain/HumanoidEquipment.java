@@ -85,12 +85,6 @@ public class HumanoidEquipment extends Equipment {
     }
 
 
-    public void clearEquippedWeapons() {
-        rightHand = null;
-        leftHand = null;
-    }
-
-
     public Double getBonusDamage() {
         double bonusDamage = 0.0;
         if (rightHand != null) {

@@ -58,7 +58,7 @@ public class EquipmentMapper {
                 null,
                 null,
                 null,
-                equipment.getWeapons().stream().map(WeaponType::getDisplayName).toList()
+                equipment.getWeapons().stream().map(WeaponType::name).toList()
         );
     }
 
@@ -82,7 +82,7 @@ public class EquipmentMapper {
                 humanoidEquipment.getLeftHandLayerImgUrl()
                         != null ? humanoidEquipment.getLeftHandLayerImgUrl() : null,
 
-                humanoidEquipment.getWeapons().stream().map(WeaponType::getDisplayName).toList()
+                humanoidEquipment.getWeapons().stream().map(WeaponType::name).toList()
         );
     }
 
