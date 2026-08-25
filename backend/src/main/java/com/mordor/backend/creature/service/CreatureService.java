@@ -10,8 +10,6 @@ import com.mordor.backend.creature.dto.request.EquipmentItemRequest;
 import com.mordor.backend.creature.dto.response.CreatureForgeRequiredDataResponse;
 import com.mordor.backend.creature.dto.response.CreatureItemResponse;
 import com.mordor.backend.creature.equipment.domain.Equipment;
-import com.mordor.backend.creature.equipment.domain.HumanoidEquipment;
-import com.mordor.backend.creature.equipment.enums.EquipmentSlots;
 import com.mordor.backend.creature.equipment.enums.WeaponType;
 import com.mordor.backend.creature.factory.FactoryRouter;
 import com.mordor.backend.creature.repository.CreatureRepository;
@@ -80,20 +78,10 @@ public class CreatureService {
         equipmentRules.validateEquipmentSlots(request);
         creature.setStrengthLoad(equipmentRules.creatureHaveEnoughStrenght(creature, request));
         List<WeaponType> newWeapons = equipmentRules.findNewWeapons(creature, request);
+        equipmentRules.applyWeaponEquipment(newWeapons,creature, request);
 
         // TODO: purchase newWeapons when treasury/player is implemented
 
-        if (equipment instanceof HumanoidEquipment humanoidEquipment) {
-
-            if(humanoidEquipment.getLeftHand() != null) {
-                humanoidEquipment.unequip(EquipmentSlots.LEFT_HAND);
-            }
-            if(humanoidEquipment.getRightHand() != null) {
-                humanoidEquipment.unequip(EquipmentSlots.RIGHT_HAND);
-            }
-        }
-
-        equipmentMapper.updatedCommonEquipment(request, equipment);
         equipmentRepository.save(equipment);
 
     }

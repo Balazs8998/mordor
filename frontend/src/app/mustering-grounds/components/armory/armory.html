@@ -670,132 +670,13 @@
       <div class="quick-equipment">
 
 
-        <!-- FUTURE: HEAD -->
 
         <button
           type="button"
-          class="
-            quick-slot
-            future-slot
-          "
-          title="Head - planned feature"
-          disabled
+          class="armory-save-btn"
+          (click)="unequip()"
         >
-
-          <span class="quick-slot-placeholder">
-            HEAD
-          </span>
-
-          <span class="future-badge">
-            Soon
-          </span>
-
-        </button>
-
-
-        <!-- FUTURE: CHEST -->
-
-        <button
-          type="button"
-          class="
-            quick-slot
-            future-slot
-          "
-          title="Chest - planned feature"
-          disabled
-        >
-
-          <span class="quick-slot-placeholder">
-            CHEST
-          </span>
-
-          <span class="future-badge">
-            Soon
-          </span>
-
-        </button>
-
-
-        <!-- ACTIVE: LEFT HAND -->
-
-        <button
-          type="button"
-          class="
-            quick-slot
-            active-slot
-          "
-          [class.equipped]="!!equipment()?.leftHand"
-          title="Left Hand"
-        >
-
-          @if (equipment()?.leftHand) {
-
-            <img
-              [src]="equipment()?.leftHandIconImgUrl"
-              [alt]="equipment()?.leftHand"
-            >
-
-          } @else {
-
-            <span class="quick-slot-placeholder">
-              L
-            </span>
-
-          }
-
-        </button>
-
-
-        <!-- ACTIVE: RIGHT HAND -->
-
-        <button
-          type="button"
-          class="
-            quick-slot
-            active-slot
-          "
-          [class.equipped]="!!equipment()?.rightHand"
-          title="Right Hand"
-        >
-
-          @if (equipment()?.rightHand) {
-
-            <img
-              [src]="equipment()?.rightHandIconImgUrl"
-              [alt]="equipment()?.rightHand"
-            >
-
-          } @else {
-
-            <span class="quick-slot-placeholder">
-              R
-            </span>
-
-          }
-
-        </button>
-
-
-        <!-- FUTURE: LEGS -->
-
-        <button
-          type="button"
-          class="
-            quick-slot
-            future-slot
-          "
-          title="Legs - planned feature"
-          disabled
-        >
-
-          <span class="quick-slot-placeholder">
-            LEGS
-          </span>
-
-          <span class="future-badge">
-            Soon
-          </span>
-
+          UNEQUIP
         </button>
 
         <button

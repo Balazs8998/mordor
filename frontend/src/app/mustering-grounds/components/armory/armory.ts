@@ -95,18 +95,15 @@ export class Armory {
 
   readonly equipmentDraft =
     linkedSignal<CreatureEquipmentSave | null>(() => {
-      const creature = this.selectedCreature();
       const equipment = this.equipment();
 
-      if (!creature || !equipment) {
+      if (!equipment) {
         return null;
       }
 
       return {
-        creatureId: creature.id,
         leftHand: equipment.leftHand ?? null,
-        rightHand: equipment.rightHand ?? null,
-        weapons: [...equipment.weapons]
+        rightHand: equipment.rightHand ?? null
       };
     });
 
@@ -207,27 +204,7 @@ export class Armory {
       }
 
       if (weapon.handsRequired === 2) {
-        if (value[slotMapper] != null) {
-          value.weapons.push(value[slotMapper])
-          const index = value.weapons.findIndex(
-            weapon => weapon === this.selectedWeaponValue()
-          );
 
-          if (index !== -1) {
-            value.weapons.splice(index, 1);
-          }
-        }
-        if (value[oppositeSlot] != null) {
-          value.weapons.push(value[oppositeSlot])
-          const index = value.weapons.findIndex(
-            weapon => weapon === this.selectedWeaponValue()
-          );
-
-          if (index !== -1) {
-            value.weapons.splice(index, 1);
-          }
-
-        }
         return {
           ...value,
           [slotMapper]: weapon.value,
@@ -239,45 +216,12 @@ export class Armory {
         this.getWeaponByValue(value[oppositeSlot]);
 
       if (oppositeWeapon?.handsRequired === 2) {
-        if (value[slotMapper] != null) {
-          value.weapons.push(value[slotMapper])
-          const index = value.weapons.findIndex(
-            weapon => weapon === this.selectedWeaponValue()
-          );
 
-          if (index !== -1) {
-            value.weapons.splice(index, 1);
-          }
-        }
-        if (value[oppositeSlot] != null) {
-          value.weapons.push(value[oppositeSlot])
-          const index = value.weapons.findIndex(
-            weapon => weapon === this.selectedWeaponValue()
-          );
-
-          if (index !== -1) {
-            value.weapons.splice(index, 1);
-          }
-
-        }
         return {
           ...value,
           [slotMapper]: weapon.value,
           [oppositeSlot]: null
         };
-      }
-
-      const index = value.weapons.findIndex(
-        weapon => weapon === this.selectedWeaponValue()
-      );
-
-      if (index !== -1) {
-        value.weapons.splice(index, 1);
-      }
-
-      if (value[slotMapper] != null) {
-
-        value.weapons.push(value[slotMapper])
       }
 
       return {
@@ -303,6 +247,20 @@ export class Armory {
         // const parsedError = parseHttpError(error);
         // this.apiError.set(parsedError.apiError);
       }
+    });
+  }
+
+  public unequip() {
+    this.equipmentDraft.update(value => {
+      if (!value) {
+        return value;
+      }
+
+      return {
+        ...value,
+        leftHand: null,
+        rightHand: null
+      };
     });
   }
 

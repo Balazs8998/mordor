@@ -2,6 +2,7 @@ package com.mordor.backend.game.equipment;
 
 import com.mordor.backend.creature.domain.Creature;
 import com.mordor.backend.creature.dto.request.EquipmentItemRequest;
+import com.mordor.backend.creature.equipment.domain.Equipment;
 import com.mordor.backend.creature.equipment.domain.HumanoidEquipment;
 import com.mordor.backend.creature.equipment.enums.WeaponType;
 import lombok.extern.slf4j.Slf4j;
@@ -17,27 +18,20 @@ import java.util.List;
 public class EquipmentRules {
 
 
-
     public void validateWeaponEnums(EquipmentItemRequest request) {
+        log.debug("Validation Weapon Enums: Left Hand - {}, Right Hand - {}", request.leftHand(), request.rightHand());
 
 
-        if (request.leftHand() != null){
-            try{
+        if (request.leftHand() != null) {
+            try {
                 WeaponType.valueOf(request.leftHand());
             } catch (IllegalArgumentException e) {
                 throw new RuntimeException(e);
             }
         }
-        if (request.rightHand() != null){
+        if (request.rightHand() != null) {
             try {
                 WeaponType.valueOf(request.rightHand());
-            } catch (IllegalArgumentException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        if (request.weapons() != null) {
-            try {
-                request.weapons().forEach(WeaponType::valueOf);
             } catch (IllegalArgumentException e) {
                 throw new RuntimeException(e);
             }
@@ -46,11 +40,13 @@ public class EquipmentRules {
 
     public void validateEquipmentSlots(EquipmentItemRequest request) {
 
-        if (request.leftHand() != null && request.rightHand() != null){
+        if (request.leftHand() != null && request.rightHand() != null) {
             WeaponType leftHand = WeaponType.valueOf(request.leftHand());
             WeaponType rightHand = WeaponType.valueOf(request.rightHand());
 
-            if(leftHand.getHandsRequired() > 1 || rightHand.getHandsRequired() > 1) {
+            log.debug("Left Hand: {}, Right Hand: {}", leftHand.getHandsRequired(), rightHand.getHandsRequired());
+
+            if (leftHand.getHandsRequired() > 1 || rightHand.getHandsRequired() > 1) {
                 throw new RuntimeException("Invalid equipment slots: One of the weapons requires more than one hand.");
             }
         }
@@ -61,14 +57,17 @@ public class EquipmentRules {
         double strengthCost = 0;
         double creatureStrength = creature.getStrength();
 
-        if (request.leftHand() != null){
+        if (request.leftHand() != null) {
             WeaponType leftHand = WeaponType.valueOf(request.leftHand());
             strengthCost += leftHand.getStrengthCost();
         }
-        if (request.rightHand() != null){
+        if (request.rightHand() != null) {
             WeaponType rightHand = WeaponType.valueOf(request.rightHand());
             strengthCost += rightHand.getStrengthCost();
         }
+
+        log.debug("Strength Cost: {}", strengthCost);
+        log.debug("Creature Strength: {}", creatureStrength);
 
 
         if (strengthCost > creatureStrength) {
@@ -87,14 +86,12 @@ public class EquipmentRules {
             if (humanoidEquipment.getRightHand() != null) {
                 creatureWeaponPool.add(WeaponType.valueOf(humanoidEquipment.getRightHand()));
             }
+
         }
 
+
         List<WeaponType> requestWeaponPool =
-                new ArrayList<>(
-                        request.weapons().stream()
-                                .map(WeaponType::valueOf)
-                                .toList()
-                );
+                new ArrayList<>();
 
         if (request.leftHand() != null) {
             requestWeaponPool.add(WeaponType.valueOf(request.leftHand()));
@@ -104,6 +101,8 @@ public class EquipmentRules {
             requestWeaponPool.add(WeaponType.valueOf(request.rightHand()));
         }
 
+        log.debug("Creature Weapon Pool: {}", creatureWeaponPool);
+        log.debug("New Weapons Pool: {}", requestWeaponPool);
 
         return findWeaponsToBuy(creatureWeaponPool, requestWeaponPool);
     }
@@ -120,8 +119,73 @@ public class EquipmentRules {
             }
         }
 
+        log.debug("Weapons to Buy: {}", weaponsToBuy);
+
         return weaponsToBuy;
     }
 
+
+    public void applyWeaponEquipment(List<WeaponType> newWeapon,Creature creature, EquipmentItemRequest request) {
+        List<WeaponType> pool = new ArrayList<>();
+        Equipment equipment = creature.getEquipment();
+        pool.addAll(equipment.getWeapons());
+        pool.addAll(newWeapon);
+        WeaponType requestLeftHand = request.leftHand() != null ? WeaponType.valueOf(request.leftHand()) : null;
+        WeaponType requestRightHand = request.rightHand() != null ? WeaponType.valueOf(request.rightHand()) : null;
+
+
+        log.debug("newWeapons: {}", newWeapon);
+        log.debug("creature inventory: {}", equipment.getWeapons());
+        log.debug("Request Left Hand: {}", requestLeftHand);
+        log.debug("Request Right Hand: {}", requestRightHand);
+
+        if (equipment instanceof HumanoidEquipment humanoidEquipment) {
+            WeaponType creatureLeftHand = humanoidEquipment.getLeftHand()
+                    != null ? WeaponType.valueOf(humanoidEquipment.getLeftHand()) : null;
+            if(creatureLeftHand != null){
+                pool.add(creatureLeftHand);
+            }
+
+            WeaponType creatureRightHand = humanoidEquipment.getRightHand()
+                    != null ? WeaponType.valueOf(humanoidEquipment.getRightHand()) : null;
+            if(creatureRightHand != null){
+            pool.add(creatureRightHand);}
+
+            log.debug("Pool: {}", pool);
+            log.debug("Creature Left Hand: {}", creatureLeftHand);
+            log.debug("Creature Right Hand: {}", creatureRightHand);
+
+            WeaponType LeftHand = takeWeaponFromPool(pool, requestLeftHand);
+            if(requestLeftHand != null && LeftHand == null){
+                throw new RuntimeException("Weapon to equip not found in pool.");
+            }
+                humanoidEquipment.setLeftHand(LeftHand);
+
+            WeaponType RightHand = takeWeaponFromPool(pool, requestRightHand);
+            if(requestRightHand != null && RightHand == null){
+                throw new RuntimeException("Weapon to equip not found in pool.");
+            }
+                humanoidEquipment.setRightHand(RightHand);
+            log.debug("TakeWeapon Left Hand: {}", LeftHand);
+            log.debug("TakeWeapon Right Hand: {}", RightHand);
+
+            humanoidEquipment.setWeapons(pool);
+            log.debug("pool after equip: {}", pool);
+        }
+
+        log.debug("Uneqipped Weapons: {}", creature.getEquipment().getWeapons());
+    }
+
+    private WeaponType takeWeaponFromPool(List<WeaponType> pool, WeaponType weapon) {
+        Iterator<WeaponType> iterator = pool.iterator();
+        while (iterator.hasNext()) {
+            WeaponType w = iterator.next();
+            if (w == weapon) {
+                iterator.remove();
+                return w;
+            }
+        }
+        return null;
+    }
 
 }
