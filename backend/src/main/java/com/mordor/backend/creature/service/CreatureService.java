@@ -14,7 +14,7 @@ import com.mordor.backend.creature.equipment.enums.WeaponType;
 import com.mordor.backend.creature.factory.FactoryRouter;
 import com.mordor.backend.creature.repository.CreatureRepository;
 import com.mordor.backend.creature.repository.EquipmentRepository;
-import com.mordor.backend.game.equipment.EquipmentRules;
+import com.mordor.backend.game.equipment.ArmoryEquipmentHandsRules;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -33,16 +33,16 @@ public class CreatureService {
     private final EquipmentMapper equipmentMapper;
     private final CreatureForgeRequiredDataMapper creatureForgeRequiredDataMapper;
     private final FactoryRouter factoryRouter;
-    private final EquipmentRules equipmentRules;
+    private final ArmoryEquipmentHandsRules armoryEquipmentHandsRules;
 
-    public CreatureService(CreatureRepository creatureRepository, EquipmentRepository equipmentRepository, CreatureMapper creatureMapper, EquipmentMapper equipmentMapper, CreatureForgeRequiredDataMapper creatureForgeRequiredDataMapper, FactoryRouter factoryRouter, EquipmentRules equipmentRules) {
+    public CreatureService(CreatureRepository creatureRepository, EquipmentRepository equipmentRepository, CreatureMapper creatureMapper, EquipmentMapper equipmentMapper, CreatureForgeRequiredDataMapper creatureForgeRequiredDataMapper, FactoryRouter factoryRouter, ArmoryEquipmentHandsRules armoryEquipmentHandsRules) {
         this.creatureRepository = creatureRepository;
         this.equipmentRepository = equipmentRepository;
         this.creatureMapper = creatureMapper;
         this.equipmentMapper = equipmentMapper;
         this.creatureForgeRequiredDataMapper = creatureForgeRequiredDataMapper;
         this.factoryRouter = factoryRouter;
-        this.equipmentRules = equipmentRules;
+        this.armoryEquipmentHandsRules = armoryEquipmentHandsRules;
     }
 
 
@@ -74,11 +74,11 @@ public class CreatureService {
         if (equipment == null) {
             throw new IllegalArgumentException("Equipment not found for creature with id: " + id);
         }
-        equipmentRules.validateWeaponEnums(request);
-        equipmentRules.validateEquipmentSlots(request);
-        creature.setStrengthLoad(equipmentRules.creatureHaveEnoughStrenght(creature, request));
-        List<WeaponType> newWeapons = equipmentRules.findNewWeapons(creature, request);
-        equipmentRules.applyWeaponEquipment(newWeapons,creature, request);
+        armoryEquipmentHandsRules.validateWeaponEnums(request);
+        armoryEquipmentHandsRules.validateEquipmentSlots(request);
+        creature.setStrengthLoad(armoryEquipmentHandsRules.creatureHaveEnoughStrenght(creature, request));
+        List<WeaponType> newWeapons = armoryEquipmentHandsRules.findNewWeapons(creature, request);
+        armoryEquipmentHandsRules.applyWeaponEquipment(newWeapons,creature, request);
 
         // TODO: purchase newWeapons when treasury/player is implemented
 

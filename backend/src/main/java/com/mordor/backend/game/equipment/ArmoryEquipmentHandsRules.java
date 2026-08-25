@@ -15,7 +15,7 @@ import java.util.List;
 @Slf4j
 
 @Component
-public class EquipmentRules {
+public class ArmoryEquipmentHandsRules {
 
 
     public void validateWeaponEnums(EquipmentItemRequest request) {
